@@ -1,9 +1,11 @@
+import Hompage from "./pages/Homepage";
 import "./App.css";
 
 function App() {
   return (
-    <div>
-      <h1 className="bg-amber-300">Hello world?</h1>
+    <div className="bg-[#fbfbfc]">
+      <Hompage />
+      <div className="h-screen block"></div>
     </div>
   );
 }
