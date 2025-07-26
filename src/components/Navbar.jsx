@@ -1,15 +1,15 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-/* import all the icons in Free Solid, Free Regular, and Brands styles */
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import { useState } from "react";
 
-library.add(fas, far, fab);
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "./font-awesome";
+import NavMenu from "../components/NavMenu";
 
 function Navbar() {
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
-    <nav className="flex justify-between items-center px-4 py-3 bg-[#fff] md:px-20 md:py-1">
+    <nav className="flex justify-between items-center px-4 py-4 bg-[#fff] md:px-20 md:py-1">
       <div className="flex justify-center items-center">
         <img
           className="w-45 hidden md:inline-block"
@@ -19,6 +19,9 @@ function Navbar() {
         <FontAwesomeIcon
           className="text-2xl md:!hidden"
           icon="fa-solid fa-bars"
+          onClick={() => {
+            setShowMenu(!showMenu);
+          }}
         />
         <img
           className="w-11 ml-5 md:hidden"
@@ -63,6 +66,16 @@ function Navbar() {
           0
         </span>
       </div>
+      {showMenu && (
+        <motion.div
+          className="bg-[#fff] w-[70%] h-full px-5 py-6 fixed top-0 right-0 text-left md:hidden"
+          initial={{ y: "-100vw" }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.35, type: "tween" }}
+        >
+          <NavMenu setShowMenu={setShowMenu} />
+        </motion.div>
+      )}
     </nav>
   );
 }
