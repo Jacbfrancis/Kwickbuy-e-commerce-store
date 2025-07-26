@@ -75,7 +75,6 @@ function NavMenu({ setShowMenu }) {
                   />
                   Men's Fashion
                 </span>
-                <span> &#62; </span>
               </li>
               <li className="flex justify-between items-center">
                 <span>
@@ -86,7 +85,6 @@ function NavMenu({ setShowMenu }) {
                   />
                   Women's Fashion
                 </span>
-                <span> &#62; </span>
               </li>
               <li className="flex justify-between items-center">
                 <span>
@@ -97,7 +95,6 @@ function NavMenu({ setShowMenu }) {
                   />
                   Kid's Fashion
                 </span>
-                <span> &#62; </span>
               </li>
               <li className="flex justify-between items-center">
                 <span>
@@ -108,7 +105,6 @@ function NavMenu({ setShowMenu }) {
                   />
                   Health & Beauty
                 </span>
-                <span> &#62; </span>
               </li>
               <li className="flex justify-between items-center">
                 <span>
@@ -119,7 +115,6 @@ function NavMenu({ setShowMenu }) {
                   />
                   Pet Supplies
                 </span>
-                <span> &#62; </span>
               </li>
               <li className="flex justify-between items-center">
                 <span>
@@ -130,7 +125,6 @@ function NavMenu({ setShowMenu }) {
                   />
                   Home & Kitchen
                 </span>
-                <span> &#62; </span>
               </li>
               <li className="flex justify-between items-center">
                 <span>
@@ -141,7 +135,6 @@ function NavMenu({ setShowMenu }) {
                   />
                   Baby & Toys
                 </span>
-                <span> &#62; </span>
               </li>
               <li className="flex justify-between items-center">
                 <span>
@@ -152,7 +145,6 @@ function NavMenu({ setShowMenu }) {
                   />
                   Sports & Leisure
                 </span>
-                <span> &#62; </span>
               </li>
               <li className="flex justify-between items-center">
                 <span>
@@ -163,7 +155,6 @@ function NavMenu({ setShowMenu }) {
                   />
                   Phones & Gadgets
                 </span>
-                <span> &#62; </span>
               </li>
             </ul>
           </motion.div>
