@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="bg-[#fbfbfc]">
       <Hompage />
-      <div className="h-[90vh] block"></div>
+      <div className="h-[70vh] block"></div>
     </div>
   );
 }

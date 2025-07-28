@@ -17,14 +17,12 @@ function reducer(state, action) {
         offersMenu: false,
         brandMenu: false,
       };
-
     case "TOGGLE_OFFERS":
       return {
         offersMenu: !state.offersMenu,
         brandMenu: false,
         categoriesMenu: false,
       };
-
     case "TOGGLE_BRAND":
       return {
         brandMenu: !state.brandMenu,
@@ -66,95 +64,77 @@ function NavMenu({ setShowMenu }) {
             transition={{ delay: 0.05, type: "spring" }}
           >
             <ul className="flex text-[0.85rem] flex-col gap-4">
-              <li className="flex justify-between items-center">
-                <span>
-                  <img
-                    className="w-6 inline-block mr-2"
-                    src="/men_fashion.webp"
-                    alt="men-fashion"
-                  />
-                  Men's Fashion
-                </span>
+              <li>
+                <img
+                  className="w-6 inline-block mr-2"
+                  src="/men_fashion.webp"
+                  alt="men-fashion"
+                />
+                Men's Fashion
               </li>
-              <li className="flex justify-between items-center">
-                <span>
-                  <img
-                    className="w-6 inline-block mr-2"
-                    src="/women_fashion.webp"
-                    alt="women-fashion"
-                  />
-                  Women's Fashion
-                </span>
+              <li>
+                <img
+                  className="w-6 inline-block mr-2"
+                  src="/women_fashion.webp"
+                  alt="women-fashion"
+                />
+                Women's Fashion
               </li>
-              <li className="flex justify-between items-center">
-                <span>
-                  <img
-                    className="w-6 inline-block mr-2"
-                    src="/kid_fashion.webp"
-                    alt="kid-fashion"
-                  />
-                  Kid's Fashion
-                </span>
+              <li>
+                <img
+                  className="w-6 inline-block mr-2"
+                  src="/kid_fashion.webp"
+                  alt="kid-fashion"
+                />
+                Kid's Fashion
               </li>
-              <li className="flex justify-between items-center">
-                <span>
-                  <img
-                    className="w-6 inline-block mr-2"
-                    src="/health_beauty.webp"
-                    alt="health_beauty"
-                  />
-                  Health & Beauty
-                </span>
+              <li>
+                <img
+                  className="w-6 inline-block mr-2"
+                  src="/health_beauty.webp"
+                  alt="health_beauty"
+                />
+                Health & Beauty
               </li>
-              <li className="flex justify-between items-center">
-                <span>
-                  <img
-                    className="w-6 inline-block mr-2"
-                    src="/pet_supplies.webp"
-                    alt="pet-supplies"
-                  />
-                  Pet Supplies
-                </span>
+              <li>
+                <img
+                  className="w-6 inline-block mr-2"
+                  src="/pet_supplies.webp"
+                  alt="pet-supplies"
+                />
+                Pet Supplies
               </li>
-              <li className="flex justify-between items-center">
-                <span>
-                  <img
-                    className="w-6 inline-block mr-2"
-                    src="/home_kitchen.webp"
-                    alt="home-kitchen"
-                  />
-                  Home & Kitchen
-                </span>
+              <li>
+                <img
+                  className="w-6 inline-block mr-2"
+                  src="/home_kitchen.webp"
+                  alt="home-kitchen"
+                />
+                Home & Kitchen
               </li>
-              <li className="flex justify-between items-center">
-                <span>
-                  <img
-                    className="w-6 inline-block mr-2"
-                    src="/baby_toys.webp"
-                    alt="baby-toys"
-                  />
-                  Baby & Toys
-                </span>
+              <li>
+                <img
+                  className="w-6 inline-block mr-2"
+                  src="/baby_toys.webp"
+                  alt="baby-toys"
+                />
+                Baby & Toys
               </li>
-              <li className="flex justify-between items-center">
-                <span>
-                  <img
-                    className="w-6 inline-block mr-2"
-                    src="/sports_leisure.webp"
-                    alt="sports-leisure"
-                  />
-                  Sports & Leisure
-                </span>
+              <li>
+                <img
+                  className="w-6 inline-block mr-2"
+                  src="/sports_leisure.webp"
+                  alt="sports-leisure"
+                />
+                Sports & Leisure
               </li>
-              <li className="flex justify-between items-center">
-                <span>
-                  <img
-                    className="w-6 inline-block mr-2"
-                    src="/phones.webp"
-                    alt="phone-accessories"
-                  />
-                  Phones & Gadgets
-                </span>
+              <li>
+                <img
+                  className="w-6 inline-block mr-2"
+                  src="/phones.webp"
+                  alt="phone-accessories"
+                />
+                Phones & Gadgets
               </li>
             </ul>
           </motion.div>
