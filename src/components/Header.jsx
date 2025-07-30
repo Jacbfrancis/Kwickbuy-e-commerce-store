@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import CarouselButton from "./CarouselButton";
 
@@ -14,6 +14,7 @@ function Header() {
   const headerImages = [bannerImage1, bannerImage2, bannerImage3];
   const [currentImage, setCurrentImage] = useState(0);
 
+  const imageLength = headerImages.length;
   function handleMouseOut() {
     setIsMouseOver(false);
   }
@@ -129,8 +130,24 @@ function Header() {
         <CarouselButton
           isMouseOver={isMouseOver}
           setCurrentImage={setCurrentImage}
+          imageLength={imageLength}
         />
       </div>
+      <span className="absolute top-50 left-45 md:top-130 md:left-200">
+        {Array(imageLength)
+          .fill()
+          .map((_, index) => (
+            <FontAwesomeIcon
+              key={index}
+              icon={`${
+                index === currentImage ? "fa-solid" : " fa-regular"
+              } fa-circle`}
+              className={`${
+                index === currentImage ? "text-[#1456ac]" : "text-[#1456ac5c]"
+              } text-[0.6rem] mr-1 md:mr-2 md:text-[0.8rem]`}
+            />
+          ))}
+      </span>
     </div>
   );
 }

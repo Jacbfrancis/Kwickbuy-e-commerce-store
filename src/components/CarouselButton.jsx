@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
 
-function CarouselButton({ isMouseOver, setCurrentImage }) {
+function CarouselButton({ isMouseOver, setCurrentImage, imageLength }) {
   return (
     <AnimatePresence>
       {isMouseOver && (
@@ -15,7 +15,7 @@ function CarouselButton({ isMouseOver, setCurrentImage }) {
               exit={{ opacity: 0, x: 50 }}
               transition={{ duration: 0.3, type: "tween" }}
               onClick={() => {
-                setCurrentImage((prevImage) => (prevImage + 1) % 3);
+                setCurrentImage((prevImage) => (prevImage + 1) % imageLength);
               }}
             >
               <FontAwesomeIcon icon="fa-solid fa-chevron-left" />
@@ -28,7 +28,7 @@ function CarouselButton({ isMouseOver, setCurrentImage }) {
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.3, type: "tween" }}
               onClick={() => {
-                setCurrentImage((prevImage) => (prevImage + 1) % 3);
+                setCurrentImage((prevImage) => (prevImage + 1) % imageLength);
               }}
             >
               <FontAwesomeIcon icon="fa-solid fa-chevron-right" />
