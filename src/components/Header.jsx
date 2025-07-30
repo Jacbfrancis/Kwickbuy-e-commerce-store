@@ -30,7 +30,7 @@ function Header() {
   }, []);
 
   return (
-    <div className=" py-3 px-4 md:px-20 md:my-0 md:flex justify-between items-start">
+    <div className=" py-3 px-4 relative z-0 md:px-20 md:my-0 md:flex justify-between items-start">
       <div className="bg-[#fff] hidden py-5 px-8 w-[20%] rounded md:inline-block">
         <ul className="flex text-[0.95rem] flex-col gap-5">
           <li>
@@ -133,7 +133,7 @@ function Header() {
           imageLength={imageLength}
         />
       </div>
-      <span className="absolute top-50 left-45 md:top-130 md:left-200">
+      <span className="absolute z-0 top-50 left-45 md:top-130 md:left-200">
         {Array(imageLength)
           .fill()
           .map((_, index) => (

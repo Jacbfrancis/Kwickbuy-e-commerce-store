@@ -15,7 +15,9 @@ function CarouselButton({ isMouseOver, setCurrentImage, imageLength }) {
               exit={{ opacity: 0, x: 50 }}
               transition={{ duration: 0.3, type: "tween" }}
               onClick={() => {
-                setCurrentImage((prevImage) => (prevImage + 1) % imageLength);
+                setCurrentImage(
+                  (prevImage) => (prevImage - 1 + imageLength) % imageLength
+                );
               }}
             >
               <FontAwesomeIcon icon="fa-solid fa-chevron-left" />

@@ -10,7 +10,7 @@ function Navbar() {
 
   return (
     <nav>
-      <div className="flex justify-between items-center p-4 bg-[#fff] md:px-20 md:py-1">
+      <div className="flex justify-between items-center p-4 bg-[#fff] relative z-50 md:px-20 md:py-1">
         <div className="flex justify-center items-center">
           <img
             className="w-45 hidden md:inline-block"
@@ -43,7 +43,7 @@ function Navbar() {
             />
           </button>
         </div>
-        <div className="flex justify-center items-center relative">
+        <div className="flex justify-center items-center relative z-50">
           <FontAwesomeIcon
             className="text-lg bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 !hidden md:text-xl md:!inline-block cursor-pointer hover:text-gray-400"
             icon="fa-regular fa-heart"
