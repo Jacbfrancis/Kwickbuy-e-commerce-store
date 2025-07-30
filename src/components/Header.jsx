@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import CarouselButton from "./CarouselButton";
 
@@ -29,7 +29,7 @@ function Header() {
   }, []);
 
   return (
-    <div className=" py-5 px-4 md:px-20 md:my-0 md:flex justify-between items-start">
+    <div className=" py-3 px-4 md:px-20 md:my-0 md:flex justify-between items-start">
       <div className="bg-[#fff] hidden py-5 px-8 w-[20%] rounded md:inline-block">
         <ul className="flex text-[0.95rem] flex-col gap-5">
           <li>
@@ -111,10 +111,11 @@ function Header() {
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
       >
-        {headerImages.map((image, index) => (
+        {headerImages.map((_, index) => (
           <motion.img
             className={index === currentImage ? "" : "hidden"}
-            animate={index === currentImage ? { x: "0" } : { x: "100vw" }}
+            initial={{ x: 400, opacity: 1 }}
+            animate={index === currentImage ? { x: 0 } : { x: 400 }}
             transition={{
               duration: 1,
               ease: "easeInOut",
