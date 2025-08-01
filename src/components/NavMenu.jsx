@@ -156,7 +156,7 @@ function NavMenu({ setShowMenu }) {
           >
             <ul className="flex text-[0.85rem] flex-col gap-4">
               <li>Featured Deals</li>
-              <li>Flash Deals</li>
+              <li>Limited Time Deals</li>
               <li>Top Sellers</li>
               <li>Latest Products</li>
             </ul>
