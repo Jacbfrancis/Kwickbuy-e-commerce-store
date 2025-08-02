@@ -26,8 +26,8 @@ function Header() {
 
   return (
     <div>
-      <div className=" py-2.5 px-4 md:px-20 md:my-0 md:flex justify-between items-start">
-        <div className="bg-[#fff] hidden py-5 px-8 w-[20%] rounded md:inline-block">
+      <div className=" py-2.5 px-4 xl:px-20 xl:my-0 xl:flex justify-between items-start">
+        <div className="bg-[#fff] hidden py-5 px-8 w-[20%] rounded xl:inline-block">
           <ul className="flex text-[0.95rem] flex-col">
             <li className="hover:bg-[#eff7ff] py-[0.56rem]">
               <img
@@ -104,7 +104,7 @@ function Header() {
           </ul>
         </div>
         <div
-          className="w-full md:w-[79.5%] h-fit rounded"
+          className="w-full xl:w-[79.5%] h-fit rounded"
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
@@ -123,32 +123,35 @@ function Header() {
               alt={`banner-image-${index}`}
             />
           ))}
-          <AnimatePresence>
+          <AnimatePresence className="relative">
             {isMouseOver && (
-              <span className="absolute w-full bottom-120 right-0 block md:bottom-100 md:right-22 md:w-[70%]">
+              <div className="absolute w-[90%] top-[10rem] md:w-[97%] xl:w-[70%] md:top-[20rem]">
                 <CarouselButton
                   setCurrentImage={setCurrentImage}
                   imageLength={imageLength}
                 />
-              </span>
+              </div>
             )}
           </AnimatePresence>
+
+          <div className="relative bottom-[2rem] w-fit mx-auto md:bottom-[3rem]">
+            {Array(imageLength)
+              .fill()
+              .map((_, index) => (
+                <FontAwesomeIcon
+                  key={index}
+                  icon={`${
+                    index === currentImage ? "fa-solid" : " fa-regular"
+                  } fa-circle`}
+                  className={`${
+                    index === currentImage
+                      ? "text-[#1456ac]"
+                      : "text-[#1456ac5c]"
+                  } text-[0.6rem] mr-1 xl:mr-2 xl:text-[0.8rem]`}
+                />
+              ))}
+          </div>
         </div>
-        <span className="absolute top-50 left-45 md:top-130 md:left-200">
-          {Array(imageLength)
-            .fill()
-            .map((_, index) => (
-              <FontAwesomeIcon
-                key={index}
-                icon={`${
-                  index === currentImage ? "fa-solid" : " fa-regular"
-                } fa-circle`}
-                className={`${
-                  index === currentImage ? "text-[#1456ac]" : "text-[#1456ac5c]"
-                } text-[0.6rem] mr-1 md:mr-2 md:text-[0.8rem]`}
-              />
-            ))}
-        </span>
       </div>
     </div>
   );
