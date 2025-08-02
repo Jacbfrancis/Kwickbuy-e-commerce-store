@@ -1,13 +1,9 @@
-import { useState } from "react";
-
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import NavMenu from "../components/NavMenu";
 
-function Navbar() {
-  const [showMenu, setShowMenu] = useState(false);
-
+function Navbar({ setShowMenu, showMenu }) {
   return (
     <nav>
       <div className="flex justify-between items-center p-4 bg-[#fff] relative z-50 xl:px-20 xl:py-1">

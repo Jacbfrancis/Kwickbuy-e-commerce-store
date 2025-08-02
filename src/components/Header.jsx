@@ -10,7 +10,7 @@ import bannerImage1 from "../assets/images/banner1.webp";
 import bannerImage2 from "../assets/images/banner2.jpg";
 import bannerImage3 from "../assets/images/banner3.jpg";
 
-function Header() {
+function Header({ showMenu }) {
   const headerImages = [bannerImage1, bannerImage2, bannerImage3];
   const [currentImage, setCurrentImage] = useState(0);
   const imageLength = headerImages.length;
@@ -19,10 +19,10 @@ function Header() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % 3);
+      !showMenu && setCurrentImage((prevImage) => (prevImage + 1) % 3);
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentImage]);
+  }, [currentImage, showMenu]);
 
   return (
     <div>
