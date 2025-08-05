@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
-function CarouselButton({ setCurrentImage, imageLength }) {
+function CarouselButton({ setCurrentIndex, length }) {
   return (
     <div className="flex justify-between items-center mx-3">
       <motion.button
@@ -12,9 +12,7 @@ function CarouselButton({ setCurrentImage, imageLength }) {
         exit={{ opacity: 0, x: 50 }}
         transition={{ duration: 0.3, type: "tween" }}
         onClick={() => {
-          setCurrentImage(
-            (prevImage) => (prevImage - 1 + imageLength) % imageLength
-          );
+          setCurrentIndex((prevImage) => (prevImage - 1 + length) % length);
         }}
       >
         <FontAwesomeIcon icon="fa-solid fa-chevron-left" />
@@ -27,7 +25,7 @@ function CarouselButton({ setCurrentImage, imageLength }) {
         exit={{ opacity: 0, x: -50 }}
         transition={{ duration: 0.3, type: "tween" }}
         onClick={() => {
-          setCurrentImage((prevImage) => (prevImage + 1) % imageLength);
+          setCurrentIndex((prevImage) => (prevImage + 1) % length);
         }}
       >
         <FontAwesomeIcon icon="fa-solid fa-chevron-right" />

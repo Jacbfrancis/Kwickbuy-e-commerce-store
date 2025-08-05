@@ -63,6 +63,8 @@ function Navbar({ setShowMenu, showMenu }) {
             0
           </span>
         </div>
+
+        {/* toggle navmenu on mobile */}
         {showMenu && (
           <motion.div
             className="bg-[#fff] w-[70%] h-full px-5 py-6 fixed top-2 right-0 text-left xl:hidden"

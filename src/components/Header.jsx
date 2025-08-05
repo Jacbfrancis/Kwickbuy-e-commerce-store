@@ -12,17 +12,18 @@ import bannerImage3 from "../assets/images/banner3.jpg";
 
 function Header({ showMenu }) {
   const headerImages = [bannerImage1, bannerImage2, bannerImage3];
-  const [currentImage, setCurrentImage] = useState(0);
-  const imageLength = headerImages.length;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const length = headerImages.length;
 
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
 
+  // Auto slide header banner and stop when showMenu is true
   useEffect(() => {
     const interval = setInterval(() => {
-      !showMenu && setCurrentImage((prevImage) => (prevImage + 1) % 3);
+      !showMenu && setCurrentIndex((prevImage) => (prevImage + 1) % 3);
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentImage, showMenu]);
+  }, [currentIndex, showMenu]);
 
   return (
     <div>
@@ -110,9 +111,9 @@ function Header({ showMenu }) {
         >
           {headerImages.map((_, index) => (
             <motion.img
-              className={index === currentImage ? "" : "hidden"}
+              className={index === currentIndex ? "" : "hidden"}
               initial={{ x: 400, opacity: 1 }}
-              animate={index === currentImage ? { x: 0 } : { x: 400 }}
+              animate={index === currentIndex ? { x: 0 } : { x: 400 }}
               transition={{
                 duration: 1,
                 ease: "easeInOut",
@@ -123,28 +124,28 @@ function Header({ showMenu }) {
               alt={`banner-image-${index}`}
             />
           ))}
+          {/* animation to show button only when hovered */}
           <AnimatePresence className="relative">
             {isMouseOver && (
               <div className="absolute w-[90%] top-[10rem] md:w-[97%] xl:w-[70%] md:top-[20rem]">
                 <CarouselButton
-                  setCurrentImage={setCurrentImage}
-                  imageLength={imageLength}
+                  setCurrentIndex={setCurrentIndex}
+                  length={length}
                 />
               </div>
             )}
           </AnimatePresence>
-
           <div className="relative bottom-[2rem] w-fit mx-auto md:bottom-[3rem]">
-            {Array(imageLength)
+            {Array(length)
               .fill()
               .map((_, index) => (
                 <FontAwesomeIcon
                   key={index}
                   icon={`${
-                    index === currentImage ? "fa-solid" : " fa-regular"
+                    index === currentIndex ? "fa-solid" : " fa-regular"
                   } fa-circle`}
                   className={`${
-                    index === currentImage
+                    index === currentIndex
                       ? "text-[#1456ac]"
                       : "text-[#1456ac5c]"
                   } text-[0.6rem] mr-1 xl:mr-2 xl:text-[0.8rem]`}

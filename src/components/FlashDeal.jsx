@@ -1,12 +1,36 @@
+import { useState } from "react";
+
 import CarouselButton from "./CarouselButton";
 import CountdownTimer from "./CountdownTimer";
-import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
+import LoadingSpinner from "./LoadingAnimation";
 import useHover from "./useHover";
+import useGetProducts from "./useGetProducts";
 
 function FlashDeal() {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
+  const [productData, error, loading] = useGetProducts();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  const flashSales = productData.filter((item) => item.discountPercentage > 19);
+
+  const flashDeals = flashSales.splice(0, 5);
+
+  const length = Array.isArray(flashDeals) ? flashDeals.length : 0;
+  const visibleCards = [];
+  for (let i = 0; i < length; i++) {
+    const cardIndex = (currentIndex + i) % length;
+    visibleCards.push(flashDeals[cardIndex]);
+  }
 
   return (
     <div className="xl:px-20 ">
@@ -32,61 +56,28 @@ function FlashDeal() {
             View All
           </p>
           <div className="flex justify-center items-center w-full">
-            <div className="bg-white rounded flex justify-center items-start w-[100%] mx-2 px-4 xl:flex-col xl:items-center xl:p-0 xl:bg-transparent xl:w-[50%]">
-              <span className="w-[6rem] px-2 py-4 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2">
-                <img
-                  className="border border-[#cdcdcd2b] xl:border-none"
-                  src="https://cdn.dummyjson.com/product-images/furniture/knoll-saarinen-executive-conference-chair/2.webp"
-                  alt="product"
-                />
-              </span>
-              <span className="w-1/2 p-4 font-medium text-[0.8rem] xl:w-[100%]">
-                <p>Executive Conference Chair</p>
-                <p className="font-bold mt-2">$15.00</p>
-              </span>
-            </div>
-
-            <div className="bg-white rounded flex justify-center items-start w-[100%] mx-2 px-4 xl:flex-col xl:items-center xl:p-0 xl:bg-transparent xl:w-[50%]">
-              <span className="w-[6rem] px-2 py-4 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2">
-                <img
-                  className="border border-[#cdcdcd2b] xl:border-none"
-                  src="https://cdn.dummyjson.com/product-images/furniture/knoll-saarinen-executive-conference-chair/2.webp"
-                  alt="product"
-                />
-              </span>
-              <span className="w-1/2 p-4 font-medium text-[0.8rem] xl:w-[100%]">
-                <p>Executive Conference Chair</p>
-                <p className="font-bold mt-2">$15.00</p>
-              </span>
-            </div>
-
-            <div className="bg-white rounded flex justify-center items-start w-[100%] mx-2 px-4 xl:flex-col xl:items-center xl:p-0 xl:bg-transparent xl:w-[50%]">
-              <span className="w-[6rem] px-2 py-4 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2">
-                <img
-                  className="border border-[#cdcdcd2b] xl:border-none"
-                  src="https://cdn.dummyjson.com/product-images/furniture/knoll-saarinen-executive-conference-chair/2.webp"
-                  alt="product"
-                />
-              </span>
-              <span className="w-1/2 p-4 font-medium text-[0.8rem] xl:w-[100%]">
-                <p>Executive Conference Chair</p>
-                <p className="font-bold mt-2">$15.00</p>
-              </span>
-            </div>
-
-            <div className="bg-white rounded flex justify-center items-start w-[100%] mx-2 px-4 xl:flex-col xl:items-center xl:p-0 xl:bg-transparent xl:w-[50%]">
-              <span className="w-[6rem] px-2 py-4 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2">
-                <img
-                  className="border border-[#cdcdcd2b] xl:border-none"
-                  src="https://cdn.dummyjson.com/product-images/furniture/knoll-saarinen-executive-conference-chair/2.webp"
-                  alt="product"
-                />
-              </span>
-              <span className="w-1/2 p-4 font-medium text-[0.8rem] xl:w-[100%]">
-                <p>Executive Conference Chair</p>
-                <p className="font-bold mt-2">$15.00</p>
-              </span>
-            </div>
+            {loading ? (
+              <LoadingSpinner />
+            ) : (
+              visibleCards.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded flex justify-center items-center w-full h-[130px] mx-2 px-4 md:h-[100%] xl:flex-col xl:items-center xl:p-0 xl:bg-transparent xl:w-[50%]"
+                >
+                  <span className="w-[6rem] px-2 py-4 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2">
+                    <img
+                      className="border border-[#cdcdcd2b] xl:border-none"
+                      src={item?.thumbnail}
+                      alt="product"
+                    />
+                  </span>
+                  <span className="w-1/2 p-4 font-medium text-[0.8rem] xl:w-[100%]">
+                    <p>{item?.title}</p>
+                    <p className="font-bold mt-2">{item?.price}</p>
+                  </span>
+                </div>
+              ))
+            )}
           </div>
           <p className="text-[#1456ac] text-center cursor-pointer xl:hidden mt-5 mb-3 font-medium">
             View All
@@ -94,7 +85,10 @@ function FlashDeal() {
           <AnimatePresence className="relative">
             {isMouseOver && (
               <div className="absolute w-full top-[30rem] md:hidden xl:top-[50rem] xl:w-[60%] xl:block">
-                <CarouselButton />
+                <CarouselButton
+                  length={length}
+                  setCurrentIndex={setCurrentIndex}
+                />
               </div>
             )}
           </AnimatePresence>
