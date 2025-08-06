@@ -20,10 +20,21 @@ function Header({ showMenu }) {
   // Auto slide header banner and stop when showMenu is true
   useEffect(() => {
     const interval = setInterval(() => {
-      !showMenu && setCurrentIndex((prevImage) => (prevImage + 1) % 3);
+      !showMenu && setCurrentIndex((prevImage) => (prevImage + 1) % length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentIndex, showMenu]);
+  }, [currentIndex, showMenu, length]);
+
+  const handleDrag = (e, info) => {
+    const dragDirection = info.velocity.x;
+    if (dragDirection > 0) {
+      // Swipe left
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + length) % length);
+    } else if (dragDirection < 0) {
+      // Swipe right
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % length);
+    }
+  };
 
   return (
     <div>
@@ -104,26 +115,39 @@ function Header({ showMenu }) {
             </li>
           </ul>
         </div>
-        <div
+        <motion.div
           className="w-full xl:w-[79.5%] h-fit rounded"
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.1}
+          onDrag={handleDrag}
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
         >
-          {headerImages.map((_, index) => (
-            <motion.img
-              className={index === currentIndex ? "" : "hidden"}
-              initial={{ x: 400, opacity: 1 }}
-              animate={index === currentIndex ? { x: 0 } : { x: 400 }}
-              transition={{
-                duration: 1,
-                ease: "easeInOut",
-                type: "tween",
-              }}
-              key={index}
-              src={headerImages[index]}
-              alt={`banner-image-${index}`}
-            />
-          ))}
+          <AnimatePresence>
+            {headerImages.map((_, index) => (
+              <motion.img
+                className={index === currentIndex ? "" : "hidden"}
+                initial={{ x: 400, opacity: 1 }}
+                animate={index === currentIndex ? { x: 0 } : { x: 400 }}
+                exit={{ opacity: 1, x: 400 }}
+                transition={{
+                  duration: 1,
+                  ease: "easeInOut",
+                  type: "tween",
+                }}
+                key={index}
+                src={headerImages[index]}
+                alt={`banner-image-${index}`}
+              />
+            ))}
+          </AnimatePresence>
           {/* animation to show button only when hovered */}
           <AnimatePresence className="relative">
             {isMouseOver && (
@@ -152,7 +176,7 @@ function Header({ showMenu }) {
                 />
               ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

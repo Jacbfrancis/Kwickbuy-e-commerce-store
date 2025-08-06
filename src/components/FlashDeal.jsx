@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import CarouselButton from "./CarouselButton";
 import CountdownTimer from "./CountdownTimer";
@@ -13,6 +13,13 @@ function FlashDeal() {
   const [productData, error, loading] = useGetProducts();
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % 5);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
   if (error) {
     return <div>Error: {error.message}</div>;
   }
@@ -22,10 +29,9 @@ function FlashDeal() {
   }
 
   const flashSales = productData.filter((item) => item.discountPercentage > 19);
-
   const flashDeals = flashSales.splice(0, 5);
-
   const length = Array.isArray(flashDeals) ? flashDeals.length : 0;
+
   const visibleCards = [];
   for (let i = 0; i < length; i++) {
     const cardIndex = (currentIndex + i) % length;
@@ -55,11 +61,20 @@ function FlashDeal() {
           <p className="text-[#1456ac] text-right cursor-pointer hidden xl:block mx-6 my-4 font-semibold">
             View All
           </p>
-          <div className="flex justify-center items-center w-full">
-            {loading ? (
-              <LoadingSpinner />
-            ) : (
-              visibleCards.map((item, index) => (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              className="flex justify-center items-center w-full"
+              initial={{ x: 50 }}
+              animate={{ x: 0 }}
+              exit={{ x: -50 }}
+              transition={{
+                duration: 0.3,
+                ease: "easeInOut",
+                type: "tween",
+              }}
+            >
+              {visibleCards.map((item, index) => (
                 <div
                   key={index}
                   className="bg-white rounded flex justify-center items-center w-full h-[130px] mx-2 px-4 md:h-[100%] xl:flex-col xl:items-center xl:p-0 xl:bg-transparent xl:w-[50%]"
@@ -76,9 +91,9 @@ function FlashDeal() {
                     <p className="font-bold mt-2">{item?.price}</p>
                   </span>
                 </div>
-              ))
-            )}
-          </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
           <p className="text-[#1456ac] text-center cursor-pointer xl:hidden mt-5 mb-3 font-medium">
             View All
           </p>
