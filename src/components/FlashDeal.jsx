@@ -65,11 +65,11 @@ function FlashDeal() {
             <motion.div
               key={currentIndex}
               className="flex justify-center items-center w-full"
-              initial={{ x: 50 }}
+              initial={{ x: 40 }}
               animate={{ x: 0 }}
-              exit={{ x: -50 }}
+              exit={{ x: -40 }}
               transition={{
-                duration: 0.3,
+                duration: 0.2,
                 ease: "easeInOut",
                 type: "tween",
               }}
