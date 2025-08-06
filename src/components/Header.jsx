@@ -25,21 +25,10 @@ function Header({ showMenu }) {
     return () => clearInterval(interval);
   }, [currentIndex, showMenu, length]);
 
-  const handleDrag = (e, info) => {
-    const dragDirection = info.velocity.x;
-    if (dragDirection > 0) {
-      // Swipe left
-      setCurrentIndex((prevIndex) => (prevIndex - 1 + length) % length);
-    } else if (dragDirection < 0) {
-      // Swipe right
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % length);
-    }
-  };
-
   return (
     <div>
       <div className=" py-2.5 px-4 xl:px-20 xl:my-0 xl:flex justify-between items-start">
-        <div className="bg-[#fff] hidden py-5 px-8 w-[20%] rounded xl:inline-block">
+        <div className="bg-[#fff] hidden py-5 px-8 w-[20%] rounded xl:inline-block z-5">
           <ul className="flex text-[0.95rem] flex-col">
             <li className="hover:bg-[#eff7ff] py-[0.56rem]">
               <img
@@ -115,38 +104,30 @@ function Header({ showMenu }) {
             </li>
           </ul>
         </div>
-        <motion.div
+        <div
           className="w-full xl:w-[79.5%] h-fit rounded"
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.1}
-          onDrag={handleDrag}
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
         >
-          <AnimatePresence>
-            {headerImages.map((_, index) => (
-              <motion.img
-                className={index === currentIndex ? "" : "hidden"}
-                initial={{ x: 400, opacity: 1 }}
-                animate={index === currentIndex ? { x: 0 } : { x: 400 }}
-                exit={{ opacity: 1, x: 400 }}
-                transition={{
-                  duration: 1,
-                  ease: "easeInOut",
-                  type: "tween",
-                }}
-                key={index}
-                src={headerImages[index]}
-                alt={`banner-image-${index}`}
-              />
-            ))}
+          <AnimatePresence mode="wait">
+            {headerImages.map(
+              (_, index) =>
+                index === currentIndex && (
+                  <motion.img
+                    initial={{ x: 400 }}
+                    animate={index === currentIndex ? { x: 0 } : { x: 400 }}
+                    exit={{ x: -400, opacity: 0 }}
+                    transition={{
+                      duration: 0.9,
+                      ease: "easeInOut",
+                      type: "tween",
+                    }}
+                    key={index}
+                    src={headerImages[index]}
+                    alt={`banner-image-${index}`}
+                  />
+                )
+            )}
           </AnimatePresence>
           {/* animation to show button only when hovered */}
           <AnimatePresence className="relative">
@@ -176,7 +157,7 @@ function Header({ showMenu }) {
                 />
               ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
