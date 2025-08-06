@@ -110,23 +110,24 @@ function Header({ showMenu }) {
           onMouseOut={handleMouseOut}
         >
           <AnimatePresence mode="wait">
-            {headerImages.map(
-              (_, index) =>
-                index === currentIndex && (
-                  <motion.img
-                    initial={{ x: 400 }}
-                    animate={index === currentIndex ? { x: 0 } : { x: 400 }}
-                    exit={{ x: -400, opacity: 0 }}
-                    transition={{
-                      duration: 0.9,
-                      ease: "easeInOut",
-                      type: "tween",
-                    }}
-                    key={index}
-                    src={headerImages[index]}
-                    alt={`banner-image-${index}`}
-                  />
-                )
+            {headerImages.map((_, index) =>
+              index === currentIndex ? (
+                <motion.img
+                  initial={{ x: 400 }}
+                  animate={index === currentIndex ? { x: 0 } : { x: 400 }}
+                  exit={{ x: -400, opacity: 0 }}
+                  transition={{
+                    duration: 0.9,
+                    ease: "easeInOut",
+                    type: "tween",
+                  }}
+                  key={index}
+                  src={headerImages[index]}
+                  alt={`banner-image-${index}`}
+                />
+              ) : (
+                <div className="w-full h-fit"></div>
+              )
             )}
           </AnimatePresence>
           {/* animation to show button only when hovered */}
