@@ -6,11 +6,9 @@ import CountdownTimer from "./CountdownTimer";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingSpinner from "./LoadingAnimation";
 import useHover from "./useHover";
-import useGetProducts from "./useGetProducts";
 
-function FlashDeal() {
+function FlashDeal({ productData, error, loading }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
-  const [productData, error, loading] = useGetProducts();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -31,7 +29,7 @@ function FlashDeal() {
 
   const flashSales = productData.filter((item) => item.discountPercentage > 15);
   const flashDeals = flashSales.splice(13, 5);
-  const length = Array.isArray(flashDeals) ? flashDeals.length : 0;
+  const length = flashDeals.length;
 
   const visibleCards = [];
   for (let i = 0; i < length; i++) {
@@ -86,25 +84,23 @@ function FlashDeal() {
                     setHoveredIndex(null);
                   }}
                 >
-                  <motion.span
-                    className="w-[6rem] px-2 py-4 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2"
-                    initial={{ scale: 1 }}
-                    animate={
-                      index === hoveredIndex ? { scale: 1.2 } : { scale: 1 }
-                    }
-                    exit={{ scale: 1 }}
-                    transition={{
-                      duration: 0.3,
-                      type: "tween",
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <img
+                  <span className="w-[6rem] px-2 py-4 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2">
+                    <motion.img
                       className="border border-[#cdcdcd2b] xl:border-none"
+                      initial={{ scale: 1 }}
+                      animate={
+                        index === hoveredIndex ? { scale: 1.3 } : { scale: 1 }
+                      }
+                      exit={{ scale: 1 }}
+                      transition={{
+                        duration: 0.3,
+                        type: "tween",
+                        ease: "easeInOut",
+                      }}
                       src={item?.thumbnail}
                       alt="product"
                     />
-                  </motion.span>
+                  </span>
                   <span className="w-1/2 p-4 font-medium text-[0.8rem] xl:w-[100%]">
                     <p>{item?.title}</p>
                     <p className="font-bold mt-2">{item?.price}</p>

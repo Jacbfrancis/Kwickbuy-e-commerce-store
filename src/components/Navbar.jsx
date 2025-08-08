@@ -5,8 +5,8 @@ import NavMenu from "../components/NavMenu";
 
 function Navbar({ setShowMenu, showMenu }) {
   return (
-    <nav>
-      <div className="flex justify-between items-center p-4 bg-[#fff] relative z-50 xl:px-20 xl:py-1">
+    <>
+      <nav className="flex justify-between items-center sticky top-0 p-4 bg-[#fff] w-full z-50 xl:px-20 xl:py-1">
         <div className="flex justify-center items-center">
           <img
             className="w-45 hidden xl:inline-block"
@@ -75,9 +75,9 @@ function Navbar({ setShowMenu, showMenu }) {
             <NavMenu setShowMenu={setShowMenu} />
           </motion.div>
         )}
-      </div>
+      </nav>
 
-      <div className="bg-[#1456ac] text-[#fff] hidden py-2 px-20 justify-start items-center p-4 xl:flex ">
+      <div className="bg-[#1456ac] text-[#fff] hidden py-2 px-20 justify-start items-center xl:flex">
         <div className="bg-[#fff] text-[#1456ac] font-bold rounded py-3 px-8 flex justify-center items-center">
           <FontAwesomeIcon icon="fa-solid fa-list" />
           <p className="mx-10">Categories</p>
@@ -101,7 +101,7 @@ function Navbar({ setShowMenu, showMenu }) {
           <li className="px-5">About us</li>
         </ul>
       </div>
-    </nav>
+    </>
   );
 }
 
