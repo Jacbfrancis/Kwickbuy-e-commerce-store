@@ -14,10 +14,10 @@ function FlashDeal({ productData, error, loading }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % 5);
+      !isMouseOver && setCurrentIndex((prevIndex) => (prevIndex + 1) % 5);
     }, 4000);
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [currentIndex, isMouseOver]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -76,7 +76,7 @@ function FlashDeal({ productData, error, loading }) {
               {visibleCards.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded flex justify-center items-center w-full h-[130px] mx-2 px-4 md:h-[100%] xl:flex-col xl:items-center xl:p-0 xl:bg-transparent xl:w-[50%]"
+                  className="bg-white rounded-xl flex justify-center items-center w-full mx-2 px-4 md:h-[100%] xl:flex-col xl:items-center xl:bg-transparent xl:w-[50%]"
                   onMouseOver={() => {
                     setHoveredIndex(index);
                   }}
@@ -84,7 +84,7 @@ function FlashDeal({ productData, error, loading }) {
                     setHoveredIndex(null);
                   }}
                 >
-                  <span className="w-[6rem] px-2 py-4 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2">
+                  <span className="w-[6rem] px-2 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2">
                     <motion.img
                       className="border border-[#cdcdcd2b] xl:border-none"
                       initial={{ scale: 1 }}
@@ -101,7 +101,7 @@ function FlashDeal({ productData, error, loading }) {
                       alt="product"
                     />
                   </span>
-                  <span className="w-1/2 p-4 font-medium text-[0.8rem] xl:w-[100%]">
+                  <span className=" flex flex-col justify-center w-1/2 h-[9rem] px-4 font-medium text-[0.8rem] xl:w-[100%] xl:h-fit xl:mt-3">
                     <p>{item?.title}</p>
                     <p className="font-bold mt-2">{item?.price}</p>
                   </span>

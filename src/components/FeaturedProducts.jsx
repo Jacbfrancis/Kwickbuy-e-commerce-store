@@ -1,26 +1,28 @@
+import { useState } from "react";
 import useHover from "./useHover";
-
+import { AnimatePresence } from "framer-motion";
 import LoadingSpinner from "./LoadingAnimation";
 import CarouselButton from "./CarouselButton";
-import { AnimatePresence } from "framer-motion";
 
 function FeaturedProducts({ productData, error, loading }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
 
-  if (loading) {
-    <LoadingSpinner />;
-  }
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   if (error) {
     <div>Error: {error.message}</div>;
   }
 
-  //const categories = [...new Set(productData.map((item) => item.category))];
+  if (loading) {
+    <LoadingSpinner />;
+  }
 
-  // categories.forEach((category) => {
-  //   const firstItem = productData.find((item) => item.category === category);
-  //   console.log(firstItem);
-  // });
+  const categories = [...new Set(productData?.map((item) => item.category))];
+  const featuredProducts = categories.map((category) =>
+    productData.find((product) => product.category === category)
+  );
+
+  const featuredDeals = featuredProducts.splice(6, 13);
 
   return (
     <div className="xl:px-20 mt-6">
@@ -32,191 +34,33 @@ function FeaturedProducts({ productData, error, loading }) {
           View All
         </p>
         <div
-          className="overflow-hidden"
+          className="overflow-hidden flex justify-center items-center"
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
-          <div className="flex justify-center items-center overflow-hidden w-full whitespace-nowrap">
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
+          {featuredDeals.map((product, index) => (
+            <div
+              key={product.id}
+              className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 h-[19rem]"
+            >
               <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
                 <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
+                  className="w-full"
+                  src={product.thumbnail}
+                  alt={`product ${index}`}
                 />
               </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
+              <span className="text-center text-[1rem] font-semibold block mt-3 mb-6 mx-auto w-[12.5rem] whitespace-normal">
+                <p>{product.title}</p>
+                <p className="my-2">{product.price}</p>
               </span>
             </div>
+          ))}
 
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-
-            <div className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-2 w-full">
-              <span className="block border-b-1 rounded-2xl border-[#6cc6e786]">
-                <img
-                  className="w-full m-auto px-6 py-4"
-                  src="https://cdn.dummyjson.com/product-images/furniture/annibale-colombo-sofa/thumbnail.webp"
-                  alt="placeholfer alt text"
-                />
-              </span>
-              <span className="text-center block mt-3 mb-6 px-8">
-                <p className="font-semibold">Fireplace cook stove</p>
-                <p className="font-medium my-2">$12,000</p>
-              </span>
-            </div>
-          </div>
           <AnimatePresence>
             {isMouseOver && (
               <div className="absolute w-full top-[55rem] px-2 md:hidden xl:top-[75rem] xl:w-[90%] xl:block">
-                <CarouselButton />
+                <CarouselButton setCurrentIndex={setCurrentIndex} length={12} />
               </div>
             )}
           </AnimatePresence>

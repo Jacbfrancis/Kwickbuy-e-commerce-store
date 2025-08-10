@@ -20,10 +20,12 @@ function Header({ showMenu }) {
   // Auto slide header banner and stop when showMenu is true
   useEffect(() => {
     const interval = setInterval(() => {
-      !showMenu && setCurrentIndex((prevImage) => (prevImage + 1) % length);
+      !showMenu &&
+        !isMouseOver &&
+        setCurrentIndex((prevImage) => (prevImage + 1) % length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentIndex, showMenu, length]);
+  }, [currentIndex, showMenu, length, isMouseOver]);
 
   return (
     <div>
