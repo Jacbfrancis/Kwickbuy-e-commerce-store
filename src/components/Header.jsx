@@ -117,10 +117,10 @@ function Header({ showMenu }) {
                 index === currentIndex && (
                   <motion.img
                     initial={{ x: 350 }}
-                    animate={index === currentIndex ? { x: 0 } : { x: 200 }}
-                    exit={{ x: -200, opacity: 0 }}
+                    animate={index === currentIndex ? { x: 0 } : { x: 350 }}
+                    exit={{ x: -300, opacity: 0 }}
                     transition={{
-                      duration: 0.8,
+                      duration: 0.55,
                       ease: "easeInOut",
                       type: "tween",
                     }}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import CarouselButton from "./CarouselButton";
 import CountdownTimer from "./CountdownTimer";
@@ -11,13 +11,6 @@ function FlashDeal({ productData, error, loading }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      !isMouseOver && setCurrentIndex((prevIndex) => (prevIndex + 1) % 5);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [currentIndex, isMouseOver]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -62,21 +55,20 @@ function FlashDeal({ productData, error, loading }) {
           </p>
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentIndex}
               className="flex justify-center items-center w-full"
               initial={{ x: 40 }}
               animate={{ x: 0 }}
               exit={{ x: -40 }}
               transition={{
-                duration: 0.2,
+                duration: 0.5,
                 ease: "easeInOut",
                 type: "tween",
               }}
             >
-              {visibleCards.map((item, index) => (
+              {visibleCards.map((product, index) => (
                 <div
-                  key={index}
-                  className="bg-white rounded-xl flex justify-center items-center w-full mx-2 px-4 md:h-[100%] xl:flex-col xl:items-center xl:bg-transparent xl:w-[50%]"
+                  key={product.id}
+                  className="bg-white rounded-xl flex justify-center items-center w-full mx-2 px-4 md:h-[100%] xl:flex-col xl:items-center xl:bg-transparent xl:mx-0 xl:w-[50%]"
                   onMouseOver={() => {
                     setHoveredIndex(index);
                   }}
@@ -97,13 +89,18 @@ function FlashDeal({ productData, error, loading }) {
                         type: "tween",
                         ease: "easeInOut",
                       }}
-                      src={item?.thumbnail}
+                      src={product?.thumbnail}
                       alt="product"
                     />
                   </span>
-                  <span className=" flex flex-col justify-center w-1/2 h-[9rem] px-4 font-medium text-[0.8rem] xl:w-[100%] xl:h-fit xl:mt-3">
-                    <p>{item?.title}</p>
-                    <p className="font-bold mt-2">{item?.price}</p>
+                  {/* {index === hoveredIndex && (
+                    <div className="hidden xl:inline-block xl:bg-[#0067ce30] w-[8.9rem] h-[8.8rem] absolute top-169.5 rounded-xl"></div>
+                  )} */}
+                  <span className=" flex flex-col justify-center w-1/2 h-[9rem] px-4 font-medium text-[0.8rem] xl:w-[100%] xl:h-[5rem] xl:mt-3">
+                    <p>{product?.title}</p>
+                    <p className="font-bold mt-2">
+                      {product?.price.toLocaleString()}
+                    </p>
                   </span>
                 </div>
               ))}
@@ -114,7 +111,7 @@ function FlashDeal({ productData, error, loading }) {
           </p>
           <AnimatePresence className="relative">
             {isMouseOver && (
-              <div className="absolute w-full top-[30rem] md:hidden xl:top-[50rem] xl:w-[60%] xl:block">
+              <div className="absolute w-full top-[33rem] md:hidden xl:top-[50rem] xl:w-[60%] xl:block">
                 <CarouselButton
                   length={length}
                   setCurrentIndex={setCurrentIndex}
