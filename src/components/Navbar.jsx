@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import NavMenu from "../components/NavMenu";
 
-function Navbar({ setShowMenu, showMenu }) {
+function Navbar({ setShowMenu, showMenu, categories }) {
   return (
     <>
       <nav className="flex justify-between items-center sticky top-0 p-4 bg-[#fff] w-full z-50 xl:px-20 xl:py-1">
@@ -72,7 +72,7 @@ function Navbar({ setShowMenu, showMenu }) {
             animate={{ y: 0 }}
             transition={{ duration: 0.35, type: "tween" }}
           >
-            <NavMenu setShowMenu={setShowMenu} />
+            <NavMenu setShowMenu={setShowMenu} categories={categories} />
           </motion.div>
         )}
       </nav>

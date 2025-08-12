@@ -50,8 +50,12 @@ function Homepage({ productData, error, loading }) {
 
   return (
     <div>
-      <Navbar showMenu={showMenu} setShowMenu={setShowMenu} />
-      <Header showMenu={showMenu} />
+      <Navbar
+        showMenu={showMenu}
+        setShowMenu={setShowMenu}
+        categories={categories}
+      />
+      <Header showMenu={showMenu} categories={categories} />
       <FlashDeal productData={productData} error={error} loading={loading} />
       <FeaturedProducts
         productData={productData}

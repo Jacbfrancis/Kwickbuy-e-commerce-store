@@ -10,7 +10,7 @@ import bannerImage1 from "../assets/images/banner1.webp";
 import bannerImage2 from "../assets/images/banner2.jpg";
 import bannerImage3 from "../assets/images/banner3.jpg";
 
-function Header({ showMenu }) {
+function Header({ showMenu, categories }) {
   const headerImages = [bannerImage1, bannerImage2, bannerImage3];
   const [currentIndex, setCurrentIndex] = useState(0);
   const length = headerImages.length;
@@ -32,78 +32,19 @@ function Header({ showMenu }) {
       <div className=" py-2.5 px-4 xl:px-20 xl:my-0 xl:flex justify-between items-start">
         <div className="bg-[#fff] hidden py-5 px-8 w-[20%] rounded xl:inline-block z-5">
           <ul className="flex text-[0.95rem] flex-col">
-            <li className="hover:bg-[#eff7ff] py-[0.56rem]">
-              <img
-                className="w-6 inline-block mr-2"
-                src="/men_fashion.webp"
-                alt="men-fashion"
-              />
-              Men's Fashion
-            </li>
-            <li className="hover:bg-[#eff7ff] py-[0.56rem]">
-              <img
-                className="w-6 inline-block mr-2"
-                src="/women_fashion.webp"
-                alt="women-fashion"
-              />
-              Women's Fashion
-            </li>
-            <li className="hover:bg-[#eff7ff] py-[0.56rem]">
-              <img
-                className="w-6 inline-block mr-2"
-                src="/kid_fashion.webp"
-                alt="kid-fashion"
-              />
-              Kid's Fashion
-            </li>
-            <li className="hover:bg-[#eff7ff] py-[0.56rem]">
-              <img
-                className="w-6 inline-block mr-2"
-                src="/health_beauty.webp"
-                alt="health_beauty"
-              />
-              Health & Beauty
-            </li>
-            <li className="hover:bg-[#eff7ff] py-[0.56rem]">
-              <img
-                className="w-6 inline-block mr-2"
-                src="/pet_supplies.webp"
-                alt="pet-supplies"
-              />
-              Pet Supplies
-            </li>
-            <li className="hover:bg-[#eff7ff] py-[0.56rem]">
-              <img
-                className="w-6 inline-block mr-2"
-                src="/home_kitchen.webp"
-                alt="home-kitchen"
-              />
-              Home & Kitchen
-            </li>
-            <li className="hover:bg-[#eff7ff] py-[0.56rem]">
-              <img
-                className="w-6 inline-block mr-2"
-                src="/baby_toys.webp"
-                alt="baby-toys"
-              />
-              Baby & Toys
-            </li>
-            <li className="hover:bg-[#eff7ff] py-[0.56rem]">
-              <img
-                className="w-6 inline-block mr-2"
-                src="/sports_leisure.webp"
-                alt="sports-leisure"
-              />
-              Sports & Leisure
-            </li>
-            <li className="hover:bg-[#eff7ff] py-[0.56rem]">
-              <img
-                className="w-6 inline-block mr-2"
-                src="/phones.webp"
-                alt="phone-accessories"
-              />
-              Phones & Gadgets
-            </li>
+            {categories.map((category) => (
+              <li
+                key={category.title}
+                className="hover:bg-[#eff7ff] py-[0.56rem]"
+              >
+                <img
+                  className="w-6 inline-block mr-2"
+                  src={category.icon}
+                  alt={`${category.title}icon`}
+                />
+                {category.title}
+              </li>
+            ))}
           </ul>
         </div>
         <div

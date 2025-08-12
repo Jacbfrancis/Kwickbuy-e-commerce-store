@@ -13,9 +13,9 @@ function ItemGrid({ categories }) {
           <p>View All</p>
         </span>
         <div className="overflow-hidden flex justify-center items-start px-11 py-5 whitespace-nowrap gap-10">
-          {categories.map((categories, index) => (
+          {categories.map((category, index) => (
             <div
-              key={categories.title}
+              key={category.title}
               className="text-center w-[10rem] pb-8"
               onMouseOver={() => setHoveredIndex(index)}
               onMouseOut={() => setHoveredIndex(null)}
@@ -33,11 +33,11 @@ function ItemGrid({ categories }) {
                     : { scale: 1, borderWidth: 0, borderRadius: 0 }
                 }
                 transition={{ ease: easeInOut, duration: 0.5 }}
-                src={categories.icon}
-                alt={`${categories.title}icon`}
+                src={category.icon}
+                alt={`${category.title}icon`}
               />
 
-              <h2 className="text-sm">{categories.title}</h2>
+              <h2 className="text-sm">{category.title}</h2>
             </div>
           ))}
         </div>

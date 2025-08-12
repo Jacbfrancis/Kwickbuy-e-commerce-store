@@ -34,7 +34,7 @@ function reducer(state, action) {
       return state;
   }
 }
-function NavMenu({ setShowMenu }) {
+function NavMenu({ setShowMenu, categories }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
@@ -64,78 +64,16 @@ function NavMenu({ setShowMenu }) {
             transition={{ delay: 0.05, type: "spring" }}
           >
             <ul className="flex text-[0.85rem] flex-col gap-4">
-              <li>
-                <img
-                  className="w-6 inline-block mr-2"
-                  src="/men_fashion.webp"
-                  alt="men-fashion"
-                />
-                Men's Fashion
-              </li>
-              <li>
-                <img
-                  className="w-6 inline-block mr-2"
-                  src="/women_fashion.webp"
-                  alt="women-fashion"
-                />
-                Women's Fashion
-              </li>
-              <li>
-                <img
-                  className="w-6 inline-block mr-2"
-                  src="/kid_fashion.webp"
-                  alt="kid-fashion"
-                />
-                Kid's Fashion
-              </li>
-              <li>
-                <img
-                  className="w-6 inline-block mr-2"
-                  src="/health_beauty.webp"
-                  alt="health_beauty"
-                />
-                Health & Beauty
-              </li>
-              <li>
-                <img
-                  className="w-6 inline-block mr-2"
-                  src="/pet_supplies.webp"
-                  alt="pet-supplies"
-                />
-                Pet Supplies
-              </li>
-              <li>
-                <img
-                  className="w-6 inline-block mr-2"
-                  src="/home_kitchen.webp"
-                  alt="home-kitchen"
-                />
-                Home & Kitchen
-              </li>
-              <li>
-                <img
-                  className="w-6 inline-block mr-2"
-                  src="/baby_toys.webp"
-                  alt="baby-toys"
-                />
-                Baby & Toys
-              </li>
-              <li>
-                <img
-                  className="w-6 inline-block mr-2"
-                  src="/sports_leisure.webp"
-                  alt="sports-leisure"
-                />
-                Sports & Leisure
-              </li>
-              <li>
-                <img
-                  className="w-6 inline-block mr-2"
-                  src="/phones.webp"
-                  alt="phone-accessories"
-                />
-                Phones & Gadgets
-              </li>
+              {categories.map((category) => (
+                <li>
+                  <img
+                    className="w-6 inline-block mr-2"
+                    src={category.icon}
+                    alt={`${category.title}icon`}
+                  />
+                  {category.title}
+                </li>
+              ))}
             </ul>
           </motion.div>
         )}
