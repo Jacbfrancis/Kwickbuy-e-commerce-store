@@ -16,7 +16,6 @@ function FeaturedProducts({ productData, error, loading }) {
   if (loading) {
     <LoadingSpinner />;
   }
-
   const categories = [...new Set(productData?.map((item) => item.category))];
   const featuredProducts = categories.map((category) =>
     productData.find((product) => product.category === category)
@@ -33,9 +32,9 @@ function FeaturedProducts({ productData, error, loading }) {
   }
 
   return (
-    <div className="xl:px-20 mt-6">
+    <div className="xl:px-20 my-6">
       <div className="bg-[#fff] rounded-xl shadow-sm pb-8">
-        <h2 className="text-[#1456ac] text-center font-bold text-[1.3rem] py-4">
+        <h2 className="text-[#1456ac] text-center font-bold text-[1.3rem] pb-4 pt-8">
           Featured products
         </h2>
         <p className="text-[#1456ac] hidden text-right pr-6 pb-5 font-semibold xl:block">

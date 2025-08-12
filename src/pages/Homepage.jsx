@@ -4,6 +4,46 @@ import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import FlashDeal from "../components/FlashDeal";
 import FeaturedProducts from "../components/FeaturedProducts";
+import ItemGrid from "../components/ItemGrid";
+
+const categories = [
+  {
+    title: "Men's Fashion",
+    icon: "/men_fashion.webp",
+  },
+  {
+    title: "Women's Fashion",
+    icon: "/women_fashion.webp",
+  },
+  {
+    title: "Kid's Fashion",
+    icon: "/kid_fashion.webp",
+  },
+  {
+    title: "Health & Beauty",
+    icon: "/health_beauty.webp",
+  },
+  {
+    title: "Pet Supplies",
+    icon: "/pet_supplies.webp",
+  },
+  {
+    title: "Home & Kitchen",
+    icon: "/home_kitchen.webp",
+  },
+  {
+    title: "Baby & Toys",
+    icon: "/baby_toys.webp",
+  },
+  {
+    title: "Sports & Leisure",
+    icon: "/sports_leisure.webp",
+  },
+  {
+    title: "Phones & Leisure",
+    icon: "/phones.webp",
+  },
+];
 
 function Homepage({ productData, error, loading }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,6 +58,7 @@ function Homepage({ productData, error, loading }) {
         error={error}
         loading={loading}
       />
+      <ItemGrid categories={categories} />
     </div>
   );
 }
