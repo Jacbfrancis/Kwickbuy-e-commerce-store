@@ -50,11 +50,12 @@ function FeaturedProducts({ productData, error, loading }) {
             {visibleCards.map((product, index) => (
               <div
                 key={product.id}
-                className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-3 h-[19rem]"
+                className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-3 h-[22rem] xl:border-0 xl:shadow-none"
               >
                 <motion.span
-                  className="block border-b-1 rounded-2xl border-[#6cc6e786]"
-                  whileHover={{ scale: 1.25 }}
+                  className="block border-b-1 rounded-2xl border-[#6cc6e786] xl:border-1"
+                  whileHover={{ borderWidth: 0, scale: 1.15 }}
+                  transition={{ type: "tween" }}
                 >
                   <img
                     className="w-full"
