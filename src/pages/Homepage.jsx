@@ -7,7 +7,6 @@ import FeaturedProducts from "../components/FeaturedProducts";
 import ItemGrid from "../components/ItemGrid";
 import Banner from "../components/banner";
 
-import gadgetsBanner from "/gadgets_banner.webp";
 import CategoryContainer from "../components/CategoryContainer";
 
 const categories = [
@@ -67,7 +66,7 @@ function Homepage({ productData, error, loading }) {
         loading={loading}
       />
       <ItemGrid categories={categories} />
-      <Banner banner={gadgetsBanner} />
+      <Banner banner={"/gadgets_banner.webp"} />
       <CategoryContainer
         productData={productData}
         error={error}
