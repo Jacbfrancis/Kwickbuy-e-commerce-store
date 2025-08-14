@@ -5,6 +5,10 @@ import Header from "../components/Header";
 import FlashDeal from "../components/FlashDeal";
 import FeaturedProducts from "../components/FeaturedProducts";
 import ItemGrid from "../components/ItemGrid";
+import Banner from "../components/banner";
+
+import gadgetsBanner from "/gadgets_banner.webp";
+import CategoryContainer from "../components/CategoryContainer";
 
 const categories = [
   {
@@ -40,7 +44,7 @@ const categories = [
     icon: "/sports_leisure.webp",
   },
   {
-    title: "Phones & Leisure",
+    title: "Phones & Gadgets",
     icon: "/phones.webp",
   },
 ];
@@ -63,6 +67,12 @@ function Homepage({ productData, error, loading }) {
         loading={loading}
       />
       <ItemGrid categories={categories} />
+      <Banner banner={gadgetsBanner} />
+      <CategoryContainer
+        productData={productData}
+        error={error}
+        loading={loading}
+      />
     </div>
   );
 }

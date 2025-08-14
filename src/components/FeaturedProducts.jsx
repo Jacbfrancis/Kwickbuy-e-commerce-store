@@ -65,7 +65,7 @@ function FeaturedProducts({ productData, error, loading }) {
                 </motion.span>
                 <span className="text-center text-[1rem] font-semibold block mt-3 mb-6 mx-auto w-[15rem] whitespace-normal xl:w-[12.5rem]">
                   <p>{product.title}</p>
-                  <p className="my-2">{product.price.toLocaleString()}</p>
+                  <p className="my-2">${product.price.toLocaleString()}</p>
                 </span>
               </div>
             ))}

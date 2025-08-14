@@ -6,7 +6,7 @@ import NavMenu from "../components/NavMenu";
 function Navbar({ setShowMenu, showMenu, categories }) {
   return (
     <>
-      <nav className="flex justify-between items-center sticky top-0 p-4 bg-[#fff] w-full z-50 xl:px-20 xl:py-1">
+      <nav className="flex justify-between items-center sticky shadow-sm top-0 p-4 bg-[#fff] w-full z-50 xl:px-20 xl:py-1">
         <div className="flex justify-center items-center">
           <img
             className="w-45 hidden xl:inline-block"

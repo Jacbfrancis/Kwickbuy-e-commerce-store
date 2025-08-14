@@ -12,6 +12,7 @@ function ItemGrid({ categories }) {
           <h2 className="text-[1.5rem] text-black">Categories</h2>
           <p>View All</p>
         </span>
+
         <div className="overflow-hidden flex justify-center items-start px-11 py-5 whitespace-nowrap gap-10">
           {categories.map((category, index) => (
             <div
@@ -32,7 +33,7 @@ function ItemGrid({ categories }) {
                       }
                     : { scale: 1, borderWidth: 0, borderRadius: 0 }
                 }
-                transition={{ ease: easeInOut, duration: 0.5 }}
+                transition={{ ease: easeInOut, duration: 0.4 }}
                 src={category.icon}
                 alt={`${category.title}icon`}
               />

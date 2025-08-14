@@ -99,7 +99,7 @@ function FlashDeal({ productData, error, loading }) {
                   <span className=" flex flex-col justify-center w-1/2 h-[9rem] px-4 font-medium text-[0.8rem] xl:w-[100%] xl:h-[5rem] xl:mt-3">
                     <p>{product?.title}</p>
                     <p className="font-bold mt-2">
-                      {product?.price.toLocaleString()}
+                      ${product?.price.toLocaleString()}
                     </p>
                   </span>
                 </div>
