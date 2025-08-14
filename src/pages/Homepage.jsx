@@ -5,8 +5,7 @@ import Header from "../components/Header";
 import FlashDeal from "../components/FlashDeal";
 import FeaturedProducts from "../components/FeaturedProducts";
 import ItemGrid from "../components/ItemGrid";
-import Banner from "../components/banner";
-
+import Banner from "../components/Banner";
 import CategoryContainer from "../components/CategoryContainer";
 
 const categories = [
