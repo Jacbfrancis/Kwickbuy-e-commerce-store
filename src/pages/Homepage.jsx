@@ -7,6 +7,7 @@ import FeaturedProducts from "../components/FeaturedProducts";
 import ItemGrid from "../components/ItemGrid";
 import Banner from "../components/Banner";
 import CategoryContainer from "../components/CategoryContainer";
+import LoadingSpinner from "../components/LoadingAnimation";
 
 const categories = [
   {
@@ -50,6 +51,27 @@ const categories = [
 function Homepage({ productData, error, loading }) {
   const [showMenu, setShowMenu] = useState(false);
 
+  if (error) {
+    return error.message;
+  }
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  const selectedIndexes = [2, 13, 12, 5, 3, 11];
+  const smartPhones = productData.filter(
+    (product) => product.category === "smartphones"
+  );
+  const selectedPhones = selectedIndexes.map((index) => smartPhones[index]);
+
+  const mensFashion = productData.filter((product) =>
+    ["mens-shirts", "mens-shoes", "mens-watches"].includes(product.category)
+  );
+  const selectedMensFashion = selectedIndexes.map(
+    (index) => mensFashion[index]
+  );
+
   return (
     <div>
       <Navbar
@@ -67,10 +89,14 @@ function Homepage({ productData, error, loading }) {
       <ItemGrid categories={categories} />
       <Banner banner={"/gadgets_banner.webp"} />
       <CategoryContainer
-        productData={productData}
-        error={error}
-        loading={loading}
+        categoryItems={selectedPhones}
+        title={"Phones & Gadgets"}
       />
+      <CategoryContainer
+        categoryItems={selectedMensFashion}
+        title={"Men's Fashion"}
+      />
+      '
     </div>
   );
 }

@@ -1,49 +1,19 @@
-import { useEffect, useState } from "react";
-import LoadingSpinner from "./LoadingAnimation";
-
-function CategoryContainer({ productData, error, loading }) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth < 1280);
-    }
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  if (error) {
-    return error.message;
-  }
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-
-  const selectedIndexes = [3, 2, 5, 11, 12, 13];
-
-  const smartPhones = productData.filter(
-    (product) => product.category === "smartphones"
-  );
-
-  const selectedPhones = selectedIndexes.map((index) => smartPhones[index]);
-
-  const visibleItems = isMobile ? selectedPhones.splice(0, 4) : selectedPhones;
-
+function CategoryContainer({ categoryItems, title }) {
   return (
     <div className="xl:mx-20">
       <div className="bg-[#fff] shadow-sm rounded-xl">
-        <span className="text-[#1456ac] font-medium flex justify-between items-center px-4 pt-6">
-          <h2 className="text-black text-[1.5rem]">Phones & Gadgets</h2>
+        <span className="text-[#1456ac] font-medium flex justify-between items-center px-6 pt-6 xl:px-12">
+          <h2 className="text-black text-[1.5rem]">{title}</h2>
           <p>View All</p>
         </span>
         <div>
-          <ul className="text-center grid grid-cols-2 xl:grid-cols-6 gap-2 my-4 px-4 xl:px-8">
-            {visibleItems.map((phones) => (
+          <ul className="text-center grid grid-cols-2 xl:grid-cols-6 gap-2 my-4 px-4 pb-8 xl:px-8 xl:pb-4">
+            {categoryItems.map((phones, index) => (
               <li
                 key={phones.id}
-                className="rounded-2xl border-2 border-[#5dcaf133] my-1 p-2 xl:shadow-none xl:border-0"
+                className={`rounded-2xl border-2 border-[#5dcaf133] my-1 p-2 xl:shadow-none xl:border-0 ${
+                  index > 3 ? "hidden xl:inline-block" : "inline-block"
+                }`}
               >
                 <div className="rounded-xl">
                   <img
