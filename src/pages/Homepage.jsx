@@ -56,21 +56,14 @@ function Homepage({ productData, error, loading }) {
   }
 
   if (loading) {
-    return <LoadingSpinner />;
+    return (
+      <div className="h-[100vh] flex flex-col justify-center items-center">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
-  const selectedIndexes = [2, 13, 12, 5, 3, 11];
-  const smartPhones = productData.filter(
-    (product) => product.category === "smartphones"
-  );
-  const selectedPhones = selectedIndexes.map((index) => smartPhones[index]);
-
-  const mensFashion = productData.filter((product) =>
-    ["mens-shirts", "mens-shoes", "mens-watches"].includes(product.category)
-  );
-  const selectedMensFashion = selectedIndexes.map(
-    (index) => mensFashion[index]
-  );
+  console.log(productData);
 
   return (
     <div>
@@ -80,23 +73,37 @@ function Homepage({ productData, error, loading }) {
         categories={categories}
       />
       <Header showMenu={showMenu} categories={categories} />
-      <FlashDeal productData={productData} error={error} loading={loading} />
-      <FeaturedProducts
-        productData={productData}
-        error={error}
-        loading={loading}
-      />
+      <FlashDeal productData={productData} />
+      <FeaturedProducts productData={productData} />
       <ItemGrid categories={categories} />
       <Banner banner={"/gadgets_banner.webp"} />
       <CategoryContainer
-        categoryItems={selectedPhones}
         title={"Phones & Gadgets"}
+        filterFunc={productData.filter(
+          (product) => product.category === "smartphones"
+        )}
       />
       <CategoryContainer
-        categoryItems={selectedMensFashion}
         title={"Men's Fashion"}
+        filterFunc={productData.filter((product) =>
+          ["mens-shirts", "mens-shoes", "mens-watches"].includes(
+            product.category
+          )
+        )}
       />
-      '
+      <CategoryContainer
+        title={"Women's Fashion"}
+        filterFunc={productData.filter((product) =>
+          ["tops", "womens-shoes", "womens-bags"].includes(product.category)
+        )}
+      />
+      <Banner banner={"/kitchen_banner.jpg"} />
+      <CategoryContainer
+        title={"Home & Kitchen"}
+        filterFunc={productData.filter((product) =>
+          ["kitchen-accessories", "home-decoration"].includes(product.category)
+        )}
+      />
     </div>
   );
 }

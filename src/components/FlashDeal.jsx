@@ -7,18 +7,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import LoadingSpinner from "./LoadingAnimation";
 import useHover from "./useHover";
 
-function FlashDeal({ productData, error, loading }) {
+function FlashDeal({ productData }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
 
   const flashSales = productData.filter((item) => item.discountPercentage > 15);
   const flashDeals = flashSales.splice(13, 5);

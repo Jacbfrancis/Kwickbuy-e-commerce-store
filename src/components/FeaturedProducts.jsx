@@ -5,17 +5,10 @@ import { motion, AnimatePresence, easeIn } from "framer-motion";
 import LoadingSpinner from "./LoadingAnimation";
 import CarouselButton from "./CarouselButton";
 
-function FeaturedProducts({ productData, error, loading }) {
+function FeaturedProducts({ productData }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (error) {
-    <div>Error: {error.message}</div>;
-  }
-
-  if (loading) {
-    <LoadingSpinner />;
-  }
   const categories = [...new Set(productData?.map((item) => item.category))];
   const featuredProducts = categories.map((category) =>
     productData.find((product) => product.category === category)
