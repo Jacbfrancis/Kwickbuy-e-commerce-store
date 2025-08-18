@@ -63,8 +63,6 @@ function Homepage({ productData, error, loading }) {
     );
   }
 
-  console.log(productData);
-
   return (
     <div>
       <Navbar
@@ -97,11 +95,17 @@ function Homepage({ productData, error, loading }) {
           ["tops", "womens-shoes", "womens-bags"].includes(product.category)
         )}
       />
+      <CategoryContainer
+        title={"Health & Beauty"}
+        filterFunc={productData.filter((product) =>
+          ["fragrances", "beauty", "skin-care"].includes(product.category)
+        )}
+      />
       <Banner banner={"/kitchen_banner.jpg"} />
       <CategoryContainer
         title={"Home & Kitchen"}
-        filterFunc={productData.filter((product) =>
-          ["kitchen-accessories", "home-decoration"].includes(product.category)
+        filterFunc={productData.filter(
+          (product) => product.category === "kitchen-accessories"
         )}
       />
     </div>
