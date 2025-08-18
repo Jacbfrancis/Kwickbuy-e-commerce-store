@@ -2,12 +2,13 @@ import { useState } from "react";
 import useHover from "./useHover";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, easeIn } from "framer-motion";
-import LoadingSpinner from "./LoadingAnimation";
+import { FontAwesomeIcon } from "./font-awesome";
 import CarouselButton from "./CarouselButton";
 
 function FeaturedProducts({ productData }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const categories = [...new Set(productData?.map((item) => item.category))];
   const featuredProducts = categories.map((category) =>
@@ -44,20 +45,50 @@ function FeaturedProducts({ productData }) {
               <div
                 key={product.id}
                 className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-3 h-[22rem] xl:border-0 xl:shadow-none"
+                onMouseOver={() => setHoveredIndex(index)}
+                onMouseOut={() => setHoveredIndex(null)}
               >
                 <motion.span
-                  className="block border-b-1 rounded-2xl border-[#6cc6e786] xl:border-1"
-                  whileHover={{ borderWidth: 0, scale: 1.15 }}
+                  className="block border-b-1 rounded-2xl border-[#6cc6e786] xl:border-1 relative"
+                  initial={{ backgroundColor: "#fff" }}
+                  animate={
+                    hoveredIndex === index
+                      ? { backgroundColor: "#4a81ca5d" }
+                      : { backgroundColor: "#fff" }
+                  }
                   transition={{ type: "tween" }}
                 >
-                  <img
+                  <motion.div
+                    className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-30 left-25 xl:top-20 xl:left-20 z-20 none"
+                    initial={{ display: "none" }}
+                    animate={
+                      hoveredIndex === index
+                        ? { display: "block" }
+                        : { display: "none" }
+                    }
+                    transition={{
+                      duration: 0.25,
+                      type: "tween",
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <FontAwesomeIcon icon="fa-regular fa-eye" />
+                  </motion.div>
+                  <motion.img
                     className="w-full"
+                    initial={{ scale: 1 }}
+                    animate={
+                      hoveredIndex === index ? { scale: 1.15 } : { scale: 1 }
+                    }
+                    transition={{ type: "tween" }}
                     src={product.thumbnail}
                     alt={`product ${index}`}
                   />
                 </motion.span>
                 <span className="text-center text-[1rem] font-semibold block mt-3 mb-6 mx-auto w-[15rem] whitespace-normal xl:w-[12.5rem]">
-                  <p>{product.title}</p>
+                  <motion.p whileHover={{ color: "#1456ac" }}>
+                    {product.title}
+                  </motion.p>
                   <p className="my-2">${product.price.toLocaleString()}</p>
                 </span>
               </div>

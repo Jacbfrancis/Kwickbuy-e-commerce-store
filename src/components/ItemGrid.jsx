@@ -6,7 +6,7 @@ function ItemGrid({ categories }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="xl:px-20 ">
+    <div className="xl:px-20 mb-8">
       <div className="bg-[#fff] shadow-sm rounded-xl ">
         <span className="text-[#1456ac] font-normal flex justify-between items-center px-4 pt-8">
           <h2 className="text-[1.5rem] text-black">Categories</h2>

@@ -4,7 +4,7 @@ import CarouselButton from "./CarouselButton";
 import CountdownTimer from "./CountdownTimer";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
-import LoadingSpinner from "./LoadingAnimation";
+import { FontAwesomeIcon } from "./font-awesome";
 import useHover from "./useHover";
 
 function FlashDeal({ productData }) {
@@ -68,7 +68,36 @@ function FlashDeal({ productData }) {
                     setHoveredIndex(null);
                   }}
                 >
-                  <span className="w-[6rem] px-2 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2">
+                  <motion.span
+                    className="w-[6rem] relative px-2 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2"
+                    initial={{ backgroundColor: "#fff" }}
+                    animate={
+                      hoveredIndex === index
+                        ? { backgroundColor: "#4a81ca5d" }
+                        : { backgroundColor: "#fff" }
+                    }
+                    transition={{
+                      duration: 0.3,
+                      type: "tween",
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <motion.div
+                      className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-5 left-8 xl:top-15 xl:left-12 z-20 none"
+                      initial={{ display: "none" }}
+                      animate={
+                        hoveredIndex === index
+                          ? { display: "block" }
+                          : { display: "none" }
+                      }
+                      transition={{
+                        duration: 0.25,
+                        type: "tween",
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <FontAwesomeIcon icon="fa-regular fa-eye" />
+                    </motion.div>
                     <motion.img
                       className="border border-[#cdcdcd2b] xl:border-none"
                       initial={{ scale: 1 }}
@@ -84,12 +113,11 @@ function FlashDeal({ productData }) {
                       src={product?.thumbnail}
                       alt="product"
                     />
-                  </span>
-                  {/* {index === hoveredIndex && (
-                    <div className="hidden xl:inline-block xl:bg-[#0067ce30] w-[8.9rem] h-[8.8rem] absolute top-169.5 rounded-xl"></div>
-                  )} */}
+                  </motion.span>
                   <span className=" flex flex-col justify-center w-1/2 h-[9rem] px-4 font-medium text-[0.8rem] xl:w-[100%] xl:h-[5rem] xl:mt-3">
-                    <p>{product?.title}</p>
+                    <motion.p whileHover={{ color: "#1456ac" }}>
+                      {product?.title}
+                    </motion.p>
                     <p className="font-bold mt-2">
                       ${product?.price.toLocaleString()}
                     </p>

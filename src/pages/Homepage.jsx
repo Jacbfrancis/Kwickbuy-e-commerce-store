@@ -74,13 +74,6 @@ function Homepage({ productData, error, loading }) {
       <FlashDeal productData={productData} />
       <FeaturedProducts productData={productData} />
       <ItemGrid categories={categories} />
-      <Banner banner={"/gadgets_banner.webp"} />
-      <CategoryContainer
-        title={"Phones & Gadgets"}
-        filterFunc={productData.filter(
-          (product) => product.category === "smartphones"
-        )}
-      />
       <CategoryContainer
         title={"Men's Fashion"}
         filterFunc={productData.filter((product) =>
@@ -99,6 +92,13 @@ function Homepage({ productData, error, loading }) {
         title={"Health & Beauty"}
         filterFunc={productData.filter((product) =>
           ["fragrances", "beauty", "skin-care"].includes(product.category)
+        )}
+      />
+      <Banner banner={"/gadgets_banner.webp"} />
+      <CategoryContainer
+        title={"Phones & Gadgets"}
+        filterFunc={productData.filter(
+          (product) => product.category === "smartphones"
         )}
       />
       <Banner banner={"/kitchen_banner.jpg"} />
