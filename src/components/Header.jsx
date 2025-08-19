@@ -2,20 +2,27 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
-
+import { useSwipeable } from "react-swipeable";
 import CarouselButton from "./CarouselButton";
 import useHover from "./useHover";
-
 import bannerImage1 from "../assets/images/banner1.webp";
 import bannerImage2 from "../assets/images/banner2.jpg";
 import bannerImage3 from "../assets/images/banner3.jpg";
 
+const headerImages = [bannerImage1, bannerImage2, bannerImage3];
+
 function Header({ showMenu, categories }) {
-  const headerImages = [bannerImage1, bannerImage2, bannerImage3];
   const [currentIndex, setCurrentIndex] = useState(0);
   const length = headerImages.length;
-
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
+
+  const handler = useSwipeable({
+    onSwipedLeft: () => setCurrentIndex((prev) => (prev + 1) % length),
+    onSwipedRight: () =>
+      setCurrentIndex((prev) => (prev - 1 + length) % length),
+    ppreventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
 
   // Auto slide header banner and stop when showMenu is true
   useEffect(() => {
@@ -51,6 +58,7 @@ function Header({ showMenu, categories }) {
           className="w-full xl:w-[79.5%] h-fit rounded"
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
+          {...handler}
         >
           <AnimatePresence mode="wait" scroll={false}>
             {headerImages.map(
@@ -61,7 +69,7 @@ function Header({ showMenu, categories }) {
                     animate={index === currentIndex ? { x: 0 } : { x: 350 }}
                     exit={{ x: -300, opacity: 0 }}
                     transition={{
-                      duration: 0.55,
+                      duration: 0.4,
                       ease: "easeInOut",
                       type: "tween",
                     }}
