@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
-import { useSwipeable } from "react-swipeable";
 import CarouselButton from "./CarouselButton";
 import useHover from "./useHover";
+import useImageSwiper from "./useImageSwiper";
 import bannerImage1 from "../assets/images/banner1.webp";
 import bannerImage2 from "../assets/images/banner2.jpg";
 import bannerImage3 from "../assets/images/banner3.jpg";
@@ -16,13 +16,8 @@ function Header({ showMenu, categories }) {
   const length = headerImages.length;
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
 
-  const handler = useSwipeable({
-    onSwipedLeft: () => setCurrentIndex((prev) => (prev + 1) % length),
-    onSwipedRight: () =>
-      setCurrentIndex((prev) => (prev - 1 + length) % length),
-    ppreventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-  });
+  // custom hook for slider on swipe
+  const [handler] = useImageSwiper(setCurrentIndex, length);
 
   // Auto slide header banner and stop when showMenu is true
   useEffect(() => {
@@ -69,7 +64,7 @@ function Header({ showMenu, categories }) {
                     animate={index === currentIndex ? { x: 0 } : { x: 350 }}
                     exit={{ x: -300, opacity: 0 }}
                     transition={{
-                      duration: 0.4,
+                      duration: 0.38,
                       ease: "easeInOut",
                       type: "tween",
                     }}
