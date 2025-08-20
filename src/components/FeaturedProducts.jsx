@@ -30,7 +30,7 @@ function FeaturedProducts({ productData }) {
   return (
     <div className="xl:px-20 my-6">
       <div className="bg-[#fff] rounded-xl shadow-sm pb-8">
-        <h2 className="text-[#1456ac] text-center font-bold text-[1.3rem] pb-4 pt-8">
+        <h2 className="text-[#1456ac] text-center font-bold text-[1.3rem] pb-4 pt-">
           Featured products
         </h2>
         <p className="text-[#1456ac] hidden text-right pr-6 pb-5 font-semibold xl:block">
@@ -39,7 +39,7 @@ function FeaturedProducts({ productData }) {
 
         <div className="overflow-hidden">
           <div
-            className="flex justify-center items-center"
+            className="flex justify-center items-center select-none"
             {...handler}
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}

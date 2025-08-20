@@ -50,10 +50,10 @@ function Header({ showMenu, categories }) {
           </ul>
         </div>
         <div
-          className="w-full xl:w-[79.5%] h-fit rounded"
+          className="w-full xl:w-[79.5%] h-fit rounded select-none"
+          {...handler}
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
-          {...handler}
         >
           <AnimatePresence mode="wait" scroll={false}>
             {headerImages.map(

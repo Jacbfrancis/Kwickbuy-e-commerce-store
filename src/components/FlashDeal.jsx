@@ -50,7 +50,7 @@ function FlashDeal({ productData }) {
           </p>
           <AnimatePresence mode="wait">
             <motion.div
-              className="flex justify-center items-center w-full"
+              className="flex justify-center items-center w-full select-none"
               {...handler}
               initial={{ x: 40 }}
               animate={{ x: 0 }}

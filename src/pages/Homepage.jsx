@@ -63,6 +63,26 @@ function Homepage({ productData, error, loading }) {
     );
   }
 
+  // get an array of vendors details
+  const vendors = productData
+    .map((vendor) => ({
+      vendorID: vendor.vendorID,
+      vendorName: vendor.vendorName,
+      vendorLogo: vendor.vendorLogo,
+    }))
+    .filter(
+      (vendor, index, arr) =>
+        index ===
+        arr.findIndex(
+          (o) =>
+            o.vendorID === vendor.vendorID &&
+            o.vendorName === vendor.vendorName &&
+            o.Logo === vendor.Logo
+        )
+    );
+
+  //console.log(productData);
+
   return (
     <div>
       <Navbar
@@ -73,7 +93,7 @@ function Homepage({ productData, error, loading }) {
       <Header showMenu={showMenu} categories={categories} />
       <FlashDeal productData={productData} />
       <FeaturedProducts productData={productData} />
-      <ItemGrid categories={categories} />
+      <ItemGrid data={categories} title={"Categories"} />
       <Banner banner={"/gadgets_banner.webp"} />
       <CategoryContainer
         title={"Phones & Gadgets"}
@@ -101,7 +121,6 @@ function Homepage({ productData, error, loading }) {
           ["fragrances", "beauty", "skin-care"].includes(product.category)
         )}
       />
-      <Banner banner={"/kitchen_banner.jpg"} />
       <CategoryContainer
         title={"Home & Kitchen"}
         filterFunc={productData.filter(

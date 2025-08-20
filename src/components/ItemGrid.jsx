@@ -2,27 +2,27 @@
 import { easeInOut, motion } from "framer-motion";
 import { useState } from "react";
 
-function ItemGrid({ categories }) {
+function ItemGrid({ data, title }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
     <div className="xl:px-20 mb-8">
       <div className="bg-[#fff] shadow-sm rounded-xl ">
         <span className="text-[#1456ac] font-normal flex justify-between items-center px-4 pt-8">
-          <h2 className="text-[1.5rem] text-black">Categories</h2>
+          <h2 className="text-[1.5rem] text-black">{title}</h2>
           <p>View All</p>
         </span>
 
         <div className="overflow-hidden flex justify-center items-start px-11 py-5 whitespace-nowrap gap-10">
-          {categories.map((category, index) => (
+          {data.map((data, index) => (
             <div
-              key={category.title}
+              key={data.title}
               className="text-center w-[10rem] pb-8"
               onMouseOver={() => setHoveredIndex(index)}
               onMouseOut={() => setHoveredIndex(null)}
             >
               <motion.img
-                className="h-[6rem] mb-2 m-auto border-[#fff]"
+                className="rounded-[100%] h-[6rem] mb-2 m-auto border-[#fff]"
                 animate={
                   hoveredIndex === index
                     ? {
@@ -34,11 +34,11 @@ function ItemGrid({ categories }) {
                     : { scale: 1, borderWidth: 0, borderRadius: 0 }
                 }
                 transition={{ ease: easeInOut, duration: 0.4 }}
-                src={category.icon}
-                alt={`${category.title}icon`}
+                src={data.icon}
+                alt={`${data.title}image`}
               />
 
-              <h2 className="text-sm">{category.title}</h2>
+              <h2 className="text-sm">{data.title}</h2>
             </div>
           ))}
         </div>
