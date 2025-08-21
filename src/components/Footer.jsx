@@ -3,7 +3,7 @@ function Footer() {
     <>
       <div className="bg-[#184161] text-[#ffffffd2] px-6 pt-8 pb-20 mt-10 xl:px-20 xl:flex justify-between items-center">
         <div className="w-1/2 mb-4 m-auto xl:w-[15%] xl:m-0">
-          <img src="/public/footer_logo.png" alt="Kwickbuy_logo" />
+          <img src="/footer_logo.png" alt="Kwickbuy_logo" />
         </div>
 
         <div className="text-center mb-10 xl:w-[35%] xl:m-0">
@@ -45,7 +45,7 @@ function Footer() {
           </span>
         </div>
       </div>
-      <div className="bg-[#1c5170] text-[#ffffffd2] py-4 font-normal text-center">
+      <div className="bg-[#1c5170] text-[#ffffffd2] py-3 font-normal text-center">
         <p>Copyright 2025 ©JacobFrancis</p>
       </div>
     </>

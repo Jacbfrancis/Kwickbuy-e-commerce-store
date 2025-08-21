@@ -10,6 +10,7 @@ import CategoryContainer from "../components/CategoryContainer";
 import LoadingSpinner from "../components/LoadingAnimation";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
+import BackToTop from "../components/BackToTop";
 
 const categories = [
   {
@@ -130,6 +131,7 @@ function Homepage({ productData, error, loading }) {
       <ItemGrid data={categories} title={"Categories"} />
       <Features />
       <Footer />
+      <BackToTop />
     </div>
   );
 }
