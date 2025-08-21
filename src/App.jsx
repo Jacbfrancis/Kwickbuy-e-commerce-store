@@ -8,7 +8,6 @@ function App() {
   return (
     <div className="bg-[#fbfbfc]">
       <Hompage productData={productData} error={error} loading={loading} />
-      <div className="h-[30vh] block"></div>
     </div>
   );
 }

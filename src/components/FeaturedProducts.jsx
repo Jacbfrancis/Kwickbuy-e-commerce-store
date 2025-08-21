@@ -62,7 +62,7 @@ function FeaturedProducts({ productData }) {
                   transition={{ type: "tween" }}
                 >
                   <motion.div
-                    className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-30 left-25 xl:top-20 xl:left-20 z-20 none"
+                    className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-30 left-25 xl:top-20 xl:left-20 z-20 invisible xl:visible"
                     initial={{ display: "none" }}
                     animate={
                       hoveredIndex === index

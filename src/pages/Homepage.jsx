@@ -8,6 +8,8 @@ import ItemGrid from "../components/ItemGrid";
 import Banner from "../components/Banner";
 import CategoryContainer from "../components/CategoryContainer";
 import LoadingSpinner from "../components/LoadingAnimation";
+import Features from "../components/Features";
+import Footer from "../components/Footer";
 
 const categories = [
   {
@@ -64,24 +66,22 @@ function Homepage({ productData, error, loading }) {
   }
 
   // get an array of vendors details
-  const vendors = productData
-    .map((vendor) => ({
-      vendorID: vendor.vendorID,
-      vendorName: vendor.vendorName,
-      vendorLogo: vendor.vendorLogo,
-    }))
-    .filter(
-      (vendor, index, arr) =>
-        index ===
-        arr.findIndex(
-          (o) =>
-            o.vendorID === vendor.vendorID &&
-            o.vendorName === vendor.vendorName &&
-            o.Logo === vendor.Logo
-        )
-    );
-
-  //console.log(productData);
+  // const vendors = productData
+  //   .map((vendor) => ({
+  //     vendorID: vendor.vendorID,
+  //     vendorName: vendor.vendorName,
+  //     vendorLogo: vendor.vendorLogo,
+  //   }))
+  //   .filter(
+  //     (vendor, index, arr) =>
+  //       index ===
+  //       arr.findIndex(
+  //         (o) =>
+  //           o.vendorID === vendor.vendorID &&
+  //           o.vendorName === vendor.vendorName &&
+  //           o.Logo === vendor.Logo
+  //       )
+  //   );
 
   return (
     <div>
@@ -127,6 +127,9 @@ function Homepage({ productData, error, loading }) {
           (product) => product.category === "kitchen-accessories"
         )}
       />
+      <ItemGrid data={categories} title={"Categories"} />
+      <Features />
+      <Footer />
     </div>
   );
 }

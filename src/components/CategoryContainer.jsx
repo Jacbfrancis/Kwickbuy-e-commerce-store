@@ -59,7 +59,7 @@ function CategoryContainer({ title, filterFunc }) {
                   }}
                 >
                   <motion.div
-                    className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-20 left-15 xl:left-17 z-20 hidden"
+                    className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-20 left-15  xl:left-17 z-20 invisible xl:visible hidden"
                     initial={{ display: "none" }}
                     animate={
                       hoveredIndex === index

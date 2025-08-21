@@ -87,7 +87,7 @@ function FlashDeal({ productData }) {
                     }}
                   >
                     <motion.div
-                      className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-5 left-8 xl:top-15 xl:left-12 z-20 none"
+                      className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-5 left-8 xl:top-15 xl:left-12 z-20 invisible xl:visible"
                       initial={{ display: "none" }}
                       animate={
                         hoveredIndex === index
