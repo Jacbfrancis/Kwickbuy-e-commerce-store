@@ -100,29 +100,10 @@ function NavMenu({ setShowMenu, categories }) {
             </ul>
           </motion.div>
         )}
-        <li className="pl-6" onClick={() => dispatch({ type: "TOGGLE_BRAND" })}>
-          Brand <span className="text-[0.6rem] ml-8">&#9660;</span>
-        </li>
-        {state.brandMenu && (
-          <motion.div
-            className="bg-[#eff7ff] w-full m-auto rounded-lg px-7 py-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.05, type: "spring" }}
-          >
-            <ul className="flex text-[0.85rem] flex-col gap-4">
-              <li className="flex justify-between items-center">placeholder</li>
-              <li className="flex justify-between items-center">placeholder</li>
-              <li className="flex justify-between items-center">placeholder</li>
-            </ul>
-          </motion.div>
-        )}
+
         <li className="pl-6">All Vendors</li>
         <li className="pl-6">Sign in</li>
         <li className="pl-6">Sign up</li>
-        <li className="pl-6">
-          Vendor Zone <span className="text-[0.6rem] ml-8">&#9660;</span>
-        </li>
       </ul>
     </>
   );

@@ -1,9 +1,15 @@
+import { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import NavMenu from "../components/NavMenu";
+import OfferHoverMenu from "./OfferHoverMenu";
+import VendorHoverMenu from "./VendorHoverMenu";
 
 function Navbar({ setShowMenu, showMenu, categories }) {
+  const [isHoverOffer, setIsHoverOffer] = useState(false);
+  const [isHoverVendor, setIsHoverVendor] = useState(false);
+
   return (
     <>
       <nav className="flex justify-between items-center shadow-sm top-0 p-4 bg-[#fff] w-full z-50 xl:px-20 xl:py-1 xl:sticky">
@@ -67,7 +73,7 @@ function Navbar({ setShowMenu, showMenu, categories }) {
         {/* toggle navmenu on mobile */}
         {showMenu && (
           <motion.div
-            className="bg-[#fff] w-[70%] h-full px-5 py-6 fixed top-2 right-0 text-left xl:hidden"
+            className="bg-[#fff] w-[70%] h-full px-5 py-6 fixed top-2 right-0 z-50 text-left xl:hidden"
             initial={{ y: "-100vw" }}
             animate={{ y: 0 }}
             transition={{ duration: 0.35, type: "tween" }}
@@ -84,20 +90,40 @@ function Navbar({ setShowMenu, showMenu, categories }) {
           <span className="text-[0.6rem]">&#9660;</span>
         </div>
         <ul className="flex justify-between items-center">
-          <li className="px-5">Home</li>
-          <li className="px-5">
+          <li className="px-5" onMouseOver={() => setIsHoverOffer(false)}>
+            Home
+          </li>
+          <li className="px-5" onMouseOver={() => setIsHoverOffer(true)}>
             Offers
             <span className="text-[0.5rem] font-semibold ml-2">&#9660;</span>
+            {isHoverOffer && (
+              <div
+                className="absolute top-32 left-100 z-50"
+                onMouseOut={() => setIsHoverOffer(false)}
+              >
+                <OfferHoverMenu />
+              </div>
+            )}
           </li>
-          <li className="px-5">
-            Brand
-            <span className="text-[0.5rem] font-semibold ml-2">&#9660;</span>
+          <li
+            className="px-5"
+            onMouseOver={() => {
+              setIsHoverVendor(true), setIsHoverOffer(false);
+            }}
+          >
+            Vendors
+            <span className="text-[0.5rem] font-semibold ml-1">&#9660;</span>
+            {isHoverVendor && (
+              <div
+                className="absolute top-32 left-130 z-50"
+                onMouseOut={() => setIsHoverVendor(false)}
+              >
+                <VendorHoverMenu />
+              </div>
+            )}
           </li>
-          <li className="px-5">All Vendors</li>
-          <li className="px-5">
-            Vendors Zone
-            <span className="text-[0.5rem] font-semibold ml-2">&#9660;</span>
-          </li>
+          <li className="px-5">Login</li>
+          <li className="px-5">Sign up</li>
           <li className="px-5">About us</li>
         </ul>
       </div>
