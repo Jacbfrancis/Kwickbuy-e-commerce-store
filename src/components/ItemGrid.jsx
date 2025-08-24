@@ -13,7 +13,7 @@ function ItemGrid({ data, title }) {
           <p>View All</p>
         </span>
 
-        <div className="overflow-hidden flex justify-center items-start px-11 py-5 whitespace-nowrap gap-10">
+        <div className="overflow-scroll flex justify-start items-start px-11 py-5 whitespace-nowrap gap-10">
           {data.map((data, index) => (
             <div
               key={data.title}

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import useImageSwiper from "./useImageSwiper";
 import useHover from "./useHover";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, easeIn } from "framer-motion";
@@ -18,8 +17,6 @@ function FeaturedProducts({ productData }) {
   const featuredDeals = featuredProducts.splice(6, 13);
   const length = featuredDeals.length;
 
-  const [handler] = useImageSwiper(setCurrentIndex, length);
-
   let visibleCards = [];
 
   for (let i = 0; i < length; i++) {
@@ -37,10 +34,9 @@ function FeaturedProducts({ productData }) {
           View All
         </p>
 
-        <div className="overflow-hidden">
+        <div className="overflow-scroll">
           <div
-            className="flex justify-center items-center select-none"
-            {...handler}
+            className="flex justify-start items-center select-none"
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
           >
