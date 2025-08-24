@@ -1,3 +1,4 @@
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 
 import CarouselButton from "./CarouselButton";
@@ -45,9 +46,12 @@ function FlashDeal({ productData }) {
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
-          <p className="text-[#1456ac] text-right cursor-pointer hidden xl:block mx-6 my-4 font-semibold">
-            View All
-          </p>
+          <NavLink to="/flashdeals">
+            <p className="text-[#1456ac] text-right cursor-pointer hidden xl:block mx-6 my-4 font-semibold">
+              View All
+            </p>
+          </NavLink>
+
           <AnimatePresence mode="wait">
             <motion.div
               className="flex justify-center items-center w-full select-none"
@@ -130,9 +134,11 @@ function FlashDeal({ productData }) {
               ))}
             </motion.div>
           </AnimatePresence>
-          <p className="text-[#1456ac] text-center cursor-pointer xl:hidden mt-5 mb-3 font-medium">
-            View All
-          </p>
+          <NavLink to="/flashdeals">
+            <p className="text-[#1456ac] text-center cursor-pointer xl:hidden mt-5 mb-3 font-medium">
+              View All
+            </p>
+          </NavLink>
           <AnimatePresence className="relative">
             {isMouseOver && (
               <div className="absolute w-full top-[33rem] md:hidden xl:top-[50rem] xl:w-[60%] xl:block">

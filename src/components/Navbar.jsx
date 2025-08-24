@@ -4,30 +4,35 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import NavMenu from "../components/NavMenu";
 import OfferHoverMenu from "./OfferHoverMenu";
-import VendorHoverMenu from "./VendorHoverMenu";
+import BrandHoverMenu from "./BrandHoverMenu";
 
 function Navbar({ setShowMenu, showMenu, categories }) {
   const [isHoverOffer, setIsHoverOffer] = useState(false);
-  const [isHoverVendor, setIsHoverVendor] = useState(false);
+  const [isHoverBrand, setIsHoverBrand] = useState(false);
 
   return (
     <>
-      <nav className="flex justify-between items-center shadow-sm top-0 p-4 bg-[#fff] w-full z-50 xl:px-20 xl:py-1 xl:sticky">
+      <nav
+        className="flex justify-between items-center shadow-sm top-0 p-4 bg-[#fff] w-full z-50 xl:px-20 xl:py-1 xl:sticky"
+        onMouseOver={() => {
+          setIsHoverOffer(false), setIsHoverBrand(false);
+        }}
+      >
         <div className="flex justify-center items-center">
           <img
-            className="w-45 hidden xl:inline-block"
+            className="w-45 hidden xl:inline-block cursor-pointer"
             src="/kwickbuy-desktop.png"
             alt="Kwickbuy Logo"
           />
           <FontAwesomeIcon
-            className="text-2xl xl:!hidden"
+            className="text-2xl cursor-pointer xl:!hidden"
             icon="fa-solid fa-bars"
             onClick={() => {
               setShowMenu(!showMenu);
             }}
           />
           <img
-            className="w-11 ml-5 xl:hidden"
+            className="w-11 ml-5 xl:hidden cursor-pointer"
             src="/kwickbuy-logo.png"
             alt="Kwickbuy Logo"
           />
@@ -84,16 +89,27 @@ function Navbar({ setShowMenu, showMenu, categories }) {
       </nav>
 
       <div className="bg-[#1456ac] text-[#fff] hidden py-2 px-20 justify-start items-center xl:flex">
-        <div className="bg-[#fff] text-[#1456ac] font-bold rounded py-3 px-8 flex justify-center items-center">
+        <div
+          className="bg-[#fff] text-[#1456ac] font-bold rounded py-3 px-8 flex justify-center items-center cursor-pointer"
+          onMouseOver={() => setIsHoverOffer(false)}
+        >
           <FontAwesomeIcon icon="fa-solid fa-list" />
           <p className="mx-10">Categories</p>
           <span className="text-[0.6rem]">&#9660;</span>
         </div>
         <ul className="flex justify-between items-center">
-          <li className="px-5" onMouseOver={() => setIsHoverOffer(false)}>
+          <li
+            className="px-5 cursor-pointer"
+            onMouseOver={() => setIsHoverOffer(false)}
+          >
             Home
           </li>
-          <li className="px-5" onMouseOver={() => setIsHoverOffer(true)}>
+          <li
+            className="px-5 cursor-pointer"
+            onMouseOver={() => {
+              setIsHoverOffer(true), setIsHoverBrand(false);
+            }}
+          >
             Offers
             <span className="text-[0.5rem] font-semibold ml-2">&#9660;</span>
             {isHoverOffer && (
@@ -106,25 +122,35 @@ function Navbar({ setShowMenu, showMenu, categories }) {
             )}
           </li>
           <li
-            className="px-5"
+            className="px-5 cursor-pointer"
             onMouseOver={() => {
-              setIsHoverVendor(true), setIsHoverOffer(false);
+              setIsHoverBrand(true), setIsHoverOffer(false);
             }}
           >
-            Vendors
+            Brands
             <span className="text-[0.5rem] font-semibold ml-1">&#9660;</span>
-            {isHoverVendor && (
+            {isHoverBrand && (
               <div
                 className="absolute top-32 left-130 z-50"
-                onMouseOut={() => setIsHoverVendor(false)}
+                onMouseOut={() => setIsHoverBrand(false)}
               >
-                <VendorHoverMenu />
+                <BrandHoverMenu />
               </div>
             )}
           </li>
-          <li className="px-5">Login</li>
-          <li className="px-5">Sign up</li>
-          <li className="px-5">About us</li>
+          <li
+            className="px-5 cursor-pointer"
+            onMouseOver={() => setIsHoverBrand(false)}
+          >
+            Login
+          </li>
+          <li
+            className="px-5 cursor-pointer"
+            onMouseOver={() => setIsHoverBrand(false)}
+          >
+            Sign up
+          </li>
+          <li className="px-5 cursor-pointer">About us</li>
         </ul>
       </div>
     </>

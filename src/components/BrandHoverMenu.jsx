@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
-const vendors = [
+const brands = [
   { name: "Featyr", products: 10 },
   { name: "Clearance", products: 34 },
   { name: "Dued Products", products: 5 },
@@ -12,7 +12,7 @@ const vendors = [
   { name: "Lago", products: 12 },
 ];
 
-function VendorHoverMenu() {
+function BrandHoverMenu() {
   return (
     <>
       <motion.div
@@ -22,16 +22,16 @@ function VendorHoverMenu() {
         transition={{ duration: 0.3, type: "tween" }}
       >
         <ul>
-          {vendors.map((vendor, index) => (
+          {brands.map((brand, index) => (
             <li
               key={index}
               className="border-b-1 border-[#43434344] flex justify-between items-center"
             >
               <span className="px-3 py-2 cursor-pointer block hover:text-[#1456ac]">
-                {vendor.name}
+                {brand.name}
               </span>
               <span className="px-3 py-2 cursor-pointer block text-[#1456ac]">
-                {`(${vendor.products})`}
+                {`(${brand.products})`}
               </span>
             </li>
           ))}
@@ -41,4 +41,4 @@ function VendorHoverMenu() {
   );
 }
 
-export default VendorHoverMenu;
+export default BrandHoverMenu;
