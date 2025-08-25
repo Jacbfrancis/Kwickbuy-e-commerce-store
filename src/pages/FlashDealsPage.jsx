@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Filter from "../components/Filter";
-import FilterMenu from "../components/FilterMenu";
+import FilterMenuMobile from "../components/FilterMenuMobile";
+import FilterMenuSidebar from "../components/FilterMenuSidebar";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -23,8 +24,10 @@ function FlashDealsPage({ categories, brands, showMenu, setShowMenu }) {
         <Filter setIsFilterMenuOpen={setIsFilterMenuOpen} />
       </div>
 
+      <FilterMenuSidebar categories={categories} brands={brands} />
+
       {isFilterMenuOpen && (
-        <FilterMenu
+        <FilterMenuMobile
           categories={categories}
           brands={brands}
           setIsFilterMenuOpen={setIsFilterMenuOpen}
