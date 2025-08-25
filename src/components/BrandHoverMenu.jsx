@@ -1,18 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
-const brands = [
-  { name: "Featyr", products: 10 },
-  { name: "Clearance", products: 34 },
-  { name: "Dued Products", products: 5 },
-  { name: "Flashy", products: 12 },
-  { name: "Veyra", products: 6 },
-  { name: "Aureon", products: 24 },
-  { name: "Beyora", products: 11 },
-  { name: "Lago", products: 12 },
-];
-
-function BrandHoverMenu() {
+function BrandHoverMenu({ brands }) {
   return (
     <>
       <motion.div

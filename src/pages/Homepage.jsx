@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import FlashDeal from "../components/FlashDeal";
@@ -13,48 +11,15 @@ import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
 import FlashDealsPage from "./FlashDealsPage";
 
-const categories = [
-  {
-    title: "Men's Fashion",
-    icon: "/men_fashion.webp",
-  },
-  {
-    title: "Women's Fashion",
-    icon: "/women_fashion.webp",
-  },
-  {
-    title: "Kid's Fashion",
-    icon: "/kid_fashion.webp",
-  },
-  {
-    title: "Health & Beauty",
-    icon: "/health_beauty.webp",
-  },
-  {
-    title: "Pet Supplies",
-    icon: "/pet_supplies.webp",
-  },
-  {
-    title: "Home & Kitchen",
-    icon: "/home_kitchen.webp",
-  },
-  {
-    title: "Baby & Toys",
-    icon: "/baby_toys.webp",
-  },
-  {
-    title: "Sports & Leisure",
-    icon: "/sports_leisure.webp",
-  },
-  {
-    title: "Phones & Gadgets",
-    icon: "/phones.webp",
-  },
-];
-
-function Homepage({ productData, error, loading }) {
-  const [showMenu, setShowMenu] = useState(false);
-
+function Homepage({
+  productData,
+  error,
+  loading,
+  categories,
+  brands,
+  showMenu,
+  setShowMenu,
+}) {
   if (error) {
     return error.message;
   }
@@ -91,6 +56,7 @@ function Homepage({ productData, error, loading }) {
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         categories={categories}
+        brands={brands}
       />
       <Header showMenu={showMenu} categories={categories} />
       <FlashDeal productData={productData} />

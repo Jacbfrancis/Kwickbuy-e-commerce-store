@@ -13,7 +13,7 @@ function ItemGrid({ data, title }) {
           <p>View All</p>
         </span>
 
-        <div className="overflow-scroll flex justify-start items-start px-11 py-5 whitespace-nowrap gap-10">
+        <div className="overflow-scroll [scrollbar-width:none] flex justify-start items-start px-11 py-5 whitespace-nowrap gap-10">
           {data.map((data, index) => (
             <div
               key={data.title}
@@ -22,7 +22,7 @@ function ItemGrid({ data, title }) {
               onMouseOut={() => setHoveredIndex(null)}
             >
               <motion.img
-                className="rounded-[100%] h-[6rem] mb-2 m-auto border-[#fff]"
+                className="rounded-[100%] h-[6rem] mb-2 m-auto snap-center border-[#fff]"
                 animate={
                   hoveredIndex === index
                     ? {

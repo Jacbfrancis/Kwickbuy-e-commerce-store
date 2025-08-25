@@ -6,7 +6,7 @@ import NavMenu from "../components/NavMenu";
 import OfferHoverMenu from "./OfferHoverMenu";
 import BrandHoverMenu from "./BrandHoverMenu";
 
-function Navbar({ setShowMenu, showMenu, categories }) {
+function Navbar({ setShowMenu, showMenu, categories, brands }) {
   const [isHoverOffer, setIsHoverOffer] = useState(false);
   const [isHoverBrand, setIsHoverBrand] = useState(false);
 
@@ -134,7 +134,7 @@ function Navbar({ setShowMenu, showMenu, categories }) {
                 className="absolute top-32 left-130 z-50"
                 onMouseOut={() => setIsHoverBrand(false)}
               >
-                <BrandHoverMenu />
+                <BrandHoverMenu brands={brands} />
               </div>
             )}
           </li>

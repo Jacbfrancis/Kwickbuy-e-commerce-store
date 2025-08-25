@@ -34,7 +34,7 @@ function FeaturedProducts({ productData }) {
           View All
         </p>
 
-        <div className="overflow-scroll">
+        <div className="overflow-scroll [scrollbar-width:none]">
           <div
             className="flex justify-start items-center select-none"
             onMouseOver={handleMouseOver}
@@ -43,7 +43,7 @@ function FeaturedProducts({ productData }) {
             {visibleCards.map((product, index) => (
               <div
                 key={product.id}
-                className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] mx-3 h-[22rem] xl:border-0 xl:shadow-none"
+                className="border-y-1 rounded-2xl border-[#6cc6e786] shadow-sm shadow-[#6cc6e7ae] snap-center mx-3 h-[22rem] xl:border-0 xl:shadow-none"
                 onMouseOver={() => setHoveredIndex(index)}
                 onMouseOut={() => setHoveredIndex(null)}
               >

@@ -7,7 +7,6 @@ import CountdownTimer from "./CountdownTimer";
 import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import useHover from "./useHover";
-import useImageSwiper from "./useImageSwiper";
 
 function FlashDeal({ productData }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
@@ -17,8 +16,6 @@ function FlashDeal({ productData }) {
   const flashSales = productData.filter((item) => item.discountPercentage > 15);
   const flashDeals = flashSales.splice(13, 5);
   const length = flashDeals.length;
-  // custom hook for slider on swipe
-  const [handler] = useImageSwiper(setCurrentIndex, length);
 
   const visibleCards = [];
   for (let i = 0; i < length; i++) {
@@ -42,7 +39,7 @@ function FlashDeal({ productData }) {
         </div>
 
         <section
-          className="bg-[#eff7ff] overflow-hidden w-full py-2 mt-2 xl:mt-0"
+          className="bg-[#eff7ff] overflow-scroll [scrollbar-width:none] w-full py-2 mt-2 xl:mt-0"
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
@@ -54,8 +51,7 @@ function FlashDeal({ productData }) {
 
           <AnimatePresence mode="wait">
             <motion.div
-              className="flex justify-center items-center w-full select-none"
-              {...handler}
+              className="flex justify-start snap-center items-center w-full select-none"
               initial={{ x: 40 }}
               animate={{ x: 0 }}
               exit={{ x: -40 }}
