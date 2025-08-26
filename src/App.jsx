@@ -60,6 +60,8 @@ function App() {
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
 
+  const flashSales = productData.filter((item) => item.discountPercentage > 15);
+
   return (
     <div className="bg-[#fbfbfc]">
       <Routes>
@@ -74,6 +76,7 @@ function App() {
               brands={brands}
               showMenu={showMenu}
               setShowMenu={setShowMenu}
+              flashSales={flashSales}
             />
           }
         />
@@ -85,6 +88,7 @@ function App() {
               brands={brands}
               showMenu={showMenu}
               setShowMenu={setShowMenu}
+              flashSales={flashSales}
             />
           }
         />

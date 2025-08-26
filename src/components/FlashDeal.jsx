@@ -8,13 +8,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import useHover from "./useHover";
 
-function FlashDeal({ productData }) {
+function FlashDeal({ flashSales }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const flashSales = productData.filter((item) => item.discountPercentage > 15);
-  const flashDeals = flashSales.splice(13, 5);
+  const flashDeals = flashSales.slice(30, 35);
   const length = flashDeals.length;
 
   const visibleCards = [];

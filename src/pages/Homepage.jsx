@@ -19,6 +19,7 @@ function Homepage({
   brands,
   showMenu,
   setShowMenu,
+  flashSales,
 }) {
   if (error) {
     return error.message;
@@ -59,7 +60,7 @@ function Homepage({
         brands={brands}
       />
       <Header showMenu={showMenu} categories={categories} />
-      <FlashDeal productData={productData} />
+      <FlashDeal flashSales={flashSales} />
       <FeaturedProducts productData={productData} />
       <ItemGrid data={categories} title={"Categories"} />
       <Banner banner={"/gadgets_banner.webp"} />

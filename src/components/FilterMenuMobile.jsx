@@ -1,13 +1,18 @@
 import { FontAwesomeIcon } from "./font-awesome";
+// eslint-disable-next-line no-unused-vars
+import { easeInOut, motion } from "framer-motion";
 
 function FilterMenuMobile({ categories, brands, setIsFilterMenuOpen }) {
   return (
-    <div
+    <motion.div
       className="bg-[#3736365e] w-[100vw] h-[100vh] fixed top-0 z-50"
+      initial={{ x: 120 }}
+      animate={{ x: 0 }}
+      transition={{ duration: 0.2, ease: easeInOut }}
       onClick={() => setIsFilterMenuOpen(false)}
     >
       <div
-        className="bg-[#fff] font-medium text-[0.9rem] w-[80%] h-full px-8 py-6 fixed top-1 right-0 z-50 text-left overflow-scroll [scrollbar-width:none] xl:hidden"
+        className="bg-[#fff] font-medium text-[0.9rem] w-[80%] h-full px-8 py-6 fixed top-0 right-0 z-50 text-left overflow-scroll [scrollbar-width:none] xl:hidden"
         onClick={(e) => {
           e.stopPropagation();
         }}
@@ -91,7 +96,7 @@ function FilterMenuMobile({ categories, brands, setIsFilterMenuOpen }) {
           </ul>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

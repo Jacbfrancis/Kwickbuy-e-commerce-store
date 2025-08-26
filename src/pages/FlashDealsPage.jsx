@@ -1,12 +1,34 @@
 import { useState } from "react";
 import Filter from "../components/Filter";
 import FilterMenuMobile from "../components/FilterMenuMobile";
-import FilterMenuSidebar from "../components/FilterMenuSidebar";
+import ProductListing from "../components/ProductListing";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import PageButton from "../components/PageButton";
+import Features from "../components/Features";
 
-function FlashDealsPage({ categories, brands, showMenu, setShowMenu }) {
+function FlashDealsPage({
+  categories,
+  brands,
+  showMenu,
+  setShowMenu,
+  flashSales,
+}) {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(8);
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = flashSales.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  function paginate(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
+
   return (
     <div>
       <Navbar
@@ -24,8 +46,6 @@ function FlashDealsPage({ categories, brands, showMenu, setShowMenu }) {
         <Filter setIsFilterMenuOpen={setIsFilterMenuOpen} />
       </div>
 
-      <FilterMenuSidebar categories={categories} brands={brands} />
-
       {isFilterMenuOpen && (
         <FilterMenuMobile
           categories={categories}
@@ -33,7 +53,19 @@ function FlashDealsPage({ categories, brands, showMenu, setShowMenu }) {
           setIsFilterMenuOpen={setIsFilterMenuOpen}
         />
       )}
-      <div className="h-[50vh]"></div>
+      <ProductListing
+        currentProducts={currentProducts}
+        categories={categories}
+        brands={brands}
+      />
+      <PageButton
+        totalProducts={flashSales.length}
+        productsPerPage={productsPerPage}
+        paginate={paginate}
+      />
+
+      <Features />
+      <Footer />
     </div>
   );
 }
