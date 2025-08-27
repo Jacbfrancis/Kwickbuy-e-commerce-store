@@ -13,7 +13,7 @@ function FlashDeal({ flashSales }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const flashDeals = flashSales.slice(30, 35);
+  const flashDeals = flashSales.slice(0, 5);
   const length = flashDeals.length;
 
   const visibleCards = [];

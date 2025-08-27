@@ -10,7 +10,7 @@ function Features() {
   ];
 
   return (
-    <div className="lg:px-20 overflow-scroll [scrollbar-width:none]">
+    <div className="lg:px-20 mt-8 overflow-scroll [scrollbar-width:none]">
       <div className="flex justify-start items-center snap-center whitespace-nowrap">
         {features.map((feature, index) => (
           <div

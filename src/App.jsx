@@ -60,7 +60,7 @@ function App() {
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
 
-  const flashSales = productData.filter((item) => item.discountPercentage > 15);
+  const flashSales = productData.filter((item) => item.discountPercentage > 19);
 
   return (
     <div className="bg-[#fbfbfc]">

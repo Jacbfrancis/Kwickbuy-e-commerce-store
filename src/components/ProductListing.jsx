@@ -84,11 +84,11 @@ function ProductListing({ categories, brands, currentProducts }) {
                 />
               </div>
 
-              <span className="font-semibold text-[0.9rem] py-6 block">
+              <span className="font-semibold text-[0.9rem] py-6 block w-[9rem] h-[7rem] m-auto">
                 <motion.h2 whileHover={{ color: "#1456ac" }}>
                   {product.title}
                 </motion.h2>
-                <p>$100.00</p>
+                <p>${product.price.toLocaleString()}</p>
               </span>
             </li>
           ))}

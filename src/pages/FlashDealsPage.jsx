@@ -4,7 +4,7 @@ import FilterMenuMobile from "../components/FilterMenuMobile";
 import ProductListing from "../components/ProductListing";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import PageButton from "../components/PageButton";
+import Pagination from "../components/Pagination";
 import Features from "../components/Features";
 
 function FlashDealsPage({
@@ -16,7 +16,7 @@ function FlashDealsPage({
 }) {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage] = useState(8);
+  const [productsPerPage] = useState(12);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -24,10 +24,6 @@ function FlashDealsPage({
     indexOfFirstProduct,
     indexOfLastProduct
   );
-
-  function paginate(pageNumber) {
-    setCurrentPage(pageNumber);
-  }
 
   return (
     <div>
@@ -41,7 +37,7 @@ function FlashDealsPage({
       <div className="bg-[#fff] flex flex-col justify-between items-start px-6 py-4 my-6 xl:flex-row xl:mx-20 xl:items-center">
         <span className="xl:w-[30%]">
           <h3 className="font-bold">Flash Deals</h3>
-          <p className="font-normal">{"5"} items found</p>
+          <p className="font-normal">{flashSales.length} items found</p>
         </span>
         <Filter setIsFilterMenuOpen={setIsFilterMenuOpen} />
       </div>
@@ -58,10 +54,11 @@ function FlashDealsPage({
         categories={categories}
         brands={brands}
       />
-      <PageButton
+      <Pagination
         totalProducts={flashSales.length}
         productsPerPage={productsPerPage}
-        paginate={paginate}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
       />
 
       <Features />
