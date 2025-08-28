@@ -1,9 +1,8 @@
-import Hompage from "./pages/Homepage";
 import "./App.css";
 import useGetProducts from "./components/useGetProducts";
 import { Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-import FlashDealsPage from "./pages/FlashDealsPage";
+import ProductPage from "./pages/ProductPage";
 import { useState } from "react";
 
 const categories = [
@@ -60,7 +59,16 @@ function App() {
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
 
+  // Get flashSales
   const flashSales = productData.filter((item) => item.discountPercentage > 19);
+
+  // Get featuredProducts
+  const featuredCategories = [
+    ...new Set(productData?.map((item) => item.category)),
+  ];
+  const featuredProducts = featuredCategories.map((category) =>
+    productData.find((product) => product.category === category)
+  );
 
   return (
     <div className="bg-[#fbfbfc]">
@@ -77,18 +85,34 @@ function App() {
               showMenu={showMenu}
               setShowMenu={setShowMenu}
               flashSales={flashSales}
+              featuredProducts={featuredProducts}
             />
           }
         />
         <Route
           path="/flashdeals"
           element={
-            <FlashDealsPage
+            <ProductPage
               categories={categories}
               brands={brands}
               showMenu={showMenu}
               setShowMenu={setShowMenu}
-              flashSales={flashSales}
+              products={flashSales}
+              title={"FLash Deals"}
+            />
+          }
+        />
+
+        <Route
+          path="/featured-products"
+          element={
+            <ProductPage
+              categories={categories}
+              brands={brands}
+              showMenu={showMenu}
+              setShowMenu={setShowMenu}
+              products={featuredProducts}
+              title={"Featured Products"}
             />
           }
         />

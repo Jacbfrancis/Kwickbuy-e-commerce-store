@@ -4,17 +4,14 @@ import useHover from "./useHover";
 import { motion, AnimatePresence, easeIn } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import CarouselButton from "./CarouselButton";
+import { NavLink } from "react-router-dom";
 
-function FeaturedProducts({ productData }) {
+function FeaturedProducts({ featuredProducts }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const categories = [...new Set(productData?.map((item) => item.category))];
-  const featuredProducts = categories.map((category) =>
-    productData.find((product) => product.category === category)
-  );
-  const featuredDeals = featuredProducts.splice(6, 13);
+  const featuredDeals = featuredProducts.slice(6, 15);
   const length = featuredDeals.length;
 
   let visibleCards = [];
@@ -27,12 +24,14 @@ function FeaturedProducts({ productData }) {
   return (
     <div className="xl:px-20 my-6">
       <div className="bg-[#fff] rounded-xl shadow-sm pb-8">
-        <h2 className="text-[#1456ac] text-center font-bold text-[1.3rem] pb-4 pt-">
+        <h2 className="text-[#1456ac] text-center font-bold text-[1.3rem] pb-4 pt-8">
           Featured products
         </h2>
-        <p className="text-[#1456ac] hidden text-right pr-6 pb-5 font-semibold xl:block">
-          View All
-        </p>
+        <NavLink to="/featured-products">
+          <p className="text-[#1456ac] hidden text-right pr-6 pb-5 font-semibold xl:block">
+            View All
+          </p>
+        </NavLink>
 
         <div className="overflow-scroll [scrollbar-width:none]">
           <div
@@ -106,9 +105,11 @@ function FeaturedProducts({ productData }) {
           </div>
         </div>
 
-        <p className="text-[#1456ac] text-center mt-4 font-semibold xl:hidden">
-          View All
-        </p>
+        <NavLink to="/featured-products">
+          <p className="text-[#1456ac] text-center mt-4 font-semibold xl:hidden">
+            View All
+          </p>
+        </NavLink>
       </div>
     </div>
   );

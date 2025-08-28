@@ -9,7 +9,7 @@ import LoadingSpinner from "../components/LoadingAnimation";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
-import FlashDealsPage from "./FlashDealsPage";
+import FlashDealsPage from "./ProductPage";
 
 function Homepage({
   productData,
@@ -20,6 +20,7 @@ function Homepage({
   showMenu,
   setShowMenu,
   flashSales,
+  featuredProducts,
 }) {
   if (error) {
     return error.message;
@@ -61,7 +62,7 @@ function Homepage({
       />
       <Header showMenu={showMenu} categories={categories} />
       <FlashDeal flashSales={flashSales} />
-      <FeaturedProducts productData={productData} />
+      <FeaturedProducts featuredProducts={featuredProducts} />
       <ItemGrid data={categories} title={"Categories"} />
       <Banner banner={"/gadgets_banner.webp"} />
       <CategoryContainer

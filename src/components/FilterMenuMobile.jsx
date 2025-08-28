@@ -1,8 +1,21 @@
+import { useState } from "react";
 import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { easeInOut, motion } from "framer-motion";
 
-function FilterMenuMobile({ categories, brands, setIsFilterMenuOpen }) {
+function FilterMenuMobile({
+  categories,
+  brands,
+  setIsFilterMenuOpen,
+  products,
+}) {
+  const [minimumPrice, setMinimumPrice] = useState(0);
+  const [maximumPrice, setMaximumPrice] = useState(40000);
+
+  products = products.filter(
+    (product) => product.price > minimumPrice && product.price < maximumPrice
+  );
+
   return (
     <motion.div
       className="bg-[#3736365e] w-[100vw] h-[100vh] fixed top-0 z-50"
@@ -31,7 +44,7 @@ function FilterMenuMobile({ categories, brands, setIsFilterMenuOpen }) {
           <select className="font-light pl-4 border-[0.1rem] border-[#69696941] rounded py-3 px-1 w-full my-3 focus:outline-1 focus:border-[#6cc6e786]">
             <option>All</option>
             <option>Pysical Product</option>
-            <option>Digital Product</option>
+            {/* <option>Digital Product</option> */}
           </select>
 
           <label>Sort By</label>
@@ -51,6 +64,7 @@ function FilterMenuMobile({ categories, brands, setIsFilterMenuOpen }) {
                 className="font-light block pl-4 border-[0.1rem] border-[#69696941] rounded py-2 w-[80%] focus:outline-1 focus:border-[#6cc6e786]"
                 placeholder="0"
                 type="number"
+                onChange={(e) => setMinimumPrice(e.target.value)}
               />
             </span>
 
@@ -60,6 +74,8 @@ function FilterMenuMobile({ categories, brands, setIsFilterMenuOpen }) {
                 className="font-light block pl-4 border-[0.1rem] border-[#69696941] rounded py-2 w-[80%] focus:outline-1 focus:border-[#6cc6e786]"
                 placeholder="4000"
                 type="number"
+                value={maximumPrice}
+                onChange={(e) => setMaximumPrice(e.target.value)}
               />
             </span>
           </div>

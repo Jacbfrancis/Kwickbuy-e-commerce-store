@@ -29,7 +29,7 @@ function useGetProducts() {
         );
         const data = await res.json();
 
-        // go through all products and assign a to each product
+        // go through all products and assign a vendor to each product
         const productsWithBrands = data.products.map((products, index) => {
           const vendor = vendors[index % vendors.length];
           return {
