@@ -96,7 +96,7 @@ function ProductListing({ categories, brands, products }) {
           <h3>Categories</h3>
           <div className="font-light my-4">
             <ul>
-              {categories.slice(0, 3).map((category) => (
+              {categories.map((category) => (
                 <li key={category.title} className="my-4">
                   <span>
                     <img
@@ -113,7 +113,7 @@ function ProductListing({ categories, brands, products }) {
           <div className="mt-6">
             <h3>Brands</h3>
             <ul className="font-light mt-2">
-              {brands.slice(0, 4).map((brand) => (
+              {brands.map((brand) => (
                 <li key={brand.name} className="my-1">
                   <div className="flex justify-between items-center">
                     <p>{brand.name}</p>

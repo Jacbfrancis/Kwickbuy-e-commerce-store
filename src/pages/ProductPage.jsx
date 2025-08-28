@@ -33,20 +33,20 @@ function ProductPage({
         <Filter setIsFilterMenuOpen={setIsFilterMenuOpen} />
       </div>
 
-      <ProductListing
-        products={products}
-        categories={categories}
-        brands={brands}
-      />
-
-      {isFilterMenuOpen && (
+      {/* {isFilterMenuOpen && (
         <FilterMenuMobile
           categories={categories}
           brands={brands}
           setIsFilterMenuOpen={setIsFilterMenuOpen}
           products={products}
         />
-      )}
+      )} */}
+
+      <ProductListing
+        products={products}
+        categories={categories}
+        brands={brands}
+      />
 
       <Features />
       <Footer />

@@ -18,7 +18,7 @@ function FilterMenuMobile({
 
   return (
     <motion.div
-      className="bg-[#3736365e] w-[100vw] h-[100vh] fixed top-0 z-50"
+      className="bg-[#3736365e] w-[100vw] h-[100vh] fixed top-0 z-50 xl:hidden"
       initial={{ x: 120 }}
       animate={{ x: 0 }}
       transition={{ duration: 0.2, ease: easeInOut }}
@@ -84,7 +84,7 @@ function FilterMenuMobile({
         <h3>Categories</h3>
         <div className="font-light my-4">
           <ul>
-            {categories.slice(0, 3).map((category) => (
+            {categories.map((category) => (
               <li key={category.title} className="my-2">
                 <span>
                   <img
