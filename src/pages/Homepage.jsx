@@ -9,7 +9,6 @@ import LoadingSpinner from "../components/LoadingAnimation";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
-import FlashDealsPage from "./ProductPage";
 
 function Homepage({
   productData,

@@ -23,7 +23,7 @@ function FeaturedProducts({ featuredProducts }) {
 
   return (
     <div className="xl:px-20 my-6">
-      <div className="bg-[#fff] rounded-xl shadow-sm pb-8">
+      <div className="bg-[#fff] rounded-xl shadow-sm pb-8 xl:px-5">
         <h2 className="text-[#1456ac] text-center font-bold text-[1.3rem] pb-4 pt-8">
           Featured products
         </h2>

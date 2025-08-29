@@ -13,6 +13,7 @@ function ProductListing({
   isFilterMenuOpen,
   title,
 }) {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(12);
 
@@ -21,17 +22,19 @@ function ProductListing({
   const [sortSetting, setSortSetting] = useState("");
 
   //Sort Accordingly
+  let sortedProducts = [...products];
   if (sortSetting === "Alphabetical (A to Z)") {
-    products = products.slice().sort((a, b) => a.title.localeCompare(b.title));
+    sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
   } else if (sortSetting === "Alphabetical (Z to A)") {
-    products = products.slice().sort((a, b) => b.title.localeCompare(a.title));
+    sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
   } else if (sortSetting === "Price (Low to High)") {
-    products = products.slice().sort((a, b) => a.price - b.price);
+    sortedProducts.sort((a, b) => a.price - b.price);
   } else if (sortSetting === "Price (High to Low)") {
-    products = products.slice().sort((a, b) => b.price - a.price);
+    sortedProducts.sort((a, b) => b.price - a.price);
   } else {
-    products;
+    sortedProducts;
   }
+  products = sortedProducts;
 
   // filter by price
   products = products.filter(
@@ -86,14 +89,14 @@ function ProductListing({
               <label>Product Type</label>
               <select className="font-light pl-4 border-[0.1rem] border-[#69696941] rounded py-3 px-1 w-full my-3 focus:outline-1 focus:border-[#6cc6e786]">
                 <option>All</option>
-                <option>Pysical Product</option>
+                <option>Physical Product</option>
                 {/* <option>Digital Product</option> */}
               </select>
 
               <label>Sort By</label>
               <select
                 className="font-light pl-4 border-[0.1rem] border-[#69696941] rounded py-3 px-1 w-full my-3 focus:outline-1 focus:border-[#6cc6e786]"
-                onClick={(e) => {
+                onChange={(e) => {
                   setSortSetting(e.target.value);
                 }}
               >
@@ -120,7 +123,7 @@ function ProductListing({
                     className="font-light block pl-4 border-[0.1rem] border-[#69696941] rounded py-2 w-[80%] focus:outline-1 focus:border-[#6cc6e786]"
                     placeholder="0"
                     type="number"
-                    onChange={(e) => setMinimumPrice(e.target.value)}
+                    onChange={(e) => setMinimumPrice(Number(e.target.value))}
                   />
                 </span>
 
@@ -131,11 +134,17 @@ function ProductListing({
                     placeholder="4000"
                     type="number"
                     value={maximumPrice}
-                    onChange={(e) => setMaximumPrice(e.target.value)}
+                    onChange={(e) => setMaximumPrice(Number(e.target.value))}
                   />
                 </span>
               </div>
-              <input className="w-full h-2" type="range" />
+              <input
+                className="w-full h-2"
+                type="range"
+                min={0}
+                max={40000}
+                onChange={(e) => setMaximumPrice(e.target.value)}
+              />
             </form>
             <h3>Categories</h3>
             <div className="font-light my-4">
@@ -178,7 +187,7 @@ function ProductListing({
             <label>Product Type</label>
             <select className="font-light pl-4 border-[0.1rem] border-[#69696941] rounded py-3 px-1 w-full my-3 focus:outline-1 focus:border-[#6cc6e786]">
               <option value="All">All</option>
-              <option value="Physical Products">Pysical Products</option>
+              <option value="Physical Products">Physical Products</option>
               {/* <option>Digital Product</option> */}
             </select>
 
@@ -247,17 +256,50 @@ function ProductListing({
 
         <div className="xl:ml-3 xl:w-[75%]">
           <ul className="text-center px-3 grid justify-center place-items-center grid-cols-2 gap-4 xl:grid-cols-4 xl:px-0">
-            {currentProducts.map((product) => (
+            {currentProducts.map((product, index) => (
               <li
                 key={product.id}
                 className=" bg-[#fff] rounded-2xl my-1 p-3 shadow-lg border-2 border-[#5dcaf133]"
+                onMouseOver={() => setHoveredIndex(index)}
+                onMouseOut={() => setHoveredIndex(null)}
               >
                 <div className="rounded-xl relative">
-                  <img
-                    className="rounded-xl"
-                    src={product.thumbnail}
-                    alt={`${product.name}_image`}
-                  />
+                  <motion.span
+                    className="block border-b-1 rounded-xl border-[#6cc6e786] xl:border-b-1 relative"
+                    initial={{ backgroundColor: "#fff" }}
+                    animate={
+                      hoveredIndex === index
+                        ? { backgroundColor: "#4a81ca5d" }
+                        : { backgroundColor: "#fff" }
+                    }
+                    transition={{ type: "tween" }}
+                  >
+                    <motion.div
+                      className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-20 left-15  xl:left-17 z-20 invisible xl:visible hidden"
+                      initial={{ display: "none" }}
+                      animate={
+                        hoveredIndex === index
+                          ? { display: "block" }
+                          : { display: "none" }
+                      }
+                      transition={{
+                        duration: 0.25,
+                        type: "tween",
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <FontAwesomeIcon icon="fa-regular fa-eye" />
+                    </motion.div>
+                    <motion.img
+                      className="rounded-xl"
+                      initial={{ scale: 1 }}
+                      animate={
+                        hoveredIndex === index ? { scale: 1.15 } : { scale: 1 }
+                      }
+                      src={product.thumbnail}
+                      alt={`${product.title}_image`}
+                    />
+                  </motion.span>
                 </div>
 
                 <span className="font-semibold text-[0.9rem] py-6 block w-[9rem] h-[7rem] m-auto">
@@ -268,35 +310,6 @@ function ProductListing({
                 </span>
               </li>
             ))}
-            {/* <li className=" bg-[#fff] rounded-2xl my-1 p-3 shadow-lg">
-            <div className="rounded-xl relative">
-              { <motion.div
-                className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-20 left-15  xl:left-17 z-20 invisible xl:visible hidden"
-                initial={{ display: "none" }}
-                animate={{ display: "block" }}
-                transition={{
-                  duration: 0.25,
-                  type: "tween",
-                  ease: "easeInOut",
-                }}
-              >
-                <FontAwesomeIcon icon="fa-regular fa-eye" />
-              </motion.div> }
-
-              <img
-                className="rounded-xl"
-                src="https://cdn.dummyjson.com/product-images/kitchen-accessories/kitchen-sieve/thumbnail.webp"
-                alt="product_alt"
-              />
-            </div>
-
-            <span className="font-semibold text-[0.9rem] py-6 block">
-              <motion.h2 whileHover={{ color: "#1456ac" }}>
-                Product name
-              </motion.h2>
-              <p>$100.00</p>
-            </span>
-          </li> */}
           </ul>
         </div>
       </div>

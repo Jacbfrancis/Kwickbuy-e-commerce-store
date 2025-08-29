@@ -39,8 +39,8 @@ function Filter({ setIsFilterMenuOpen, setSortSetting }) {
         <p className="text-[#3131318f]">Filter by</p>
         <select className="pl-4 focus:outline-none focus:border-0">
           <option>Default</option>
-          <option>Best Selling</option>
           <option>Top Rated</option>
+          <option>Best Selling</option>
         </select>
       </div>
 

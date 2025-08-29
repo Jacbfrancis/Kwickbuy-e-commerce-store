@@ -129,11 +129,7 @@ function FlashDeal({ flashSales }) {
               ))}
             </motion.div>
           </AnimatePresence>
-          <NavLink to="/flashdeals">
-            <p className="text-[#1456ac] text-center cursor-pointer xl:hidden mt-5 mb-3 font-medium">
-              View All
-            </p>
-          </NavLink>
+
           <AnimatePresence className="relative">
             {isMouseOver && (
               <div className="absolute w-full top-[33rem] md:hidden xl:top-[50rem] xl:w-[60%] xl:block">
@@ -145,6 +141,11 @@ function FlashDeal({ flashSales }) {
             )}
           </AnimatePresence>
         </section>
+        <NavLink to="/flashdeals">
+          <p className="text-[#1456ac] text-center cursor-pointer xl:hidden mt-5 mb-3 font-medium">
+            View All
+          </p>
+        </NavLink>
       </div>
     </div>
   );
