@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "./font-awesome";
 import NavMenu from "../components/NavMenu";
 import OfferHoverMenu from "./OfferHoverMenu";
 import BrandHoverMenu from "./BrandHoverMenu";
+import { Link } from "react-router-dom";
 
 function Navbar({ setShowMenu, showMenu, categories, brands }) {
   const [isHoverOffer, setIsHoverOffer] = useState(false);
@@ -19,11 +20,13 @@ function Navbar({ setShowMenu, showMenu, categories, brands }) {
         }}
       >
         <div className="flex justify-center items-center">
-          <img
-            className="w-45 hidden xl:inline-block cursor-pointer"
-            src="/kwickbuy-desktop.png"
-            alt="Kwickbuy Logo"
-          />
+          <Link to="/">
+            <img
+              className="w-45 hidden xl:inline-block cursor-pointer"
+              src="/kwickbuy-desktop.png"
+              alt="Kwickbuy Logo"
+            />
+          </Link>
           <FontAwesomeIcon
             className="text-2xl cursor-pointer xl:!hidden"
             icon="fa-solid fa-bars"
@@ -31,11 +34,13 @@ function Navbar({ setShowMenu, showMenu, categories, brands }) {
               setShowMenu(!showMenu);
             }}
           />
-          <img
-            className="w-11 ml-5 xl:hidden cursor-pointer"
-            src="/kwickbuy-logo.png"
-            alt="Kwickbuy Logo"
-          />
+          <Link to="/">
+            <img
+              className="w-11 ml-5 xl:hidden cursor-pointer"
+              src="/kwickbuy-logo.png"
+              alt="Kwickbuy Logo"
+            />
+          </Link>
         </div>
         <div className=" hidden h-[3rem] w-full mx-15 justify-center items-center xl:flex">
           <input

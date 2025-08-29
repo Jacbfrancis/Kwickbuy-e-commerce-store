@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "../components/font-awesome";
 
-function Filter({ setIsFilterMenuOpen }) {
+function Filter({ setIsFilterMenuOpen, setSortSetting }) {
   return (
     <div className="flex justify-between items-center mt-5 w-full xl:justify-end xl:mt-0 xl:mx-4">
       <div className="h-[3rem] justify-between items-center flex w-[70%] xl:w-auto">
@@ -20,12 +20,17 @@ function Filter({ setIsFilterMenuOpen }) {
       <div className="hidden justify-center items-center border-[#6cc6e786] border-2 text-[0.9rem] rounded p-2 mx-8 xl:flex">
         <FontAwesomeIcon className="text-[#3131318f]" icon="fa-solid fa-list" />
         <p className="text-[#3131318f]">Sort by</p>
-        <select className="pl-4 focus:outline-none focus:border-0">
-          <option>Default</option>
-          <option>Price (Low to High)</option>
-          <option>Price (High to Low)</option>
-          <option>Alphabetical (A to Z)</option>
-          <option>Alphabetical (Z to A)</option>
+        <select
+          className="pl-4 focus:outline-none focus:border-0"
+          onClick={(e) => {
+            setSortSetting(e.target.value);
+          }}
+        >
+          <option value={""}>Default</option>
+          <option value={"Price (Low to High)"}>Price (Low to High)</option>
+          <option value={"Price (High to Low)"}>Price (High to Low)</option>
+          <option value={"Alphabetical (A to Z)"}>Alphabetical (A to Z)</option>
+          <option value={"Alphabetical (Z to A)"}>Alphabetical (Z to A)</option>
         </select>
       </div>
 

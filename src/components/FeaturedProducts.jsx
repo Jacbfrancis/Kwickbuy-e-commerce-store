@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import useHover from "./useHover";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, easeIn } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import CarouselButton from "./CarouselButton";
-import { NavLink } from "react-router-dom";
 
 function FeaturedProducts({ featuredProducts }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();

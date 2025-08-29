@@ -60,6 +60,33 @@ function App() {
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
 
+  // console.log([
+  //   "beauty",
+  //   "fragrances",
+  //   "furniture",
+  //   "groceries",
+  //   "home-decoration",
+  //   "kitchen-accessories",
+  //   "laptops",
+  //   "mens-shirts",
+  //   "mens-shoes",
+  //   "mens-watches",
+  //   "mobile-accessories",
+  //   "motorcycle",
+  //   "skin-care",
+  //   "smartphones",
+  //   "sports-accessories",
+  //   "sunglasses",
+  //   "tablets",
+  //   "tops",
+  //   "vehicle",
+  //   "womens-bags",
+  //   "womens-dresses",
+  //   "womens-jewellery",
+  //   "womens-shoes",
+  //   "womens-watches",
+  // ]);
+
   // Get flashSales
   const flashSales = productData.filter((item) => item.discountPercentage > 19);
 
