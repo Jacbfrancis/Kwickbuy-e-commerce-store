@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "./font-awesome";
 import { easeInOut, motion } from "framer-motion";
 import Pagination from "../components/Pagination";
 import Filter from "../components/Filter";
+import { NavLink } from "react-router-dom";
 
 function ProductListing({
   categories,
@@ -226,7 +227,7 @@ function ProductListing({
           <div className="font-light my-4">
             <ul>
               {categories.map((category) => (
-                <li key={category.title} className="my-4">
+                <li key={category.title} className="my-4 pointer">
                   <span>
                     <img
                       className="w-8 inline-block mr-4"
@@ -234,7 +235,7 @@ function ProductListing({
                       alt={category.title}
                     />
                   </span>
-                  {category.title}
+                  <NavLink to={category.link}>{category.title}</NavLink>
                 </li>
               ))}
             </ul>

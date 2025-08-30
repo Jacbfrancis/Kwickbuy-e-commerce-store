@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import { useReducer } from "react";
+import { NavLink } from "react-router-dom";
 
 const initialState = {
   categoriesMenu: false,
@@ -71,7 +72,7 @@ function NavMenu({ setShowMenu, categories }) {
                     src={category.icon}
                     alt={`${category.title}icon`}
                   />
-                  {category.title}
+                  <NavLink to={category.link}>{category.title}</NavLink>
                 </li>
               ))}
             </ul>

@@ -96,6 +96,7 @@ function Homepage({
           (product) => product.category === "kitchen-accessories"
         )}
       />
+
       <ItemGrid data={categories} title={"Categories"} />
       <Features />
       <Footer />
