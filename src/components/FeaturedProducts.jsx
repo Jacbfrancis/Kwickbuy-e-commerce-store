@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useHover from "./useHover";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, easeIn } from "framer-motion";
@@ -27,11 +27,11 @@ function FeaturedProducts({ featuredProducts }) {
         <h2 className="text-[#1456ac] text-center font-bold text-[1.3rem] pb-4 pt-8">
           Featured products
         </h2>
-        <NavLink to="/featured-products">
+        <Link to="/featured-products">
           <p className="text-[#1456ac] hidden text-right pr-6 pb-5 font-semibold xl:block">
             View All
           </p>
-        </NavLink>
+        </Link>
 
         <div className="overflow-scroll [scrollbar-width:none]">
           <div
@@ -105,11 +105,11 @@ function FeaturedProducts({ featuredProducts }) {
           </div>
         </div>
 
-        <NavLink to="/featured-products">
+        <Link to="/featured-products">
           <p className="text-[#1456ac] text-center mt-4 font-semibold xl:hidden">
             View All
           </p>
-        </NavLink>
+        </Link>
       </div>
     </div>
   );

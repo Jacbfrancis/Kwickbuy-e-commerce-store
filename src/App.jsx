@@ -5,54 +5,6 @@ import Homepage from "./pages/Homepage";
 import ProductPage from "./pages/ProductPage";
 import { useState } from "react";
 
-const categories = [
-  {
-    title: "Men's Fashion",
-    icon: "/men_fashion.webp",
-    link: "/mens-fashion",
-  },
-  {
-    title: "Women's Fashion",
-    icon: "/women_fashion.webp",
-    link: "/womens-fashion",
-  },
-  {
-    title: "Health & Beauty",
-    icon: "/health_beauty.webp",
-    link: "/health-beauty",
-  },
-  {
-    title: "Home Decoration",
-    icon: "/baby_toys.webp",
-    link: "/home-decoration",
-  },
-  {
-    title: "Food & Groceries",
-    icon: "/home_kitchen.webp",
-    link: "/food-groceries",
-  },
-  {
-    title: "Kitchen Equipment",
-    icon: "/pet_supplies.webp",
-    link: "/kitchen-equipment",
-  },
-  {
-    title: "Automobiles",
-    icon: "/kid_fashion.webp",
-    link: "/automobiles",
-  },
-  {
-    title: "Sports & Leisure",
-    icon: "/sports_leisure.webp",
-    link: "/sports-leisure",
-  },
-  {
-    title: "Phones & Gadgets",
-    icon: "/phones.webp",
-    link: "/phones-gadgets",
-  },
-];
-
 const brands = [
   { name: "Featyr", products: 10 },
   { name: "Clearance", products: 34 },
@@ -162,6 +114,63 @@ function App() {
     ["motorcycle", "vehicle"].includes(product.category)
   );
 
+  const categories = [
+    {
+      title: "Men's Fashion",
+      icon: "/men_fashion.webp",
+      link: "/mens-fashion",
+      product: mensFashion,
+    },
+    {
+      title: "Women's Fashion",
+      icon: "/women_fashion.webp",
+      link: "/womens-fashion",
+      product: womensFashion,
+    },
+    {
+      title: "Health & Beauty",
+      icon: "/health_beauty.webp",
+      link: "/health-beauty",
+      product: healthAndBeauty,
+    },
+    {
+      title: "Home Decoration",
+      icon: "/baby_toys.webp",
+      link: "/home-decoration",
+      product: homeDecoration,
+    },
+    {
+      title: "Food & Groceries",
+      icon: "/home_kitchen.webp",
+      link: "/food-groceries",
+      product: foodAndGroceries,
+    },
+    {
+      title: "Kitchen Equipment",
+      icon: "/pet_supplies.webp",
+      link: "/kitchen-equipment",
+      product: kitchenEquipment,
+    },
+    {
+      title: "Automobiles",
+      icon: "/kid_fashion.webp",
+      link: "/automobiles",
+      product: automobiles,
+    },
+    {
+      title: "Sports & Leisure",
+      icon: "/sports_leisure.webp",
+      link: "/sports-leisure",
+      product: sportsAndLeisure,
+    },
+    {
+      title: "Phones & Gadgets",
+      icon: "/phones.webp",
+      link: "/phones-gadgets",
+      product: phonesAndGadgets,
+    },
+  ];
+
   return (
     <div className="bg-[#fbfbfc]">
       <Routes>
@@ -207,125 +216,22 @@ function App() {
             />
           }
         />
-        <Route
-          path="/mens-fashion"
-          element={
-            <ProductPage
-              categories={categories}
-              brands={brands}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-              products={mensFashion}
-              title={"Men's Fashion"}
-            />
-          }
-        />
-        <Route
-          path="/womens-fashion"
-          element={
-            <ProductPage
-              categories={categories}
-              brands={brands}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-              products={womensFashion}
-              title={"Women's Fashion"}
-            />
-          }
-        />
-        <Route
-          path="/health-beauty"
-          element={
-            <ProductPage
-              categories={categories}
-              brands={brands}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-              products={healthAndBeauty}
-              title={"Health & Beauty"}
-            />
-          }
-        />
-        <Route
-          path="/food-groceries"
-          element={
-            <ProductPage
-              categories={categories}
-              brands={brands}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-              products={foodAndGroceries}
-              title={"Food & Groceries"}
-            />
-          }
-        />
 
-        <Route
-          path="/home-decoration"
-          element={
-            <ProductPage
-              categories={categories}
-              brands={brands}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-              products={homeDecoration}
-              title={"Home Decoration"}
-            />
-          }
-        />
-
-        <Route
-          path="/kitchen-equipment"
-          element={
-            <ProductPage
-              categories={categories}
-              brands={brands}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-              products={kitchenEquipment}
-              title={"kitchen Equipment"}
-            />
-          }
-        />
-        <Route
-          path="/phones-gadgets"
-          element={
-            <ProductPage
-              categories={categories}
-              brands={brands}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-              products={phonesAndGadgets}
-              title={"Phones & Gadgets"}
-            />
-          }
-        />
-        <Route
-          path="/sports-leisure"
-          element={
-            <ProductPage
-              categories={categories}
-              brands={brands}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-              products={sportsAndLeisure}
-              title={"Sports & Leisure"}
-            />
-          }
-        />
-        <Route
-          path="/automobiles"
-          element={
-            <ProductPage
-              categories={categories}
-              brands={brands}
-              showMenu={showMenu}
-              setShowMenu={setShowMenu}
-              products={automobiles}
-              title={"Automobiles"}
-            />
-          }
-        />
+        {categories.map((category) => (
+          <Route
+            path={category.link}
+            element={
+              <ProductPage
+                categories={categories}
+                brands={brands}
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
+                products={category.product}
+                title={category.title}
+              />
+            }
+          />
+        ))}
       </Routes>
     </div>
   );

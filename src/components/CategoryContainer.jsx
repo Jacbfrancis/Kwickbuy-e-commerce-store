@@ -4,8 +4,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import CarouselButton from "./CarouselButton";
+import { Link } from "react-router-dom";
 
-function CategoryContainer({ title, filterFunc }) {
+function CategoryContainer({ title, filterFunc, link }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -27,7 +28,9 @@ function CategoryContainer({ title, filterFunc }) {
       <div className="bg-[#fff] shadow-sm rounded-xl">
         <span className="text-[#1456ac] font-medium flex justify-between items-center px-6 pt-6 xl:px-12">
           <h2 className="text-black text-[1.5rem]">{title}</h2>
-          <p>View All</p>
+          <Link to={link}>
+            <p>View All</p>
+          </Link>
         </span>
         <div
           className="relative"

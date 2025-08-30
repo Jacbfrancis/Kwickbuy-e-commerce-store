@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import { useReducer } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const initialState = {
   categoriesMenu: false,
@@ -48,7 +48,9 @@ function NavMenu({ setShowMenu, categories }) {
         }}
       />
       <ul className="flex text-[0.95rem] flex-col gap-3">
-        <li className="pl-6">Home</li>
+        <Link to="/" onClick={() => setShowMenu(false)}>
+          <li className="pl-6">Home</li>
+        </Link>
         <li
           className="pl-6"
           onClick={() => {
@@ -72,7 +74,9 @@ function NavMenu({ setShowMenu, categories }) {
                     src={category.icon}
                     alt={`${category.title}icon`}
                   />
-                  <NavLink to={category.link}>{category.title}</NavLink>
+                  <Link to={category.link} onClick={() => setShowMenu(false)}>
+                    {category.title}
+                  </Link>
                 </li>
               ))}
             </ul>

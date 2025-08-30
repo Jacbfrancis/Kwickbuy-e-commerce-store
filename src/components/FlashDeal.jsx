@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import CarouselButton from "./CarouselButton";
@@ -42,11 +42,11 @@ function FlashDeal({ flashSales }) {
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         >
-          <NavLink to="/flashdeals">
+          <Link to="/flashdeals">
             <p className="text-[#1456ac] text-right cursor-pointer hidden xl:block mx-6 my-4 font-semibold">
               View All
             </p>
-          </NavLink>
+          </Link>
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -141,11 +141,11 @@ function FlashDeal({ flashSales }) {
             )}
           </AnimatePresence>
         </section>
-        <NavLink to="/flashdeals">
+        <Link to="/flashdeals">
           <p className="text-[#1456ac] text-center cursor-pointer xl:hidden mt-5 mb-3 font-medium">
             View All
           </p>
-        </NavLink>
+        </Link>
       </div>
     </div>
   );

@@ -142,6 +142,7 @@ function ProductListing({
               <input
                 className="w-full h-2"
                 type="range"
+                defaultValue={maximumPrice}
                 min={0}
                 max={40000}
                 onChange={(e) => setMaximumPrice(e.target.value)}
@@ -218,6 +219,7 @@ function ProductListing({
             <input
               className="w-full h-2"
               type="range"
+              defaultValue={maximumPrice}
               min={0}
               max={40000}
               onChange={(e) => setMaximumPrice(e.target.value)}

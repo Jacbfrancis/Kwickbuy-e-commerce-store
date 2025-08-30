@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { easeInOut, motion } from "framer-motion";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ItemGrid({ data, title }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -16,7 +16,7 @@ function ItemGrid({ data, title }) {
 
         <div className="overflow-scroll [scrollbar-width:none] flex justify-start items-start px-11 py-5 whitespace-nowrap gap-10">
           {data.map((data, index) => (
-            <NavLink key={data.title} to={data.link}>
+            <Link key={data.title} to={data.link}>
               <div
                 className="text-center w-[10rem] pb-8"
                 onMouseOver={() => setHoveredIndex(index)}
@@ -41,7 +41,7 @@ function ItemGrid({ data, title }) {
 
                 <h2 className="text-sm">{data.title}</h2>
               </div>
-            </NavLink>
+            </Link>
           ))}
         </div>
       </div>

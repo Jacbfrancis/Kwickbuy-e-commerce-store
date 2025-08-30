@@ -8,7 +8,7 @@ import useImageSwiper from "./useImageSwiper";
 import bannerImage1 from "../assets/images/banner1.webp";
 import bannerImage2 from "../assets/images/banner2.jpg";
 import bannerImage3 from "../assets/images/banner3.jpg";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const headerImages = [bannerImage1, bannerImage2, bannerImage3];
 
@@ -45,7 +45,7 @@ function Header({ showMenu, categories }) {
                   src={category.icon}
                   alt={`${category.title}icon`}
                 />
-                <NavLink to={category.link}>{category.title}</NavLink>
+                <Link to={category.link}>{category.title}</Link>
               </li>
             ))}
           </ul>

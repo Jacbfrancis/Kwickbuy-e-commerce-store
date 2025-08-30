@@ -69,6 +69,7 @@ function Homepage({
         filterFunc={productData.filter(
           (product) => product.category === "smartphones"
         )}
+        link={"/phones-gadgets"}
       />
       <CategoryContainer
         title={"Men's Fashion"}
@@ -77,24 +78,28 @@ function Homepage({
             product.category
           )
         )}
+        link={"/mens-fashion"}
       />
       <CategoryContainer
         title={"Women's Fashion"}
         filterFunc={productData.filter((product) =>
           ["tops", "womens-shoes", "womens-bags"].includes(product.category)
         )}
+        link={"/womens-fashion"}
       />
       <CategoryContainer
         title={"Health & Beauty"}
         filterFunc={productData.filter((product) =>
           ["fragrances", "beauty", "skin-care"].includes(product.category)
         )}
+        link={"/health-beauty"}
       />
       <CategoryContainer
         title={"Home & Kitchen"}
         filterFunc={productData.filter(
           (product) => product.category === "kitchen-accessories"
         )}
+        link={"/kitchen-equipment"}
       />
 
       <ItemGrid data={categories} title={"Categories"} />
