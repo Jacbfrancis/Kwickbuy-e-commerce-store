@@ -1,15 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
-const offers = [
-  { name: "Featured Deals", link: "/featured-products" },
-  { name: "Flash Sales", link: "/flashdeals" },
-  { name: "Discontinued Products", link: "" },
-  { name: "Clearance Sales", link: "" },
-];
+// const offers = [
+//   { name: "Featured Deals", link: "/featured-products" },
+//   { name: "Flash Sales", link: "/flashdeals" },
+//   { name: "Discontinued Products", link: "" },
+//   { name: "Clearance Sales", link: "" },
+// ];
 
-function OfferHoverMenu() {
+function OfferHoverMenu({ offers }) {
   return (
     <>
       <motion.div
@@ -21,11 +21,11 @@ function OfferHoverMenu() {
         <ul>
           {offers.map((offer) => (
             <li key={offer.name} className="border-b-1 border-[#43434344]">
-              <NavLink to={offer.link}>
+              <Link to={offer.link}>
                 <span className="px-3 py-2 cursor-pointer block hover:text-[#1456ac]">
                   {offer.name}
                 </span>
-              </NavLink>
+              </Link>
             </li>
           ))}
         </ul>

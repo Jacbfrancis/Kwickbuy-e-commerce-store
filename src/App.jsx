@@ -47,6 +47,8 @@ function App() {
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
 
+  console.log(productData);
+
   // filter for flashSales
   const flashSales = productData.filter((item) => item.discountPercentage > 19);
 
@@ -83,7 +85,7 @@ function App() {
   );
 
   //filter for food&groceries
-  const foodAndGroceries = productData.filter(
+  const petSupplies = productData.filter(
     (product) => product.category === "groceries"
   );
 
@@ -140,14 +142,14 @@ function App() {
       product: homeDecoration,
     },
     {
-      title: "Food & Groceries",
-      icon: "/home_kitchen.webp",
-      link: "/food-groceries",
-      product: foodAndGroceries,
+      title: "Pet Supplies",
+      icon: "/pet_supplies.webp",
+      link: "/pet-supplies",
+      product: petSupplies,
     },
     {
       title: "Kitchen Equipment",
-      icon: "/pet_supplies.webp",
+      icon: "/home_kitchen.webp",
       link: "/kitchen-equipment",
       product: kitchenEquipment,
     },

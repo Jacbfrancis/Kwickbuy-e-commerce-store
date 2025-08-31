@@ -35,7 +35,7 @@ function reducer(state, action) {
       return state;
   }
 }
-function NavMenu({ setShowMenu, categories }) {
+function NavMenu({ setShowMenu, categories, offers }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
@@ -98,10 +98,11 @@ function NavMenu({ setShowMenu, categories }) {
             transition={{ delay: 0.05, type: "spring" }}
           >
             <ul className="flex text-[0.85rem] flex-col gap-4">
-              <li>Featured Deals</li>
-              <li>Limited Time Deals</li>
-              <li>Top Sellers</li>
-              <li>Latest Products</li>
+              {offers.map((offer) => (
+                <Link to={offer.link} onClick={() => setShowMenu(false)}>
+                  <li>{offer.name}</li>
+                </Link>
+              ))}
             </ul>
           </motion.div>
         )}

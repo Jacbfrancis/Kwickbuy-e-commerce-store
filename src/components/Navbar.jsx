@@ -7,6 +7,13 @@ import OfferHoverMenu from "./OfferHoverMenu";
 import BrandHoverMenu from "./BrandHoverMenu";
 import { Link } from "react-router-dom";
 
+const offers = [
+  { name: "Featured Deals", link: "/featured-products" },
+  { name: "Flash Sales", link: "/flashdeals" },
+  { name: "Discontinued Products", link: "" },
+  { name: "Clearance Sales", link: "" },
+];
+
 function Navbar({ setShowMenu, showMenu, categories, brands }) {
   const [isHoverOffer, setIsHoverOffer] = useState(false);
   const [isHoverBrand, setIsHoverBrand] = useState(false);
@@ -88,7 +95,11 @@ function Navbar({ setShowMenu, showMenu, categories, brands }) {
             animate={{ y: 0 }}
             transition={{ duration: 0.35, type: "tween" }}
           >
-            <NavMenu setShowMenu={setShowMenu} categories={categories} />
+            <NavMenu
+              setShowMenu={setShowMenu}
+              categories={categories}
+              offers={offers}
+            />
           </motion.div>
         )}
       </nav>
@@ -122,7 +133,7 @@ function Navbar({ setShowMenu, showMenu, categories, brands }) {
                 className="absolute top-32 left-100 z-50"
                 onMouseOut={() => setIsHoverOffer(false)}
               >
-                <OfferHoverMenu />
+                <OfferHoverMenu offers={offers} />
               </div>
             )}
           </li>

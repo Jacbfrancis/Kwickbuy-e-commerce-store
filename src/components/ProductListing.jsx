@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "./font-awesome";
 import { easeInOut, motion } from "framer-motion";
 import Pagination from "../components/Pagination";
 import Filter from "../components/Filter";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ProductListing({
   categories,
@@ -160,7 +160,12 @@ function ProductListing({
                         alt={category.title}
                       />
                     </span>
-                    {category.title}
+                    <Link
+                      to={category.link}
+                      onClick={() => setIsFilterMenuOpen(false)}
+                    >
+                      {category.title}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -182,7 +187,7 @@ function ProductListing({
         </motion.div>
       )}
 
-      <div className="flex justify-start items-start xl:px-20">
+      <div className="flex justify-center items-start xl:px-20">
         <div className="bg-[#fff] hidden font-medium text-[0.9rem] h-full w-[23%] mr-3 px-8 py-6 text-left overflow-scroll [scrollbar-width:none] xl:block">
           <h3>Filter By</h3> <hr className="text-[#69696941] mt-3" />
           <form className="my-4 w-full">
@@ -237,7 +242,7 @@ function ProductListing({
                       alt={category.title}
                     />
                   </span>
-                  <NavLink to={category.link}>{category.title}</NavLink>
+                  <Link to={category.link}>{category.title}</Link>
                 </li>
               ))}
             </ul>
@@ -258,7 +263,7 @@ function ProductListing({
         </div>
 
         <div className="xl:ml-3 xl:w-[75%]">
-          <ul className="text-center px-3 grid justify-center place-items-center grid-cols-2 gap-4 xl:grid-cols-4 xl:px-0">
+          <ul className="text-center px-3 grid justify-center place-items-center grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:px-0">
             {currentProducts.map((product, index) => (
               <li
                 key={product.id}
