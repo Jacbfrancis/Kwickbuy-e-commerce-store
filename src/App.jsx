@@ -5,17 +5,6 @@ import Homepage from "./pages/Homepage";
 import ProductPage from "./pages/ProductPage";
 import { useState } from "react";
 
-const brands = [
-  { name: "Featyr", products: 10 },
-  { name: "Clearance", products: 34 },
-  { name: "Dued Products", products: 5 },
-  { name: "Flashy", products: 12 },
-  { name: "Veyra", products: 6 },
-  { name: "Aureon", products: 24 },
-  { name: "Beyora", products: 11 },
-  { name: "Lago", products: 12 },
-];
-
 // console.log([
 //   "beauty",
 //   "fragrances",
@@ -47,7 +36,22 @@ function App() {
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
 
-  console.log(productData);
+  // Get Brand and Brand count
+  const brandCount = productData.reduce((acc, item) => {
+    const brand = item.brand;
+    acc[brand] = (acc[brand] || 0) + 1;
+    return acc;
+  }, {});
+
+  const brandNames = Object.keys(brandCount);
+
+  const getBrands = brandNames.map((name) => {
+    return {
+      name: name,
+      count: brandCount[name],
+    };
+  });
+  const brands = getBrands.filter((brand) => brand.name !== "undefined");
 
   // filter for flashSales
   const flashSales = productData.filter((item) => item.discountPercentage > 19);

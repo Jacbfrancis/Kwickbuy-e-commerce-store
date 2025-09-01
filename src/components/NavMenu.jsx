@@ -107,7 +107,7 @@ function NavMenu({ setShowMenu, categories, offers }) {
           </motion.div>
         )}
 
-        <li className="pl-6">All Vendors</li>
+        <li className="pl-6">Brands</li>
         <li className="pl-6">Sign in</li>
         <li className="pl-6">Sign up</li>
       </ul>

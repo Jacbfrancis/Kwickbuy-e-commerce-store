@@ -11,7 +11,7 @@ function BrandHoverMenu({ brands }) {
         transition={{ duration: 0.3, type: "tween" }}
       >
         <ul>
-          {brands.map((brand, index) => (
+          {brands.slice(8, 17).map((brand, index) => (
             <li
               key={index}
               className="border-b-1 border-[#43434344] flex justify-between items-center"
@@ -20,7 +20,7 @@ function BrandHoverMenu({ brands }) {
                 {brand.name}
               </span>
               <span className="px-3 py-2 cursor-pointer block text-[#1456ac]">
-                {`(${brand.products})`}
+                {`(${brand.count})`}
               </span>
             </li>
           ))}
