@@ -2,7 +2,7 @@ import "./App.css";
 import useGetProducts from "./components/useGetProducts";
 import { Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
-import ProductPage from "./pages/ProductPage";
+import ProductListingPage from "./pages/ProductListingPage";
 import { useState } from "react";
 
 // console.log([
@@ -199,7 +199,7 @@ function App() {
         <Route
           path="/flashdeals"
           element={
-            <ProductPage
+            <ProductListingPage
               categories={categories}
               brands={brands}
               showMenu={showMenu}
@@ -212,7 +212,7 @@ function App() {
         <Route
           path="/featured-products"
           element={
-            <ProductPage
+            <ProductListingPage
               categories={categories}
               brands={brands}
               showMenu={showMenu}
@@ -227,7 +227,7 @@ function App() {
           <Route
             path={category.link}
             element={
-              <ProductPage
+              <ProductListingPage
                 categories={categories}
                 brands={brands}
                 showMenu={showMenu}

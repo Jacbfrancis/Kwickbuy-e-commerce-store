@@ -33,24 +33,6 @@ function Homepage({
     );
   }
 
-  // get an array of vendors details
-  // const vendors = productData
-  //   .map((vendor) => ({
-  //     vendorID: vendor.vendorID,
-  //     vendorName: vendor.vendorName,
-  //     vendorLogo: vendor.vendorLogo,
-  //   }))
-  //   .filter(
-  //     (vendor, index, arr) =>
-  //       index ===
-  //       arr.findIndex(
-  //         (o) =>
-  //           o.vendorID === vendor.vendorID &&
-  //           o.vendorName === vendor.vendorName &&
-  //           o.Logo === vendor.Logo
-  //       )
-  //   );
-
   return (
     <div>
       <Navbar

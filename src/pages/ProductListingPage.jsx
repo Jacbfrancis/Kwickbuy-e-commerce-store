@@ -3,8 +3,9 @@ import ProductListing from "../components/ProductListing";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Features from "../components/Features";
+import ViewProduct from "../components/ViewProduct";
 
-function ProductPage({
+function ProductListingPage({
   categories,
   brands,
   showMenu,
@@ -13,9 +14,14 @@ function ProductPage({
   title,
 }) {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+  const [isViewProductOpen, setIsViewProductOpen] = useState(false);
 
   return (
     <div>
+      {isViewProductOpen && (
+        <ViewProduct setIsViewProductOpen={setIsViewProductOpen} />
+      )}
+
       <Navbar
         showMenu={showMenu}
         setShowMenu={setShowMenu}
@@ -30,6 +36,7 @@ function ProductPage({
         setIsFilterMenuOpen={setIsFilterMenuOpen}
         isFilterMenuOpen={isFilterMenuOpen}
         title={title}
+        setIsViewProductOpen={setIsViewProductOpen}
       />
 
       <Features />
@@ -38,4 +45,4 @@ function ProductPage({
   );
 }
 
-export default ProductPage;
+export default ProductListingPage;

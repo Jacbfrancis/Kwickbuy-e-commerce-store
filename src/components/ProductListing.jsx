@@ -12,6 +12,7 @@ function ProductListing({
   products,
   setIsFilterMenuOpen,
   isFilterMenuOpen,
+  setIsViewProductOpen,
   title,
 }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -173,14 +174,15 @@ function ProductListing({
             <div>
               <h3>Brands</h3>
               <ul className="font-light">
-                {brands.slice(0, 4).map((brand) => (
+                {brands.slice(11, 15).map((brand) => (
                   <li key={brand.name} className="my-2">
                     <div className="flex justify-between items-center">
                       <p>{brand.name}</p>
-                      <p className="text-[#1456ac]">{`( ${brand.products} )`}</p>
+                      <p className="text-[#1456ac]">{`( ${brand.count} )`}</p>
                     </div>
                   </li>
                 ))}
+                <li className="text-[#1456ac] font-medium my-2">View More</li>
               </ul>
             </div>
           </div>
@@ -250,14 +252,17 @@ function ProductListing({
           <div className="mt-6">
             <h3>Brands</h3>
             <ul className="font-light mt-2">
-              {brands.map((brand) => (
+              {brands.slice(5, 12).map((brand) => (
                 <li key={brand.name} className="my-1">
                   <div className="flex justify-between items-center">
                     <p>{brand.name}</p>
-                    <p className="text-[#1456ac] my-1">{`(${brand.products})`}</p>
+                    <p className="text-[#1456ac] my-1">{`(${brand.count})`}</p>
                   </div>
                 </li>
               ))}
+              <li className="text-[#1456ac] font-normal text-right mt-5">
+                View More
+              </li>
             </ul>
           </div>
         </div>
@@ -296,7 +301,10 @@ function ProductListing({
                         ease: "easeInOut",
                       }}
                     >
-                      <FontAwesomeIcon icon="fa-regular fa-eye" />
+                      <FontAwesomeIcon
+                        icon="fa-regular fa-eye"
+                        onClick={() => setIsViewProductOpen(true)}
+                      />
                     </motion.div>
                     <motion.img
                       className="rounded-xl"
