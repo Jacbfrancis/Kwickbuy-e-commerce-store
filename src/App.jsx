@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import ProductListingPage from "./pages/ProductListingPage";
 import { useState } from "react";
+import ProductPage from "./pages/ProductPage";
 
 // console.log([
 //   "beauty",
@@ -35,6 +36,8 @@ import { useState } from "react";
 function App() {
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
+  const [isViewProductOpen, setIsViewProductOpen] = useState(false);
+  const [currentProductID, setCurrentProductID] = useState(null);
 
   // Get Brand and Brand count
   const brandCount = productData.reduce((acc, item) => {
@@ -193,6 +196,10 @@ function App() {
               setShowMenu={setShowMenu}
               flashSales={flashSales}
               featuredProducts={featuredProducts}
+              currentProductID={currentProductID}
+              setCurrentProductID={setCurrentProductID}
+              isViewProductOpen={isViewProductOpen}
+              setIsViewProductOpen={setIsViewProductOpen}
             />
           }
         />
@@ -206,6 +213,10 @@ function App() {
               setShowMenu={setShowMenu}
               products={flashSales}
               title={"FLash Deals"}
+              currentProductID={currentProductID}
+              setCurrentProductID={setCurrentProductID}
+              isViewProductOpen={isViewProductOpen}
+              setIsViewProductOpen={setIsViewProductOpen}
             />
           }
         />
@@ -219,6 +230,10 @@ function App() {
               setShowMenu={setShowMenu}
               products={featuredProducts}
               title={"Featured Products"}
+              currentProductID={currentProductID}
+              setCurrentProductID={setCurrentProductID}
+              isViewProductOpen={isViewProductOpen}
+              setIsViewProductOpen={setIsViewProductOpen}
             />
           }
         />
@@ -234,10 +249,15 @@ function App() {
                 setShowMenu={setShowMenu}
                 products={category.product}
                 title={category.title}
+                currentProductID={currentProductID}
+                setCurrentProductID={setCurrentProductID}
+                isViewProductOpen={isViewProductOpen}
+                setIsViewProductOpen={setIsViewProductOpen}
               />
             }
           />
         ))}
+        <Route path="/product" element={<ProductPage />} />
       </Routes>
     </div>
   );

@@ -9,6 +9,7 @@ import LoadingSpinner from "../components/LoadingAnimation";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
+import ViewProduct from "../components/ViewProduct";
 
 function Homepage({
   productData,
@@ -20,6 +21,10 @@ function Homepage({
   setShowMenu,
   flashSales,
   featuredProducts,
+  isViewProductOpen,
+  currentProductID,
+  setCurrentProductID,
+  setIsViewProductOpen,
 }) {
   if (error) {
     return error.message;
@@ -34,7 +39,18 @@ function Homepage({
   }
 
   return (
-    <div>
+    <div
+      className={`${isViewProductOpen ? "overflow-y-hidden h-[100vh]" : ""}`}
+    >
+      {isViewProductOpen && (
+        <ViewProduct
+          currentProductID={currentProductID}
+          setCurrentProductID={setCurrentProductID}
+          products={productData}
+          setIsViewProductOpen={setIsViewProductOpen}
+        />
+      )}
+
       <Navbar
         showMenu={showMenu}
         setShowMenu={setShowMenu}
@@ -42,8 +58,18 @@ function Homepage({
         brands={brands}
       />
       <Header showMenu={showMenu} categories={categories} />
-      <FlashDeal flashSales={flashSales} />
-      <FeaturedProducts featuredProducts={featuredProducts} />
+      <FlashDeal
+        flashSales={flashSales}
+        productData={productData}
+        setCurrentProductID={setCurrentProductID}
+        setIsViewProductOpen={setIsViewProductOpen}
+      />
+      <FeaturedProducts
+        featuredProducts={featuredProducts}
+        productData={productData}
+        setCurrentProductID={setCurrentProductID}
+        setIsViewProductOpen={setIsViewProductOpen}
+      />
       <ItemGrid data={categories} title={"Categories"} />
       <Banner banner={"/gadgets_banner.webp"} />
       <CategoryContainer
@@ -52,6 +78,8 @@ function Homepage({
           (product) => product.category === "smartphones"
         )}
         link={"/phones-gadgets"}
+        setCurrentProductID={setCurrentProductID}
+        setIsViewProductOpen={setIsViewProductOpen}
       />
       <CategoryContainer
         title={"Men's Fashion"}
@@ -61,6 +89,8 @@ function Homepage({
           )
         )}
         link={"/mens-fashion"}
+        setCurrentProductID={setCurrentProductID}
+        setIsViewProductOpen={setIsViewProductOpen}
       />
       <CategoryContainer
         title={"Women's Fashion"}
@@ -68,6 +98,8 @@ function Homepage({
           ["tops", "womens-shoes", "womens-bags"].includes(product.category)
         )}
         link={"/womens-fashion"}
+        setCurrentProductID={setCurrentProductID}
+        setIsViewProductOpen={setIsViewProductOpen}
       />
       <CategoryContainer
         title={"Health & Beauty"}
@@ -75,6 +107,8 @@ function Homepage({
           ["fragrances", "beauty", "skin-care"].includes(product.category)
         )}
         link={"/health-beauty"}
+        setCurrentProductID={setCurrentProductID}
+        setIsViewProductOpen={setIsViewProductOpen}
       />
       <CategoryContainer
         title={"Home & Kitchen"}
@@ -82,6 +116,8 @@ function Homepage({
           (product) => product.category === "kitchen-accessories"
         )}
         link={"/kitchen-equipment"}
+        setCurrentProductID={setCurrentProductID}
+        setIsViewProductOpen={setIsViewProductOpen}
       />
 
       <ItemGrid data={categories} title={"Categories"} />

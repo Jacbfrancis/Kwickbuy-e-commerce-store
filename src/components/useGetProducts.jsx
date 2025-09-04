@@ -9,7 +9,7 @@ function useGetProducts() {
     async function fetchProducts() {
       try {
         const res = await fetch(
-          "https://dummyjson.com/products?&limit=0&select=title,price,brand,description,images,thumbnail,discountPercentage,category"
+          "https://dummyjson.com/products?&limit=0&select=title,price,brand,description,images,thumbnail,discountPercentage,category,images"
         );
         const data = await res.json();
         setProductData(data.products);

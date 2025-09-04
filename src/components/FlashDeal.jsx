@@ -6,9 +6,9 @@ import CountdownTimer from "./CountdownTimer";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
-import useHover from "./useHover";
+import useHover from "./useHover"; //import ViewProduct from "./ViewProduct";
 
-function FlashDeal({ flashSales }) {
+function FlashDeal({ flashSales, setCurrentProductID, setIsViewProductOpen }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -23,131 +23,137 @@ function FlashDeal({ flashSales }) {
   }
 
   return (
-    <div className="xl:px-20 ">
-      <div className="bg-[#eff7ff] pt-4 flex flex-col justify-between items-center xl:flex-row xl:pt-0">
-        <div className="text-[#1456ac] w-full py-2 px-4 flex justify-between items-center xl:py-10 xl:block xl:w-[40%] xl:mr-10">
-          <span className="w-[45%] xl:w-full">
-            <h2 className="text-2xl font-bold">LIMITED TIME DEALS</h2>
-            <p className="font-light my-2 tracking-wider [word-spacing:1.5px]">
-              While stock lasts! Grab Yours Now!
-            </p>
-          </span>
-          <div className="bg-[#1456ac] px-3 py-5 w-[55%] xl:w-full xl:py-8 xl:px-5 rounded">
-            <CountdownTimer />
+    <>
+      <div className="xl:px-20 ">
+        <div className="bg-[#eff7ff] pt-4 flex flex-col justify-between items-center xl:flex-row xl:pt-0">
+          <div className="text-[#1456ac] w-full py-2 px-4 flex justify-between items-center xl:py-10 xl:block xl:w-[40%] xl:mr-10">
+            <span className="w-[45%] xl:w-full">
+              <h2 className="text-2xl font-bold">LIMITED TIME DEALS</h2>
+              <p className="font-light my-2 tracking-wider [word-spacing:1.5px]">
+                While stock lasts! Grab Yours Now!
+              </p>
+            </span>
+            <div className="bg-[#1456ac] px-3 py-5 w-[55%] xl:w-full xl:py-8 xl:px-5 rounded">
+              <CountdownTimer />
+            </div>
           </div>
-        </div>
 
-        <section
-          className="bg-[#eff7ff] overflow-scroll [scrollbar-width:none] w-full py-2 mt-2 xl:mt-0"
-          onMouseOver={handleMouseOver}
-          onMouseOut={handleMouseOut}
-        >
-          <Link to="/flashdeals">
-            <p className="text-[#1456ac] text-right cursor-pointer hidden xl:block mx-6 my-4 font-semibold">
-              View All
-            </p>
-          </Link>
+          <section
+            className="bg-[#eff7ff] overflow-scroll [scrollbar-width:none] w-full py-2 mt-2 xl:mt-0"
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+          >
+            <Link to="/flashdeals">
+              <p className="text-[#1456ac] text-right cursor-pointer hidden xl:block mx-6 my-4 font-semibold">
+                View All
+              </p>
+            </Link>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              className="flex justify-start snap-center items-center w-full select-none"
-              initial={{ x: 40 }}
-              animate={{ x: 0 }}
-              exit={{ x: -40 }}
-              transition={{
-                duration: 0.5,
-                ease: "easeInOut",
-                type: "tween",
-              }}
-            >
-              {visibleCards.map((product, index) => (
-                <div
-                  key={product.id}
-                  className="bg-white rounded-xl flex justify-center items-center w-full mx-2 px-4 md:h-[100%] xl:flex-col xl:items-center xl:bg-transparent xl:mx-0 xl:w-[50%]"
-                  onMouseOver={() => {
-                    setHoveredIndex(index);
-                  }}
-                  onMouseOut={() => {
-                    setHoveredIndex(null);
-                  }}
-                >
-                  <motion.span
-                    className="w-[6rem] relative px-2 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2"
-                    initial={{ backgroundColor: "#fff" }}
-                    animate={
-                      hoveredIndex === index
-                        ? { backgroundColor: "#4a81ca5d" }
-                        : { backgroundColor: "#fff" }
-                    }
-                    transition={{
-                      duration: 0.3,
-                      type: "tween",
-                      ease: "easeInOut",
+            <AnimatePresence mode="wait">
+              <motion.div
+                className="flex justify-start snap-center items-center w-full select-none"
+                initial={{ x: 40 }}
+                animate={{ x: 0 }}
+                exit={{ x: -40 }}
+                transition={{
+                  duration: 0.5,
+                  ease: "easeInOut",
+                  type: "tween",
+                }}
+              >
+                {visibleCards.map((product, index) => (
+                  <div
+                    key={product.id}
+                    className="bg-white rounded-xl flex justify-center items-center w-full mx-2 px-4 md:h-[100%] xl:flex-col xl:items-center xl:bg-transparent xl:mx-0 xl:w-[50%]"
+                    onMouseOver={() => {
+                      setHoveredIndex(index);
+                    }}
+                    onMouseOut={() => {
+                      setHoveredIndex(null);
                     }}
                   >
-                    <motion.div
-                      className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-5 left-8 xl:top-15 xl:left-12 z-20 invisible xl:visible"
-                      initial={{ display: "none" }}
+                    <motion.span
+                      className="w-[6rem] relative px-2 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2"
+                      initial={{ backgroundColor: "#fff" }}
                       animate={
                         hoveredIndex === index
-                          ? { display: "block" }
-                          : { display: "none" }
+                          ? { backgroundColor: "#4a81ca5d" }
+                          : { backgroundColor: "#fff" }
                       }
-                      transition={{
-                        duration: 0.25,
-                        type: "tween",
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <FontAwesomeIcon icon="fa-regular fa-eye" />
-                    </motion.div>
-                    <motion.img
-                      className="border border-[#cdcdcd2b] xl:border-none"
-                      initial={{ scale: 1 }}
-                      animate={
-                        index === hoveredIndex ? { scale: 1.3 } : { scale: 1 }
-                      }
-                      exit={{ scale: 1 }}
                       transition={{
                         duration: 0.3,
                         type: "tween",
                         ease: "easeInOut",
                       }}
-                      src={product?.thumbnail}
-                      alt="product"
-                    />
-                  </motion.span>
-                  <span className=" flex flex-col justify-center w-1/2 h-[9rem] px-4 font-medium text-[0.8rem] xl:w-[100%] xl:h-[5rem] xl:mt-3">
-                    <motion.p whileHover={{ color: "#1456ac" }}>
-                      {product?.title}
-                    </motion.p>
-                    <p className="font-bold mt-2">
-                      ${product?.price.toLocaleString()}
-                    </p>
-                  </span>
-                </div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
+                    >
+                      <motion.div
+                        className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-5 left-8 xl:top-15 xl:left-12 z-20 invisible xl:visible"
+                        initial={{ display: "none" }}
+                        animate={
+                          hoveredIndex === index
+                            ? { display: "block" }
+                            : { display: "none" }
+                        }
+                        transition={{
+                          duration: 0.25,
+                          type: "tween",
+                          ease: "easeInOut",
+                        }}
+                        onClick={() => {
+                          setCurrentProductID(product.id);
+                          setIsViewProductOpen(true);
+                        }}
+                      >
+                        <FontAwesomeIcon icon="fa-regular fa-eye" />
+                      </motion.div>
+                      <motion.img
+                        className="border border-[#cdcdcd2b] xl:border-none"
+                        initial={{ scale: 1 }}
+                        animate={
+                          index === hoveredIndex ? { scale: 1.3 } : { scale: 1 }
+                        }
+                        exit={{ scale: 1 }}
+                        transition={{
+                          duration: 0.3,
+                          type: "tween",
+                          ease: "easeInOut",
+                        }}
+                        src={product?.thumbnail}
+                        alt="product"
+                      />
+                    </motion.span>
+                    <span className=" flex flex-col justify-center w-1/2 h-[9rem] px-4 font-medium text-[0.8rem] xl:w-[100%] xl:h-[5rem] xl:mt-3">
+                      <motion.p whileHover={{ color: "#1456ac" }}>
+                        {product?.title}
+                      </motion.p>
+                      <p className="font-bold mt-2">
+                        ${product?.price.toLocaleString()}
+                      </p>
+                    </span>
+                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
 
-          <AnimatePresence className="relative">
-            {isMouseOver && (
-              <div className="absolute w-full top-[33rem] md:hidden xl:top-[50rem] xl:w-[60%] xl:block">
-                <CarouselButton
-                  length={length}
-                  setCurrentIndex={setCurrentIndex}
-                />
-              </div>
-            )}
-          </AnimatePresence>
-        </section>
-        <Link to="/flashdeals">
-          <p className="text-[#1456ac] text-center cursor-pointer xl:hidden mt-5 mb-3 font-medium">
-            View All
-          </p>
-        </Link>
+            <AnimatePresence className="relative">
+              {isMouseOver && (
+                <div className="absolute w-full top-[33rem] md:hidden xl:top-[50rem] xl:w-[60%] xl:block">
+                  <CarouselButton
+                    length={length}
+                    setCurrentIndex={setCurrentIndex}
+                  />
+                </div>
+              )}
+            </AnimatePresence>
+          </section>
+          <Link to="/flashdeals">
+            <p className="text-[#1456ac] text-center cursor-pointer xl:hidden mt-5 mb-3 font-medium">
+              View All
+            </p>
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

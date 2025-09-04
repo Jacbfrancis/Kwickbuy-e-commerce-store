@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar";
 import Features from "../components/Features";
 import ViewProduct from "../components/ViewProduct";
 
+//import ViewProduct from "../components/ViewProduct";
+
 function ProductListingPage({
   categories,
   brands,
@@ -12,16 +14,25 @@ function ProductListingPage({
   setShowMenu,
   products,
   title,
+  isViewProductOpen,
+  setIsViewProductOpen,
+  currentProductID,
+  setCurrentProductID,
 }) {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
-  const [isViewProductOpen, setIsViewProductOpen] = useState(false);
 
   return (
-    <div>
+    <div
+      className={`${isViewProductOpen ? "overflow-y-hidden h-[100vh]" : ""}`}
+    >
       {isViewProductOpen && (
-        <ViewProduct setIsViewProductOpen={setIsViewProductOpen} />
+        <ViewProduct
+          setIsViewProductOpen={setIsViewProductOpen}
+          currentProductID={currentProductID}
+          products={products}
+          setCurrentProductID={setCurrentProductID}
+        />
       )}
-
       <Navbar
         showMenu={showMenu}
         setShowMenu={setShowMenu}
@@ -37,6 +48,7 @@ function ProductListingPage({
         isFilterMenuOpen={isFilterMenuOpen}
         title={title}
         setIsViewProductOpen={setIsViewProductOpen}
+        setCurrentProductID={setCurrentProductID}
       />
 
       <Features />

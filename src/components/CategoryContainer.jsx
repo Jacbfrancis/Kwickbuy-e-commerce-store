@@ -6,7 +6,13 @@ import { FontAwesomeIcon } from "./font-awesome";
 import CarouselButton from "./CarouselButton";
 import { Link } from "react-router-dom";
 
-function CategoryContainer({ title, filterFunc, link }) {
+function CategoryContainer({
+  title,
+  filterFunc,
+  link,
+  setIsViewProductOpen,
+  setCurrentProductID,
+}) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -73,6 +79,10 @@ function CategoryContainer({ title, filterFunc, link }) {
                       duration: 0.25,
                       type: "tween",
                       ease: "easeInOut",
+                    }}
+                    onClick={() => {
+                      setCurrentProductID(item.id);
+                      setIsViewProductOpen(true);
                     }}
                   >
                     <FontAwesomeIcon icon="fa-regular fa-eye" />

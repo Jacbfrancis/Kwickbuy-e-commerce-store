@@ -14,6 +14,7 @@ function ProductListing({
   isFilterMenuOpen,
   setIsViewProductOpen,
   title,
+  setCurrentProductID,
 }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -275,6 +276,7 @@ function ProductListing({
                 className=" bg-[#fff] rounded-2xl my-1 p-3 shadow-lg border-2 border-[#5dcaf133]"
                 onMouseOver={() => setHoveredIndex(index)}
                 onMouseOut={() => setHoveredIndex(null)}
+                onClick={() => setCurrentProductID(product.id)}
               >
                 <div className="rounded-xl relative">
                   <motion.span
@@ -288,7 +290,7 @@ function ProductListing({
                     transition={{ type: "tween" }}
                   >
                     <motion.div
-                      className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 absolute top-20 left-15  xl:left-17 z-20 invisible xl:visible hidden"
+                      className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 cursor-pointer absolute top-20 left-15  xl:left-17 z-20 invisible xl:visible hidden"
                       initial={{ display: "none" }}
                       animate={
                         hoveredIndex === index
@@ -300,30 +302,39 @@ function ProductListing({
                         type: "tween",
                         ease: "easeInOut",
                       }}
+                      onClick={() => setIsViewProductOpen(true)}
                     >
-                      <FontAwesomeIcon
-                        icon="fa-regular fa-eye"
-                        onClick={() => setIsViewProductOpen(true)}
-                      />
+                      <FontAwesomeIcon icon="fa-regular fa-eye" />
                     </motion.div>
-                    <motion.img
-                      className="rounded-xl"
-                      initial={{ scale: 1 }}
-                      animate={
-                        hoveredIndex === index ? { scale: 1.15 } : { scale: 1 }
-                      }
-                      src={product.thumbnail}
-                      alt={`${product.title}_image`}
-                    />
+                    <Link to="/product">
+                      <motion.img
+                        className="rounded-xl"
+                        initial={{ scale: 1 }}
+                        animate={
+                          hoveredIndex === index
+                            ? { scale: 1.15 }
+                            : { scale: 1 }
+                        }
+                        src={product.thumbnail}
+                        alt={`${product.title}_image`}
+                      />
+                    </Link>
                   </motion.span>
                 </div>
 
-                <span className="font-semibold text-[0.9rem] py-6 block w-[9rem] h-[7rem] m-auto">
-                  <motion.h2 whileHover={{ color: "#1456ac" }}>
-                    {product.title}
-                  </motion.h2>
-                  <p>${product.price.toLocaleString()}</p>
-                </span>
+                <Link to="/product">
+                  <span className="font-semibold text-[0.9rem] py-6 block w-[9rem] h-[7rem] m-auto">
+                    <motion.h2
+                      className="cursor-pointer"
+                      whileHover={{ color: "#1456ac" }}
+                    >
+                      {product.title}
+                    </motion.h2>
+                    <p className="cursor-pointer">
+                      ${product.price.toLocaleString()}
+                    </p>
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
