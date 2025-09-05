@@ -1,14 +1,4 @@
-function Features() {
-  const features = [
-    {
-      image: "/express-delivery.png",
-      description: "Lightning Fast Delivery",
-    },
-    { image: "/credit-card.png", description: "Safe Payment" },
-    { image: "/box.png", description: "7 Days Return Policy" },
-    { image: "/original.png", description: "100% Authentic Products" },
-  ];
-
+function Features({ features }) {
   return (
     <div className="lg:px-20 mt-8 overflow-scroll [scrollbar-width:none]">
       <div className="flex justify-start items-center snap-center whitespace-nowrap">

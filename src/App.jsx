@@ -33,6 +33,16 @@ import ProductPage from "./pages/ProductPage";
 //   "womens-watches",
 // ]);
 
+const features = [
+  {
+    image: "/express-delivery.png",
+    description: "Lightning Fast Delivery",
+  },
+  { image: "/credit-card.png", description: "Safe Payment" },
+  { image: "/box.png", description: "7 Days Return Policy" },
+  { image: "/original.png", description: "100% Authentic Products" },
+];
+
 function App() {
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
@@ -187,6 +197,7 @@ function App() {
           path="/"
           element={
             <Homepage
+              features={features}
               productData={productData}
               error={error}
               loading={loading}
@@ -243,6 +254,7 @@ function App() {
             path={category.link}
             element={
               <ProductListingPage
+                features={features}
                 categories={categories}
                 brands={brands}
                 showMenu={showMenu}
@@ -257,7 +269,18 @@ function App() {
             }
           />
         ))}
-        <Route path="/product" element={<ProductPage />} />
+        <Route
+          path="/product"
+          element={
+            <ProductPage
+              features={features}
+              showMenu={showMenu}
+              setShowMenu={setShowMenu}
+              categories={categories}
+              brands={brands}
+            />
+          }
+        />
       </Routes>
     </div>
   );

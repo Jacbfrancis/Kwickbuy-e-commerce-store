@@ -8,6 +8,7 @@ import ViewProduct from "../components/ViewProduct";
 //import ViewProduct from "../components/ViewProduct";
 
 function ProductListingPage({
+  features,
   categories,
   brands,
   showMenu,
@@ -51,7 +52,7 @@ function ProductListingPage({
         setCurrentProductID={setCurrentProductID}
       />
 
-      <Features />
+      <Features features={features} />
       <Footer />
     </div>
   );

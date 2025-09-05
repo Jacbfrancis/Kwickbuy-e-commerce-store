@@ -12,6 +12,7 @@ import BackToTop from "../components/BackToTop";
 import ViewProduct from "../components/ViewProduct";
 
 function Homepage({
+  features,
   productData,
   error,
   loading,
@@ -121,7 +122,7 @@ function Homepage({
       />
 
       <ItemGrid data={categories} title={"Categories"} />
-      <Features />
+      <Features features={features} />
       <Footer />
       <BackToTop />
     </div>
