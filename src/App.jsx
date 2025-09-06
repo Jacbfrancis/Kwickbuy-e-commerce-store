@@ -190,6 +190,10 @@ function App() {
     },
   ];
 
+  const currentProduct = productData.find(
+    (product) => product.id === currentProductID
+  );
+
   return (
     <div className="bg-[#fbfbfc]">
       <Routes>
@@ -218,13 +222,14 @@ function App() {
           path="/flashdeals"
           element={
             <ProductListingPage
+              features={features}
               categories={categories}
               brands={brands}
               showMenu={showMenu}
               setShowMenu={setShowMenu}
               products={flashSales}
               title={"FLash Deals"}
-              currentProductID={currentProductID}
+              currentProduct={currentProduct}
               setCurrentProductID={setCurrentProductID}
               isViewProductOpen={isViewProductOpen}
               setIsViewProductOpen={setIsViewProductOpen}
@@ -235,13 +240,14 @@ function App() {
           path="/featured-products"
           element={
             <ProductListingPage
+              features={features}
               categories={categories}
               brands={brands}
               showMenu={showMenu}
               setShowMenu={setShowMenu}
               products={featuredProducts}
               title={"Featured Products"}
-              currentProductID={currentProductID}
+              currentProduct={currentProduct}
               setCurrentProductID={setCurrentProductID}
               isViewProductOpen={isViewProductOpen}
               setIsViewProductOpen={setIsViewProductOpen}
@@ -261,7 +267,7 @@ function App() {
                 setShowMenu={setShowMenu}
                 products={category.product}
                 title={category.title}
-                currentProductID={currentProductID}
+                currentProduct={currentProduct}
                 setCurrentProductID={setCurrentProductID}
                 isViewProductOpen={isViewProductOpen}
                 setIsViewProductOpen={setIsViewProductOpen}
@@ -278,6 +284,7 @@ function App() {
               setShowMenu={setShowMenu}
               categories={categories}
               brands={brands}
+              currentProduct={currentProduct}
             />
           }
         />

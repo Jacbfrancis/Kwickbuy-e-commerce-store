@@ -17,10 +17,14 @@ function ProductListingPage({
   title,
   isViewProductOpen,
   setIsViewProductOpen,
-  currentProductID,
+  currentProduct,
   setCurrentProductID,
 }) {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+
+  // const currentProduct = products.find(
+  //   (product) => product.id === currentProductID
+  // );
 
   return (
     <div
@@ -29,9 +33,8 @@ function ProductListingPage({
       {isViewProductOpen && (
         <ViewProduct
           setIsViewProductOpen={setIsViewProductOpen}
-          currentProductID={currentProductID}
-          products={products}
           setCurrentProductID={setCurrentProductID}
+          currentProduct={currentProduct}
         />
       )}
       <Navbar

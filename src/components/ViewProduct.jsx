@@ -2,14 +2,9 @@ import { FontAwesomeIcon } from "./font-awesome";
 
 function ViewProduct({
   setIsViewProductOpen,
-  currentProductID,
   setCurrentProductID,
-  products,
+  currentProduct,
 }) {
-  const currentProduct = products.find(
-    (product) => product.id === currentProductID
-  );
-
   return (
     <div
       className="bg-[#121212bf] hidden xl:block h-[100vh] w-[100%] absolute z-70"

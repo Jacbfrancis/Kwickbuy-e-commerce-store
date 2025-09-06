@@ -2,8 +2,17 @@ import Navbar from "../components/Navbar";
 import BuyProduct from "../components/BuyProduct";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
+import SimilarProducts from "../components/SimilarProducts";
 
-function ProductPage({ features, showMenu, setShowMenu, categories, brands }) {
+function ProductPage({
+  features,
+  showMenu,
+  setShowMenu,
+  categories,
+  brands,
+  currentProduct,
+}) {
+  console.log(currentProduct);
   return (
     <div>
       <Navbar
@@ -12,7 +21,8 @@ function ProductPage({ features, showMenu, setShowMenu, categories, brands }) {
         showMenu={showMenu}
         setShowMenu={setShowMenu}
       />
-      <BuyProduct features={features} />
+      <BuyProduct features={features} currentProduct={currentProduct} />
+      <SimilarProducts categories={categories} />
       <Features features={features} />
       <Footer />
     </div>
