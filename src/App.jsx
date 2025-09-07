@@ -49,7 +49,7 @@ function App() {
   const [isViewProductOpen, setIsViewProductOpen] = useState(false);
   const [currentProductID, setCurrentProductID] = useState(null);
 
-  // Get Brand and Brand count
+  // Get Brand and BrandCount
   const brandCount = productData.reduce((acc, item) => {
     const brand = item.brand;
     acc[brand] = (acc[brand] || 0) + 1;
@@ -102,7 +102,7 @@ function App() {
   );
 
   //filter for food&groceries
-  const petSupplies = productData.filter(
+  const foodAndGroceries = productData.filter(
     (product) => product.category === "groceries"
   );
 
@@ -159,10 +159,10 @@ function App() {
       product: homeDecoration,
     },
     {
-      title: "Pet Supplies",
+      title: "Food & Groceries",
       icon: "/pet_supplies.webp",
-      link: "/pet-supplies",
-      product: petSupplies,
+      link: "/food_groceries",
+      product: foodAndGroceries,
     },
     {
       title: "Kitchen Equipment",
@@ -283,6 +283,7 @@ function App() {
               showMenu={showMenu}
               setShowMenu={setShowMenu}
               categories={categories}
+              productData={productData}
               brands={brands}
               currentProduct={currentProduct}
             />

@@ -22,10 +22,6 @@ function ProductListingPage({
 }) {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
-  // const currentProduct = products.find(
-  //   (product) => product.id === currentProductID
-  // );
-
   return (
     <div
       className={`${isViewProductOpen ? "overflow-y-hidden h-[100vh]" : ""}`}

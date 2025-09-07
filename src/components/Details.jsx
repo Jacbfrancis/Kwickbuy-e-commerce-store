@@ -1,14 +1,4 @@
-function Details({ features }) {
-  //     const features = [
-  //   {
-  //     image: "/express-delivery.png",
-  //     description: "Lightning Fast Delivery",
-  //   },
-  //   { image: "/credit-card.png", description: "Safe Payment" },
-  //   { image: "/box.png", description: "7 Days Return Policy" },
-  //   { image: "/original.png", description: "100% Authentic Products" },
-  // ];
-
+function Details({ features, currrentBrand }) {
   return (
     <div className="w-full mt-4 xl:w-[25%] xl:mt-auto">
       <div className="bg-[#fff] text-[#373636ab] text-[0.8rem] font-extralight rounded-lg mb-4">
@@ -32,7 +22,7 @@ function Details({ features }) {
               alt="brand_logo"
             />
           </span>
-          <h2 className="ml-3">Hewlett-Packard</h2>
+          <h2 className="ml-3">{currrentBrand?.name || ""}</h2>
         </div>
         <div className="text-[#1456ac] text-[0.8rem] w-[80%] m-auto flex justify-between items-center py-6">
           <span className="text-center w-[50%] border-r-1 border-[#4949491f] block">
@@ -49,12 +39,13 @@ function Details({ features }) {
               alt="product_icon"
             />
             <p className="p-2">
-              <span className="font-bold">{2}</span> Products
+              <span className="font-bold">{currrentBrand?.count || 0}</span>{" "}
+              Product(s)
             </p>
           </span>
         </div>
         <button className="bg-[#1456ac] hidden text-[#fff] text-[0.9rem] rounded-md font-light w-[100%] mx-auto cursor-pointer hover:bg-[#08428e] px-6 py-3 xl:block">
-          View Products
+          View Product(s)
         </button>
       </div>
     </div>

@@ -9,10 +9,16 @@ function ProductPage({
   showMenu,
   setShowMenu,
   categories,
+  productData,
   brands,
   currentProduct,
 }) {
-  console.log(currentProduct);
+  // const categoryProducts = productData.filter(
+  //   (categoryProduct) => categoryProduct.category === "sports-accessories"
+  // );
+
+  // console.log(categoryProducts);
+
   return (
     <div>
       <Navbar
@@ -21,8 +27,13 @@ function ProductPage({
         showMenu={showMenu}
         setShowMenu={setShowMenu}
       />
-      <BuyProduct features={features} currentProduct={currentProduct} />
-      <SimilarProducts categories={categories} />
+      <BuyProduct
+        features={features}
+        currentProduct={currentProduct}
+        brands={brands}
+        productData={productData}
+      />
+      <SimilarProducts categories={categories} productData={productData} />
       <Features features={features} />
       <Footer />
     </div>

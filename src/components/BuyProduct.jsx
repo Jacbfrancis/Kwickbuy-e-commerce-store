@@ -2,9 +2,16 @@ import { FontAwesomeIcon } from "./font-awesome";
 import Details from "./Details";
 import Overview from "./Overview";
 import MoreFromStore from "./MoreFromStore";
-//import SimilarProducts from "./SimilarProducts";
 
-function BuyProduct({ features, currentProduct }) {
+function BuyProduct({ features, currentProduct, brands, productData }) {
+  const currrentBrand = brands.find(
+    (brand) => brand.name === currentProduct.brand
+  );
+
+  const productBrands = productData.filter(
+    (productBrand) => productBrand.brand === currrentBrand?.name
+  );
+
   return (
     <>
       <div className="flex flex-col justify-between items-start w-[90%] mx-auto mt-5 xl:flex-row xl:w-full xl:px-20">
@@ -16,28 +23,15 @@ function BuyProduct({ features, currentProduct }) {
               alt={`${currentProduct.title}_image`}
             />
           </div>
-          <div className="flex justify-start items-center w-[75%] mt-3 gap-4 xl:w-[50%]">
-            <span className="bg-[#fff] block rounded">
-              <img
-                className="w-[90%] m-auto"
-                src="https://cdn.dummyjson.com/product-images/laptops/apple-macbook-pro-14-inch-space-grey/1.webp"
-                alt=""
-              />
-            </span>
-            <span className="bg-[#fff] block rounded">
-              <img
-                className="w-[90%] m-auto"
-                src="https://cdn.dummyjson.com/product-images/laptops/apple-macbook-pro-14-inch-space-grey/2.webp"
-                alt=""
-              />
-            </span>
-            <span className="bg-[#fff] block rounded">
-              <img
-                className="w-[90%] m-auto"
-                src="https://cdn.dummyjson.com/product-images/laptops/apple-macbook-pro-14-inch-space-grey/3.webp"
-                alt=""
-              />
-            </span>
+          <div className="flex justify-start items-center w-[75%] mt-3 xl:w-[50%]">
+            {currentProduct.images.map((productImage, index) => (
+              <span
+                key={index}
+                className="bg-[#fff] block rounded mx-2 w-[25%]"
+              >
+                <img className="w-[90%] m-auto" src={productImage} alt="" />
+              </span>
+            ))}
           </div>
         </div>
 
@@ -69,7 +63,7 @@ function BuyProduct({ features, currentProduct }) {
             <button className="bg-[#ef8333] text-[#fff] text-[0.9rem] rounded font-light px-4.5 py-2.5 cursor-pointer hover:bg-[#f26e09] xl:px-6 xl:py-2.5">
               Buy Now
             </button>
-            <button className="bg-[#1456ac] text-[#fff] text-[0.9rem] rounded font-light px-4 py-2 cursor-pointer hover:bg-[#08428e] xl:px-6 xl:py-2.5">
+            <button className="bg-[#1456ac] text-[#fff] text-[0.9rem] rounded font-light px-4.5 py-2.5 cursor-pointer hover:bg-[#08428e] xl:px-6 xl:py-2.5">
               Add to Cart
             </button>
             <button className="border-1 border-[#6cc6e761] rounded px-4 py-0 cursor-pointer">
@@ -83,15 +77,23 @@ function BuyProduct({ features, currentProduct }) {
         </div>
 
         <div className="block xl:hidden">
-          <Overview currentProduct={currentProduct} />
+          <Overview
+            currentProduct={currentProduct}
+            productBrands={productBrands}
+          />
         </div>
-        <Details features={features} />
+        <Details features={features} currrentBrand={currrentBrand} />
       </div>
       <div className="hidden xl:block">
-        <Overview currentProduct={currentProduct} />
+        <Overview
+          currentProduct={currentProduct}
+          productBrands={productBrands}
+        />
       </div>
-      <div className="xl:hidden">
-        <MoreFromStore />
+      <div
+        className={`xl:hidden ${productBrands.length > 1 ? "block" : "hidden"}`}
+      >
+        <MoreFromStore productBrands={productBrands} />
       </div>
     </>
   );
