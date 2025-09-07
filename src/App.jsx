@@ -64,7 +64,13 @@ function App() {
       count: brandCount[name],
     };
   });
-  const brands = getBrands.filter((brand) => brand.name !== "undefined");
+  // const brands = getBrands.filter((brand) => brand.name !== "undefined");
+  const brands = getBrands.map((brand) => {
+    if (brand.name === "undefined") {
+      return { ...brand, name: "Kwickbuy" };
+    }
+    return brand;
+  });
 
   // filter for flashSales
   const flashSales = productData.filter((item) => item.discountPercentage > 19);
@@ -98,7 +104,7 @@ function App() {
 
   // filter for health&beauty
   const healthAndBeauty = productData.filter((product) =>
-    ["beauty", "fragrances", "skin-care", ""].includes(product.category)
+    ["beauty", "fragrances", "skin-care"].includes(product.category)
   );
 
   //filter for food&groceries
@@ -139,54 +145,70 @@ function App() {
       icon: "/men_fashion.webp",
       link: "/mens-fashion",
       product: mensFashion,
+      group: ["mens-shirts", "mens-shoes", "mens-watches", "sunglasses"],
     },
     {
       title: "Women's Fashion",
       icon: "/women_fashion.webp",
       link: "/womens-fashion",
       product: womensFashion,
+      group: [
+        "tops",
+        "womens-watches",
+        "womens-dresses",
+        "womens-bags",
+        "womens-jewellery",
+        "womens-watches",
+      ],
     },
     {
       title: "Health & Beauty",
       icon: "/health_beauty.webp",
       link: "/health-beauty",
       product: healthAndBeauty,
+      group: ["beauty", "fragrances", "skin-care"],
     },
     {
       title: "Home Decoration",
       icon: "/baby_toys.webp",
       link: "/home-decoration",
       product: homeDecoration,
+      group: ["furniture", "home-decoration"],
     },
     {
       title: "Food & Groceries",
       icon: "/pet_supplies.webp",
       link: "/food_groceries",
       product: foodAndGroceries,
+      group: "groceries",
     },
     {
       title: "Kitchen Equipment",
       icon: "/home_kitchen.webp",
       link: "/kitchen-equipment",
       product: kitchenEquipment,
+      group: "kitchen-accessories",
     },
     {
       title: "Automobiles",
       icon: "/kid_fashion.webp",
       link: "/automobiles",
       product: automobiles,
+      group: ["motorcycle", "vehicle"],
     },
     {
       title: "Sports & Leisure",
       icon: "/sports_leisure.webp",
       link: "/sports-leisure",
       product: sportsAndLeisure,
+      group: "sports-accessories",
     },
     {
       title: "Phones & Gadgets",
       icon: "/phones.webp",
       link: "/phones-gadgets",
       product: phonesAndGadgets,
+      group: ["tablets", "smartphones", "mobile-accessories", "laptops"],
     },
   ];
 

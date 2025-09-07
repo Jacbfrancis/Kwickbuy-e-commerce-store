@@ -1,6 +1,6 @@
-function SimilarProducts({ currentProduct, productData }) {
-  const categoryProducts = productData.filter(
-    (categoryProduct) => categoryProduct.category === "sports-accessories"
+function SimilarProducts({ currentProduct, categories }) {
+  const categoryProducts = categories.find((category) =>
+    category.group.includes(currentProduct.category)
   );
 
   return (
@@ -11,7 +11,7 @@ function SimilarProducts({ currentProduct, productData }) {
           <p className="text-[#1456ac]">View All</p>
         </span>
         <ul className="text-center grid justify-center place-items-center grid-cols-2 gap-5 xl:grid-cols-6">
-          {categoryProducts.slice(0, 12).map((product) => (
+          {categoryProducts.product.slice(0, 12).map((product) => (
             <li
               key={product.id}
               className="border-0.5 border-[#6f6f6f15] rounded-lg shadow-sm"
@@ -23,7 +23,7 @@ function SimilarProducts({ currentProduct, productData }) {
                   alt={`${product.title}_image`}
                 />
               </span>
-              <span className="block px-6 py-2">
+              <span className="block px-6 py-2 h-[7rem]">
                 <p className="font-normal mb-3">{product.title}</p>
                 <p className="font-semibold">{`$${product.price}`}</p>
               </span>

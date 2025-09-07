@@ -33,7 +33,10 @@ function ProductPage({
         brands={brands}
         productData={productData}
       />
-      <SimilarProducts categories={categories} productData={productData} />
+      <SimilarProducts
+        categories={categories}
+        currentProduct={currentProduct}
+      />
       <Features features={features} />
       <Footer />
     </div>
