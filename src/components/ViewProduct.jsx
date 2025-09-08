@@ -5,6 +5,8 @@ function ViewProduct({
   setCurrentProductID,
   currentProduct,
 }) {
+  console.log(currentProduct);
+
   return (
     <div
       className="bg-[#121212bf] hidden xl:block h-[100vh] w-[100%] absolute z-70"

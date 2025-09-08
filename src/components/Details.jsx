@@ -22,7 +22,7 @@ function Details({ features, currrentBrand }) {
               alt="brand_logo"
             />
           </span>
-          <h2 className="ml-3">{currrentBrand?.name || ""}</h2>
+          <h2 className="ml-3">{currrentBrand?.name || "Kwickbuy"}</h2>
         </div>
         <div className="text-[#1456ac] text-[0.8rem] w-[80%] m-auto flex justify-between items-center py-6">
           <span className="text-center w-[50%] border-r-1 border-[#4949491f] block">
@@ -39,12 +39,16 @@ function Details({ features, currrentBrand }) {
               alt="product_icon"
             />
             <p className="p-2">
-              <span className="font-bold">{currrentBrand?.count || 0}</span>{" "}
+              <span className="font-bold">{currrentBrand?.count || 16}</span>{" "}
               Product(s)
             </p>
           </span>
         </div>
-        <button className="bg-[#1456ac] hidden text-[#fff] text-[0.9rem] rounded-md font-light w-[100%] mx-auto cursor-pointer hover:bg-[#08428e] px-6 py-3 xl:block">
+        <button
+          className={`bg-[#1456ac] hidden text-[#fff] text-[0.9rem] rounded-md font-light w-[100%] mx-auto cursor-pointer hover:bg-[#08428e] px-6 py-3 ${
+            currrentBrand.count < 2 ? "xl:hidden" : "xl:block"
+          }`}
+        >
           View Product(s)
         </button>
       </div>

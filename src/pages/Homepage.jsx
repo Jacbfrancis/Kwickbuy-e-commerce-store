@@ -23,7 +23,7 @@ function Homepage({
   flashSales,
   featuredProducts,
   isViewProductOpen,
-  currentProductID,
+  currentProduct,
   setCurrentProductID,
   setIsViewProductOpen,
 }) {
@@ -45,9 +45,8 @@ function Homepage({
     >
       {isViewProductOpen && (
         <ViewProduct
-          currentProductID={currentProductID}
           setCurrentProductID={setCurrentProductID}
-          products={productData}
+          currentProduct={currentProduct}
           setIsViewProductOpen={setIsViewProductOpen}
         />
       )}

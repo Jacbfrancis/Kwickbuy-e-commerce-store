@@ -13,12 +13,6 @@ function ProductPage({
   brands,
   currentProduct,
 }) {
-  // const categoryProducts = productData.filter(
-  //   (categoryProduct) => categoryProduct.category === "sports-accessories"
-  // );
-
-  // console.log(categoryProducts);
-
   return (
     <div>
       <Navbar

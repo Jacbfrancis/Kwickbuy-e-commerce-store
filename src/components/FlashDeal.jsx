@@ -71,6 +71,7 @@ function FlashDeal({ flashSales, setCurrentProductID, setIsViewProductOpen }) {
                     onMouseOut={() => {
                       setHoveredIndex(null);
                     }}
+                    onClick={() => setCurrentProductID(product.id)}
                   >
                     <motion.span
                       className="w-[6rem] relative px-2 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2"
@@ -100,7 +101,6 @@ function FlashDeal({ flashSales, setCurrentProductID, setIsViewProductOpen }) {
                           ease: "easeInOut",
                         }}
                         onClick={() => {
-                          setCurrentProductID(product.id);
                           setIsViewProductOpen(true);
                         }}
                       >

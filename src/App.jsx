@@ -230,6 +230,7 @@ function App() {
               categories={categories}
               brands={brands}
               showMenu={showMenu}
+              currentProduct={currentProduct}
               setShowMenu={setShowMenu}
               flashSales={flashSales}
               featuredProducts={featuredProducts}

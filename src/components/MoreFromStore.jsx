@@ -1,9 +1,7 @@
 function MoreFromStore({ productBrands }) {
   return (
     <div className="w-[90%] m-auto xl:w-full">
-      <h2 className="font-bold mb-4">
-        {productBrands.length > 14 ? "More Products" : "More From the store"}
-      </h2>
+      <h2 className="font-bold mb-4">More from this store</h2>
       <ul className="text-[0.9rem] font-semibold">
         {productBrands.slice(0, 3).map((product) => (
           <li
