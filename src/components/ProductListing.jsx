@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { easeInOut, motion } from "framer-motion";
 import Pagination from "../components/Pagination";
 import Filter from "../components/Filter";
-import { Link } from "react-router-dom";
 
 function ProductListing({
   categories,
@@ -14,7 +15,7 @@ function ProductListing({
   isFilterMenuOpen,
   setIsViewProductOpen,
   title,
-  setCurrentProductID,
+  setCurrentProduct,
 }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,6 +24,9 @@ function ProductListing({
   const [minimumPrice, setMinimumPrice] = useState(0);
   const [maximumPrice, setMaximumPrice] = useState(40000);
   const [sortSetting, setSortSetting] = useState("");
+
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   //Sort Accordingly
   let sortedProducts = [...products];
@@ -56,7 +60,9 @@ function ProductListing({
     <>
       <div className="bg-[#fff] flex flex-col justify-between items-start px-6 py-4 my-6 xl:flex-row xl:mx-20 xl:items-center">
         <span className="xl:w-[30%]">
-          <h3 className="font-bold">{title}</h3>
+          <h3 className="font-bold">
+            {title} {id}
+          </h3>
           <p className="font-normal">{products.length} items found</p>
         </span>
         <Filter
@@ -276,7 +282,7 @@ function ProductListing({
                 className=" bg-[#fff] rounded-2xl my-1 p-3 shadow-lg border-2 border-[#5dcaf133]"
                 onMouseOver={() => setHoveredIndex(index)}
                 onMouseOut={() => setHoveredIndex(null)}
-                onClick={() => setCurrentProductID(product.id)}
+                onClick={() => setCurrentProduct(product)}
               >
                 <div className="rounded-xl relative">
                   <motion.span
@@ -306,35 +312,34 @@ function ProductListing({
                     >
                       <FontAwesomeIcon icon="fa-regular fa-eye" />
                     </motion.div>
-                    <Link to="/product">
-                      <motion.img
-                        className="rounded-xl"
-                        initial={{ scale: 1 }}
-                        animate={
-                          hoveredIndex === index
-                            ? { scale: 1.15 }
-                            : { scale: 1 }
-                        }
-                        src={product.thumbnail}
-                        alt={`${product.title}_image`}
-                      />
-                    </Link>
+
+                    <motion.img
+                      className="rounded-xl"
+                      initial={{ scale: 1 }}
+                      animate={
+                        hoveredIndex === index ? { scale: 1.15 } : { scale: 1 }
+                      }
+                      onClick={() => navigate(`/product/${product.id}`)}
+                      src={product.thumbnail}
+                      alt={`${product.title}_image`}
+                    />
                   </motion.span>
                 </div>
 
-                <Link to="/product">
-                  <span className="font-semibold text-[0.9rem] py-6 block w-[9rem] h-[7rem] m-auto">
-                    <motion.h2
-                      className="cursor-pointer"
-                      whileHover={{ color: "#1456ac" }}
-                    >
-                      {product.title}
-                    </motion.h2>
-                    <p className="cursor-pointer">
-                      ${product.price.toLocaleString()}
-                    </p>
-                  </span>
-                </Link>
+                <span
+                  className="font-semibold text-[0.9rem] py-6 block w-[9rem] h-[7rem] m-auto"
+                  onClick={() => navigate(`/product/${product.id}`)}
+                >
+                  <motion.h2
+                    className="cursor-pointer"
+                    whileHover={{ color: "#1456ac" }}
+                  >
+                    {product.title}
+                  </motion.h2>
+                  <p className="cursor-pointer">
+                    ${product.price.toLocaleString()}
+                  </p>
+                </span>
               </li>
             ))}
           </ul>

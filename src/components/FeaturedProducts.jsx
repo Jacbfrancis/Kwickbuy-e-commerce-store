@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useHover from "./useHover";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, easeIn } from "framer-motion";
@@ -8,12 +8,15 @@ import CarouselButton from "./CarouselButton";
 
 function FeaturedProducts({
   featuredProducts,
-  setCurrentProductID,
   setIsViewProductOpen,
+  setCurrentProduct,
 }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const featuredDeals = featuredProducts.slice(6, 15);
   const length = featuredDeals.length;
@@ -75,7 +78,7 @@ function FeaturedProducts({
                         ease: "easeInOut",
                       }}
                       onClick={() => {
-                        setCurrentProductID(product.id);
+                        setCurrentProduct(product);
                         setIsViewProductOpen(true);
                       }}
                     >
@@ -90,11 +93,15 @@ function FeaturedProducts({
                       transition={{ type: "tween" }}
                       src={product.thumbnail}
                       alt={`product ${index}`}
+                      onClick={() => navigate(`/product/${product.id}`)}
                     />
                   </motion.span>
-                  <span className="text-center text-[1rem] font-semibold block mt-3 mb-6 mx-auto w-[15rem] whitespace-normal xl:w-[12.5rem]">
+                  <span
+                    className="text-center text-[1rem] font-semibold block mt-3 mb-6 mx-auto w-[15rem] whitespace-normal xl:w-[12.5rem]"
+                    onClick={() => navigate(`product/${product.id}`)}
+                  >
                     <motion.p whileHover={{ color: "#1456ac" }}>
-                      {product.title}
+                      {product.title} {id}
                     </motion.p>
                     <p className="my-2">${product.price.toLocaleString()}</p>
                   </span>

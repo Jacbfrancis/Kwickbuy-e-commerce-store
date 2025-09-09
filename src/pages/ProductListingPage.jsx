@@ -18,7 +18,7 @@ function ProductListingPage({
   isViewProductOpen,
   setIsViewProductOpen,
   currentProduct,
-  setCurrentProductID,
+  setCurrentProduct,
 }) {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
@@ -29,8 +29,8 @@ function ProductListingPage({
       {isViewProductOpen && (
         <ViewProduct
           setIsViewProductOpen={setIsViewProductOpen}
-          setCurrentProductID={setCurrentProductID}
           currentProduct={currentProduct}
+          setCurrentProduct={setCurrentProduct}
         />
       )}
       <Navbar
@@ -48,7 +48,7 @@ function ProductListingPage({
         isFilterMenuOpen={isFilterMenuOpen}
         title={title}
         setIsViewProductOpen={setIsViewProductOpen}
-        setCurrentProductID={setCurrentProductID}
+        setCurrentProduct={setCurrentProduct}
       />
 
       <Features features={features} />

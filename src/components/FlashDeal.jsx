@@ -1,17 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-
 import CarouselButton from "./CarouselButton";
 import CountdownTimer from "./CountdownTimer";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
-import useHover from "./useHover"; //import ViewProduct from "./ViewProduct";
+import useHover from "./useHover";
 
-function FlashDeal({ flashSales, setCurrentProductID, setIsViewProductOpen }) {
+function FlashDeal({ flashSales, setCurrentProduct, setIsViewProductOpen }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const flashDeals = flashSales.slice(0, 5);
   const length = flashDeals.length;
@@ -71,7 +73,7 @@ function FlashDeal({ flashSales, setCurrentProductID, setIsViewProductOpen }) {
                     onMouseOut={() => {
                       setHoveredIndex(null);
                     }}
-                    onClick={() => setCurrentProductID(product.id)}
+                    onClick={() => setCurrentProduct(product)}
                   >
                     <motion.span
                       className="w-[6rem] relative px-2 xl:bg-white xl:w-[100%] xl:rounded-xl xl:py-2"
@@ -118,13 +120,17 @@ function FlashDeal({ flashSales, setCurrentProductID, setIsViewProductOpen }) {
                           type: "tween",
                           ease: "easeInOut",
                         }}
+                        onClick={() => navigate(`/product/${product.id}`)}
                         src={product?.thumbnail}
                         alt="product"
                       />
                     </motion.span>
-                    <span className=" flex flex-col justify-center w-1/2 h-[9rem] px-4 font-medium text-[0.8rem] xl:w-[100%] xl:h-[5rem] xl:mt-3">
+                    <span
+                      className=" flex flex-col justify-center w-1/2 h-[9rem] px-4 font-medium text-[0.8rem] xl:w-[100%] xl:h-[5rem] xl:mt-3"
+                      onClick={() => navigate(`/product/${product.id}`)}
+                    >
                       <motion.p whileHover={{ color: "#1456ac" }}>
-                        {product?.title}
+                        {product?.title} {id}
                       </motion.p>
                       <p className="font-bold mt-2">
                         ${product?.price.toLocaleString()}

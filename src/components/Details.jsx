@@ -46,7 +46,7 @@ function Details({ features, currrentBrand }) {
         </div>
         <button
           className={`bg-[#1456ac] hidden text-[#fff] text-[0.9rem] rounded-md font-light w-[100%] mx-auto cursor-pointer hover:bg-[#08428e] px-6 py-3 ${
-            currrentBrand.count < 2 ? "xl:hidden" : "xl:block"
+            currrentBrand?.count < 2 ? "xl:hidden" : "xl:block"
           }`}
         >
           View Product(s)

@@ -1,10 +1,11 @@
+import { useState } from "react";
 import "./App.css";
 import useGetProducts from "./components/useGetProducts";
 import { Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import ProductListingPage from "./pages/ProductListingPage";
-import { useState } from "react";
 import ProductPage from "./pages/ProductPage";
+import LoadingSpinner from "./components/LoadingAnimation";
 
 // console.log([
 //   "beauty",
@@ -47,7 +48,19 @@ function App() {
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
   const [isViewProductOpen, setIsViewProductOpen] = useState(false);
-  const [currentProductID, setCurrentProductID] = useState(null);
+  const [currentProduct, setCurrentProduct] = useState(null);
+
+  if (error) {
+    return error.message;
+  }
+
+  if (loading) {
+    return (
+      <div className="h-[100vh] flex flex-col justify-center items-center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   // Get Brand and BrandCount
   const brandCount = productData.reduce((acc, item) => {
@@ -99,6 +112,7 @@ function App() {
       "womens-bags",
       "womens-jewellery",
       "womens-watches",
+      "womens-shoes",
     ].includes(product.category)
   );
 
@@ -159,6 +173,7 @@ function App() {
         "womens-bags",
         "womens-jewellery",
         "womens-watches",
+        "womens-shoes",
       ],
     },
     {
@@ -212,10 +227,6 @@ function App() {
     },
   ];
 
-  const currentProduct = productData.find(
-    (product) => product.id === currentProductID
-  );
-
   return (
     <div className="bg-[#fbfbfc]">
       <Routes>
@@ -225,8 +236,6 @@ function App() {
             <Homepage
               features={features}
               productData={productData}
-              error={error}
-              loading={loading}
               categories={categories}
               brands={brands}
               showMenu={showMenu}
@@ -234,10 +243,9 @@ function App() {
               setShowMenu={setShowMenu}
               flashSales={flashSales}
               featuredProducts={featuredProducts}
-              currentProductID={currentProductID}
-              setCurrentProductID={setCurrentProductID}
               isViewProductOpen={isViewProductOpen}
               setIsViewProductOpen={setIsViewProductOpen}
+              setCurrentProduct={setCurrentProduct}
             />
           }
         />
@@ -253,7 +261,7 @@ function App() {
               products={flashSales}
               title={"FLash Deals"}
               currentProduct={currentProduct}
-              setCurrentProductID={setCurrentProductID}
+              setCurrentProduct={setCurrentProduct}
               isViewProductOpen={isViewProductOpen}
               setIsViewProductOpen={setIsViewProductOpen}
             />
@@ -271,7 +279,7 @@ function App() {
               products={featuredProducts}
               title={"Featured Products"}
               currentProduct={currentProduct}
-              setCurrentProductID={setCurrentProductID}
+              setCurrentProduct={setCurrentProduct}
               isViewProductOpen={isViewProductOpen}
               setIsViewProductOpen={setIsViewProductOpen}
             />
@@ -291,15 +299,16 @@ function App() {
                 products={category.product}
                 title={category.title}
                 currentProduct={currentProduct}
-                setCurrentProductID={setCurrentProductID}
                 isViewProductOpen={isViewProductOpen}
                 setIsViewProductOpen={setIsViewProductOpen}
+                setCurrentProduct={setCurrentProduct}
               />
             }
           />
         ))}
+
         <Route
-          path="/product"
+          path="/product/:id"
           element={
             <ProductPage
               features={features}
@@ -308,7 +317,6 @@ function App() {
               categories={categories}
               productData={productData}
               brands={brands}
-              currentProduct={currentProduct}
             />
           }
         />

@@ -3,7 +3,7 @@ import Details from "./Details";
 import Overview from "./Overview";
 import MoreFromStore from "./MoreFromStore";
 
-function BuyProduct({ features, currentProduct, brands, productData }) {
+function BuyProduct({ features, brands, productData, currentProduct }) {
   const currrentBrand = brands.find(
     (brand) => brand.name === currentProduct.brand
   );
@@ -19,7 +19,7 @@ function BuyProduct({ features, currentProduct, brands, productData }) {
           <div className="bg-[#fff] mx-auto border-1 rounded-lg border-[#6cc6e73f]">
             <img
               className="w-[100%] m-auto"
-              src={currentProduct?.thumbnail}
+              src={currentProduct.thumbnail}
               alt={`${currentProduct.title}_image`}
             />
           </div>

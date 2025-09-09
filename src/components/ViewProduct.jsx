@@ -2,17 +2,15 @@ import { FontAwesomeIcon } from "./font-awesome";
 
 function ViewProduct({
   setIsViewProductOpen,
-  setCurrentProductID,
   currentProduct,
+  setCurrentProduct,
 }) {
-  console.log(currentProduct);
-
   return (
     <div
       className="bg-[#121212bf] hidden xl:block h-[100vh] w-[100%] absolute z-70"
       onClick={() => {
         setIsViewProductOpen(false);
-        setCurrentProductID(null);
+        setCurrentProduct(null);
       }}
     >
       <div
@@ -26,7 +24,7 @@ function ViewProduct({
             icon="fa-solid fa-xmark"
             onClick={() => {
               setIsViewProductOpen(false);
-              setCurrentProductID(null);
+              setCurrentProduct(null);
             }}
           />
         </div>

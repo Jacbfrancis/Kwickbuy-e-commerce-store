@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import BuyProduct from "../components/BuyProduct";
 import Features from "../components/Features";
@@ -11,8 +12,13 @@ function ProductPage({
   categories,
   productData,
   brands,
-  currentProduct,
 }) {
+  const { id } = useParams();
+
+  const currentProduct = productData.find(
+    (product) => product.id === parseInt(id)
+  );
+
   return (
     <div>
       <Navbar

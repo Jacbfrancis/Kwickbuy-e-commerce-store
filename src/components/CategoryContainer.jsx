@@ -4,17 +4,20 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import CarouselButton from "./CarouselButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function CategoryContainer({
   title,
   filterFunc,
   link,
   setIsViewProductOpen,
-  setCurrentProductID,
+  setCurrentProduct,
 }) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const selectedIndexes = [2, 3, 12, 10, 5, 6];
   const items = filterFunc;
@@ -81,7 +84,7 @@ function CategoryContainer({
                       ease: "easeInOut",
                     }}
                     onClick={() => {
-                      setCurrentProductID(item.id);
+                      setCurrentProduct(item);
                       setIsViewProductOpen(true);
                     }}
                   >
@@ -101,12 +104,16 @@ function CategoryContainer({
                     }}
                     src={item.thumbnail}
                     alt={`${item.title}_image`}
+                    onClick={() => navigate(`/product/${item.id}`)}
                   />
                 </motion.div>
 
-                <span className="text-black font-semibold text-[0.8rem] block pb-8 pt-4">
+                <span
+                  className="text-black font-semibold text-[0.8rem] block pb-8 pt-4"
+                  onClick={() => navigate(`/product/${item.id}`)}
+                >
                   <motion.h2 whileHover={{ color: "#1456ac" }}>
-                    {item.title}
+                    {item.title} {id}
                   </motion.h2>
                   <p>${item.price}</p>
                 </span>
