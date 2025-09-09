@@ -5,12 +5,10 @@ import FeaturedProducts from "../components/FeaturedProducts";
 import ItemGrid from "../components/ItemGrid";
 import Banner from "../components/Banner";
 import CategoryContainer from "../components/CategoryContainer";
-import LoadingSpinner from "../components/LoadingAnimation";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
 import ViewProduct from "../components/ViewProduct";
-
 
 function Homepage({
   features,
