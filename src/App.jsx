@@ -77,7 +77,7 @@ function App() {
       count: brandCount[name],
     };
   });
-  // const brands = getBrands.filter((brand) => brand.name !== "undefined");
+
   const brands = getBrands.map((brand) => {
     if (brand.name === "undefined") {
       return { ...brand, name: "Kwickbuy" };
