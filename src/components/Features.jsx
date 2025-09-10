@@ -5,7 +5,7 @@ function Features({ features }) {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="bg-[#5dcaf133] p-0 w-[100%] h-[13rem] flex flex-col items-center justify-center"
+            className="bg-[#5dcaf133] p-0 w-[100%] h-[10rem] flex flex-col items-center justify-center xl:h-[12rem]"
           >
             <div className="border-l-2 border-[#1456ac27] w-full flex flex-col justify-center items-center">
               <span className="bg-[#fff] w-[4.3rem] rounded-full p-4 block m-auto mb-4">

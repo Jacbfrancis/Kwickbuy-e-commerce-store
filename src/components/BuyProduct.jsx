@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { FontAwesomeIcon } from "./font-awesome";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
 import Details from "./Details";
 import Overview from "./Overview";
 import MoreFromStore from "./MoreFromStore";
-import { useState } from "react";
+import CarouselButton from "./CarouselButton";
+import useHover from "./useHover";
 
 function BuyProduct({ features, brands, productData, currentProduct }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
 
   const currrentBrand = brands.find(
     (brand) => brand.name === currentProduct.brand
@@ -20,13 +25,32 @@ function BuyProduct({ features, brands, productData, currentProduct }) {
   return (
     <>
       <div className="flex flex-col justify-between items-start w-[90%] mx-auto mt-5 xl:flex-row xl:w-full xl:px-20">
-        <div className="w-full mb-8 xl:w-[35%]">
-          <div className="bg-[#fff] mx-auto border-1 rounded-lg border-[#6cc6e73f]">
-            <img
-              className="w-[100%] m-auto cursor-pointer"
-              src={currentProductImages[currentImageIndex]}
-              alt={`${currentProduct.title}_image`}
-            />
+        <div className="w-full mb-8 xl:w-[30%]">
+          <div
+            className="bg-[#fff] mx-auto border-1 rounded-lg border-[#6cc6e73f] relative"
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+          >
+            <AnimatePresence>
+              <motion.img
+                key={currentImageIndex}
+                initial={{ x: 0, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -150, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-[100%] m-auto cursor-pointer"
+                src={currentProductImages[currentImageIndex]}
+                alt={`${currentProduct.title}_image`}
+              />
+              {isMouseOver && (
+                <div className="hidden w-full absolute top-[50%] left-0 xl:block">
+                  <CarouselButton
+                    length={currentProductImages.length}
+                    setCurrentIndex={setCurrentImageIndex}
+                  />
+                </div>
+              )}
+            </AnimatePresence>
           </div>
           <div className="flex justify-start items-center w-[75%] mt-3 xl:w-[80%] cursor-pointer">
             {currentProductImages.map((productImage, index) => (

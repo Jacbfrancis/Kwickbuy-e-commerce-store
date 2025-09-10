@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
 import CarouselButton from "./CarouselButton";
+import useHover from "./useHover";
 
 function ViewProduct({
   setIsViewProductOpen,
@@ -11,6 +12,8 @@ function ViewProduct({
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const currentProductImages = currentProduct.images;
+
+  const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
 
   return (
     <div
@@ -37,7 +40,11 @@ function ViewProduct({
         </div>
 
         <div className="flex justify-between items-center p-8">
-          <div className="w-[42%] border-1 rounded-md border-[#6cc6e73f]">
+          <div
+            className="w-[42%] border-1 rounded-md border-[#6cc6e73f] relative"
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+          >
             <AnimatePresence>
               <motion.img
                 key={currentImageIndex}
@@ -49,17 +56,15 @@ function ViewProduct({
                 src={currentProductImages[currentImageIndex]}
                 alt={`${currentProduct.title}_image`}
               />
+              {isMouseOver && (
+                <div className="w-full absolute top-[50%] left-0">
+                  <CarouselButton
+                    length={currentProductImages.length}
+                    setCurrentIndex={setCurrentImageIndex}
+                  />
+                </div>
+              )}
             </AnimatePresence>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className=""
-            >
-              <CarouselButton
-                length={currentProductImages.length}
-                setCurrentIndex={setCurrentImageIndex}
-              />
-            </motion.div>
           </div>
 
           <div className="w-[57%] h-[23rem] border-1 rounded-md border-[#6cc6e73f] p-4">
