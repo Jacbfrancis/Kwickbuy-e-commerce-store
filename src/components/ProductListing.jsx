@@ -170,7 +170,13 @@ function ProductListing({
                     </span>
                     <Link
                       to={category.link}
-                      onClick={() => setIsFilterMenuOpen(false)}
+                      onClick={() => {
+                        setIsFilterMenuOpen(false);
+                        setCurrentPage(1);
+                        setMinimumPrice(0);
+                        setMaximumPrice(40000);
+                        setSortSetting("");
+                      }}
                     >
                       {category.title}
                     </Link>
@@ -233,7 +239,7 @@ function ProductListing({
             <input
               className="w-full h-2"
               type="range"
-              defaultValue={maximumPrice}
+              value={maximumPrice}
               min={0}
               max={40000}
               onChange={(e) => setMaximumPrice(e.target.value)}
@@ -243,7 +249,14 @@ function ProductListing({
           <div className="font-light my-4">
             <ul>
               {categories.map((category) => (
-                <li key={category.title} className="my-4 pointer">
+                <motion.li
+                  key={category.title}
+                  className="my-4 pointer"
+                  whileHover={{
+                    backgroundColor: "#5dcaf133",
+                    borderRadius: "0.3rem",
+                  }}
+                >
                   <span>
                     <img
                       className="w-8 inline-block mr-4"
@@ -251,8 +264,18 @@ function ProductListing({
                       alt={category.title}
                     />
                   </span>
-                  <Link to={category.link}>{category.title}</Link>
-                </li>
+                  <Link
+                    to={category.link}
+                    onClick={() => {
+                      setCurrentPage(1);
+                      setMinimumPrice(0);
+                      setMaximumPrice(40000);
+                      setSortSetting("");
+                    }}
+                  >
+                    <p className="inline-block"> {category.title}</p>
+                  </Link>
+                </motion.li>
               ))}
             </ul>
           </div>

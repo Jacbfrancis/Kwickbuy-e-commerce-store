@@ -1,10 +1,17 @@
+import { useState } from "react";
 import { FontAwesomeIcon } from "./font-awesome";
+// eslint-disable-next-line no-unused-vars
+import { AnimatePresence, motion } from "framer-motion";
+import CarouselButton from "./CarouselButton";
 
 function ViewProduct({
   setIsViewProductOpen,
   currentProduct,
   setCurrentProduct,
 }) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const currentProductImages = currentProduct.images;
+
   return (
     <div
       className="bg-[#121212bf] hidden xl:block h-[100vh] w-[100%] absolute z-70"
@@ -31,11 +38,28 @@ function ViewProduct({
 
         <div className="flex justify-between items-center p-8">
           <div className="w-[42%] border-1 rounded-md border-[#6cc6e73f]">
-            <img
-              className="w-[80%] h-[23rem]  m-auto"
-              src={currentProduct.thumbnail}
-              alt={`${currentProduct.title}_image`}
-            />
+            <AnimatePresence>
+              <motion.img
+                key={currentImageIndex}
+                initial={{ x: 300, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -150, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-[80%] h-[23rem]  m-auto"
+                src={currentProductImages[currentImageIndex]}
+                alt={`${currentProduct.title}_image`}
+              />
+            </AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className=""
+            >
+              <CarouselButton
+                length={currentProductImages.length}
+                setCurrentIndex={setCurrentImageIndex}
+              />
+            </motion.div>
           </div>
 
           <div className="w-[57%] h-[23rem] border-1 rounded-md border-[#6cc6e73f] p-4">
@@ -74,8 +98,12 @@ function ViewProduct({
         </div>
 
         <div className="flex justify-start items-center w-[30%] px-8 gap-4 mb-5">
-          {currentProduct.images.map((productImage, index) => (
-            <span key={index} className="bg-neutral-100 block rounded-lg">
+          {currentProductImages.map((productImage, index) => (
+            <span
+              key={index}
+              className="bg-neutral-100 block rounded-lg"
+              onClick={() => setCurrentImageIndex(index)}
+            >
               <img
                 className="w-[4rem]"
                 src={productImage}

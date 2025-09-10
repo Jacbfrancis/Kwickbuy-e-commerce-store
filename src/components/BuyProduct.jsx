@@ -2,8 +2,11 @@ import { FontAwesomeIcon } from "./font-awesome";
 import Details from "./Details";
 import Overview from "./Overview";
 import MoreFromStore from "./MoreFromStore";
+import { useState } from "react";
 
 function BuyProduct({ features, brands, productData, currentProduct }) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const currrentBrand = brands.find(
     (brand) => brand.name === currentProduct.brand
   );
@@ -12,22 +15,25 @@ function BuyProduct({ features, brands, productData, currentProduct }) {
     (productBrand) => productBrand.brand === currrentBrand?.name
   );
 
+  const currentProductImages = currentProduct.images;
+
   return (
     <>
       <div className="flex flex-col justify-between items-start w-[90%] mx-auto mt-5 xl:flex-row xl:w-full xl:px-20">
-        <div className="w-full mb-8 xl:w-[30%]">
+        <div className="w-full mb-8 xl:w-[35%]">
           <div className="bg-[#fff] mx-auto border-1 rounded-lg border-[#6cc6e73f]">
             <img
-              className="w-[100%] m-auto"
-              src={currentProduct.thumbnail}
+              className="w-[100%] m-auto cursor-pointer"
+              src={currentProductImages[currentImageIndex]}
               alt={`${currentProduct.title}_image`}
             />
           </div>
-          <div className="flex justify-start items-center w-[75%] mt-3 xl:w-[50%]">
-            {currentProduct.images.map((productImage, index) => (
+          <div className="flex justify-start items-center w-[75%] mt-3 xl:w-[80%] cursor-pointer">
+            {currentProductImages.map((productImage, index) => (
               <span
                 key={index}
-                className="bg-[#fff] block rounded mx-2 w-[25%]"
+                className="bg-[#fff] block rounded mx-1 w-[25%]"
+                onClick={() => setCurrentImageIndex(index)}
               >
                 <img className="w-[90%] m-auto" src={productImage} alt="" />
               </span>

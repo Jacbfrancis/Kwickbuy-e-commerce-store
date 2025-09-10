@@ -114,12 +114,14 @@ function Navbar({ setShowMenu, showMenu, categories, brands }) {
           <span className="text-[0.6rem]">&#9660;</span>
         </div>
         <ul className="flex justify-between items-center">
-          <li
-            className="px-5 cursor-pointer"
-            onMouseOver={() => setIsHoverOffer(false)}
-          >
-            Home
-          </li>
+          <Link to="/">
+            <li
+              className="px-5 cursor-pointer"
+              onMouseOver={() => setIsHoverOffer(false)}
+            >
+              Home
+            </li>
+          </Link>
           <li
             className="px-5 cursor-pointer"
             onMouseOver={() => {

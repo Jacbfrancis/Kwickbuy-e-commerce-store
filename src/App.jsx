@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage";
 import ProductListingPage from "./pages/ProductListingPage";
 import ProductPage from "./pages/ProductPage";
 import LoadingSpinner from "./components/LoadingAnimation";
+import useScrollToTop from "./components/useScrollToTop";
 
 // console.log([
 //   "beauty",
@@ -45,6 +46,8 @@ const features = [
 ];
 
 function App() {
+  useScrollToTop();
+
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
   const [isViewProductOpen, setIsViewProductOpen] = useState(false);
