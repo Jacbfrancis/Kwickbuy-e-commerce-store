@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
-function SimilarProducts({ currentProduct, categories }) {
+function SimilarProducts({ currentProduct, categories, setCurrentImageIndex }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const navigate = useNavigate();
@@ -30,7 +30,10 @@ function SimilarProducts({ currentProduct, categories }) {
               className={`border-0.5 border-[#6f6f6f15] rounded-lg shadow-sm ${
                 index > 3 ? "hidden xl:inline-block" : "inline-block"
               }`}
-              onClick={() => navigate(`/product/${product.id}`)}
+              onClick={() => {
+                navigate(`/product/${product.id}`);
+                setCurrentImageIndex(0);
+              }}
             >
               <span className="block">
                 <motion.img

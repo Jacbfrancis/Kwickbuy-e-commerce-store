@@ -78,10 +78,12 @@ function Navbar({ setShowMenu, showMenu, categories, brands }) {
             className="text-lg mx-3 bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:text-xl cursor-pointer hover:text-gray-400"
             icon="fa-solid fa-user"
           />
-          <FontAwesomeIcon
-            className="text-lg bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:text-xl cursor-pointer hover:text-gray-400"
-            icon="fa-solid fa-cart-shopping"
-          />
+          <Link to="/cart">
+            <FontAwesomeIcon
+              className="text-lg bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:text-xl cursor-pointer hover:text-gray-400"
+              icon="fa-solid fa-cart-shopping"
+            />
+          </Link>
           <span className="text-xs text-white bg-orange-500 rounded-full w-5 h-4 text-center absolute top-0 right-[-10px]">
             0
           </span>

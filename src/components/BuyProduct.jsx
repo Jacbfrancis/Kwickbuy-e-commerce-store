@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,8 +7,14 @@ import MoreFromStore from "./MoreFromStore";
 import CarouselButton from "./CarouselButton";
 import useHover from "./useHover";
 
-function BuyProduct({ features, brands, productData, currentProduct }) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+function BuyProduct({
+  features,
+  brands,
+  productData,
+  currentProduct,
+  currentImageIndex,
+  setCurrentImageIndex,
+}) {
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
 
   const currrentBrand = brands.find(

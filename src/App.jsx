@@ -7,6 +7,7 @@ import ProductListingPage from "./pages/ProductListingPage";
 import ProductPage from "./pages/ProductPage";
 import LoadingSpinner from "./components/LoadingAnimation";
 import useScrollToTop from "./components/useScrollToTop";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 
 // console.log([
 //   "beauty",
@@ -320,6 +321,18 @@ function App() {
               categories={categories}
               productData={productData}
               brands={brands}
+            />
+          }
+        />
+
+        <Route
+          path="/cart"
+          element={
+            <ShoppingCartPage
+              categories={categories}
+              brands={brands}
+              showMenu={showMenu}
+              setShowMenu={setShowMenu}
             />
           }
         />
