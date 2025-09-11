@@ -3,7 +3,13 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import ShoppingCart from "../components/ShoppingCart";
 
-function ShoppingCartPage({ categories, brands, showMenu, setShowMenu }) {
+function ShoppingCartPage({
+  categories,
+  brands,
+  showMenu,
+  setShowMenu,
+  features,
+}) {
   return (
     <div>
       <Navbar
@@ -12,7 +18,7 @@ function ShoppingCartPage({ categories, brands, showMenu, setShowMenu }) {
         showMenu={showMenu}
         setShowMenu={setShowMenu}
       />
-      <ShoppingCart />
+      <ShoppingCart features={features} />
 
       <Footer />
     </div>

@@ -333,6 +333,7 @@ function App() {
               brands={brands}
               showMenu={showMenu}
               setShowMenu={setShowMenu}
+              features={features}
             />
           }
         />
