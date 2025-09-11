@@ -1,16 +1,6 @@
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
-// const features = [
-//   {
-//     image: "/express-delivery.png",
-//     description: "Lightning Fast Delivery",
-//   },
-//   { image: "/credit-card.png", description: "Safe Payment" },
-//   { image: "/box.png", description: "7 Days Return Policy" },
-//   { image: "/original.png", description: "100% Authentic Products" },
-// ];
-
 function ShoppingCart({ features }) {
   return (
     <div className="xl:px-20">
@@ -24,7 +14,7 @@ function ShoppingCart({ features }) {
           </div>
           <div className="bg-[#fff] shadow-sm px-6 py-4 xl:border-[#6cc6e73f] xl:border-1 xl:rounded-xl">
             <hr className="hidden" />
-            <p className="text-center text-[0.8rem] tracking-wide font-normal my-1 xl:text-right xl:text-[0.9rem] xl:font-semibold xl:mb-4">
+            <p className="text-center text-[0.8rem] tracking-wide font-normal my-4 xl:text-right xl:text-[0.9rem] xl:font-semibold xl:mb-4 xl:mt-1">
               Total shipping cost: $20.00
             </p>
             <hr className="hidden border-[#6cc6e74b] mb-8 xl:block" />
