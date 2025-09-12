@@ -1,9 +1,9 @@
-import Features from "../components/Features";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import ShoppingCart from "../components/ShoppingCart";
 
 function ShoppingCartPage({
+  cart,
   categories,
   brands,
   showMenu,
@@ -13,12 +13,13 @@ function ShoppingCartPage({
   return (
     <div>
       <Navbar
+        cart={cart}
         categories={categories}
         brands={brands}
         showMenu={showMenu}
         setShowMenu={setShowMenu}
       />
-      <ShoppingCart features={features} />
+      <ShoppingCart features={features} cart={cart} />
 
       <Footer />
     </div>

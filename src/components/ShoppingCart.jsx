@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
-function ShoppingCart({ features }) {
+function ShoppingCart({ features, cart }) {
   return (
     <div className="xl:px-20">
-      <h2 className="text-[1.1rem] py-4 text-center font-semibold tracking-wider xl:text-left">
+      <h2 className="text-[1.1rem] py-9 text-center font-semibold tracking-wider xl:text-left">
         Shopping Cart
       </h2>
       <div className="flex flex-col justify-between items-start xl:flex-row">
-        <div className="xl:w-[66%]">
+        <div className="w-full xl:w-[66%]">
           <div className="bg-[#f3f5f9] text-[0.85rem] hidden grid-cols-[40%_repeat(3,_1fr)] gap-4 px-6 py-4 mb-8 mt-2 rounded xl:grid">
             <h4>Product</h4> <h4>Unit Price</h4> <h4>Qty</h4> <h4>Total</h4>
           </div>
@@ -18,8 +18,7 @@ function ShoppingCart({ features }) {
               Total shipping cost: $20.00
             </p>
             <hr className="hidden border-[#6cc6e74b] mb-8 xl:block" />
-            <CartItem />
-            <CartItem />
+            <CartItem cart={cart} />
           </div>
 
           <div className="bg-[#fbfbfc] px-6 py-5 xl:px-0">
@@ -53,8 +52,8 @@ function ShoppingCart({ features }) {
             </li>
           </ul>
           <div className="hidden w-full justify-around items-start xl:flex">
-            {features.map((feature) => (
-              <div className="w-[20%] m-auto py-4">
+            {features.map((feature, index) => (
+              <div key={index} className="w-[20%] m-auto py-4">
                 <span className="w-[55%] p-2 mt-4 mb-5 border-1 border-[#6969692a] rounded-[100%] block">
                   <img src={feature.image} alt={feature.image} />
                 </span>

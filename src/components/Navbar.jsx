@@ -14,7 +14,7 @@ const offers = [
   { name: "Clearance Sales", link: "" },
 ];
 
-function Navbar({ setShowMenu, showMenu, categories, brands }) {
+function Navbar({ setShowMenu, showMenu, categories, brands, cart }) {
   const [isHoverOffer, setIsHoverOffer] = useState(false);
   const [isHoverBrand, setIsHoverBrand] = useState(false);
 
@@ -85,7 +85,7 @@ function Navbar({ setShowMenu, showMenu, categories, brands }) {
             />
           </Link>
           <span className="text-xs text-white bg-orange-500 rounded-full w-5 h-4 text-center absolute top-0 right-[-10px]">
-            0
+            {cart.length}
           </span>
         </div>
 

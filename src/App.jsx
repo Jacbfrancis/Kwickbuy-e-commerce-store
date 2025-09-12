@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import "./App.css";
 import useGetProducts from "./components/useGetProducts";
 import { Route, Routes } from "react-router-dom";
@@ -46,6 +46,21 @@ const features = [
   { image: "/original.png", description: "100% Authentic Products" },
 ];
 
+const initialCart = [];
+
+function cartReducer(cart, action) {
+  switch (action.type) {
+    case "ADD_TO_CART":
+      return [...cart, action.payload];
+
+    case "CLEAR_CART":
+      return [];
+
+    default:
+      return cart;
+  }
+}
+
 function App() {
   useScrollToTop();
 
@@ -53,6 +68,10 @@ function App() {
   const [showMenu, setShowMenu] = useState(false);
   const [isViewProductOpen, setIsViewProductOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
+
+  const [cart, dispatchCart] = useReducer(cartReducer, initialCart);
+
+  console.log(cart);
 
   if (error) {
     return error.message;
@@ -238,6 +257,8 @@ function App() {
           path="/"
           element={
             <Homepage
+              cart={cart}
+              dispatchCart={dispatchCart}
               features={features}
               productData={productData}
               categories={categories}
@@ -257,6 +278,8 @@ function App() {
           path="/flashdeals"
           element={
             <ProductListingPage
+              cart={cart}
+              dispatchCart={dispatchCart}
               features={features}
               categories={categories}
               brands={brands}
@@ -275,6 +298,8 @@ function App() {
           path="/featured-products"
           element={
             <ProductListingPage
+              cart={cart}
+              dispatchCart={dispatchCart}
               features={features}
               categories={categories}
               brands={brands}
@@ -295,6 +320,8 @@ function App() {
             path={category.link}
             element={
               <ProductListingPage
+                cart={cart}
+                dispatchCart={dispatchCart}
                 features={features}
                 categories={categories}
                 brands={brands}
@@ -315,6 +342,8 @@ function App() {
           path="/product/:id"
           element={
             <ProductPage
+              cart={cart}
+              dispatchCart={dispatchCart}
               features={features}
               showMenu={showMenu}
               setShowMenu={setShowMenu}
@@ -329,6 +358,7 @@ function App() {
           path="/cart"
           element={
             <ShoppingCartPage
+              cart={cart}
               categories={categories}
               brands={brands}
               showMenu={showMenu}

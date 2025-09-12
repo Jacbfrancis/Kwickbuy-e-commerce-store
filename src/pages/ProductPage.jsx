@@ -7,12 +7,14 @@ import SimilarProducts from "../components/SimilarProducts";
 import { useState } from "react";
 
 function ProductPage({
+  cart,
   features,
   showMenu,
   setShowMenu,
   categories,
   productData,
   brands,
+  dispatchCart,
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -25,6 +27,7 @@ function ProductPage({
   return (
     <div>
       <Navbar
+        cart={cart}
         categories={categories}
         brands={brands}
         showMenu={showMenu}
@@ -37,6 +40,7 @@ function ProductPage({
         currentProduct={currentProduct}
         brands={brands}
         productData={productData}
+        dispatchCart={dispatchCart}
       />
       <SimilarProducts
         categories={categories}

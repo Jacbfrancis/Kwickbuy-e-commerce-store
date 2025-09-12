@@ -1,18 +1,42 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
 import CarouselButton from "./CarouselButton";
 import useHover from "./useHover";
 
+const initialQuantity = 1;
+
+function quantityReducer(quantityState, action) {
+  switch (action.type) {
+    case "UPDATE_FIELD":
+      return (quantityState = parseInt(action.payload, 10) || 0);
+    case "INCREASE":
+      return quantityState + 1;
+    case "DECREASE":
+      if (quantityState <= 1) {
+        return (quantityState = 1);
+      } else {
+        return quantityState - 1;
+      }
+    default:
+      return quantityState;
+  }
+}
+
 function ViewProduct({
+  dispatchCart,
   setIsViewProductOpen,
   currentProduct,
   setCurrentProduct,
 }) {
+  const [quantityState, dispatchQuantity] = useReducer(
+    quantityReducer,
+    initialQuantity
+  );
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const currentProductImages = currentProduct.images;
-
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
 
   return (
@@ -75,14 +99,30 @@ function ViewProduct({
             <div className="font-semibold flex justify-start items-center my-6.5">
               <h3 className="text-[1.2rem] mr-3">Quantity: </h3>
               <div className="text-[#3976c5] border-1 border-[#3976c5] w-[7rem] rounded-md flex justify-center items-center">
-                <button className="px-2 cursor-pointer">-</button>
+                <button
+                  className="px-2 cursor-pointer"
+                  onClick={() => dispatchQuantity({ type: "DECREASE" })}
+                >
+                  -
+                </button>
                 <input
                   className="text-[#000] focus:outline-0 text-center font-light text-[0.95rem] border-0 px-0 py-1.5 w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   type="number"
                   placeholder="1"
-                  defaultValue={1}
+                  onChange={(e) => {
+                    dispatchQuantity({
+                      type: "UPDATE_FIELD",
+                      payload: e.target.value,
+                    });
+                  }}
+                  value={quantityState}
                 />
-                <button className="px-2 cursor-pointer">+</button>
+                <button
+                  className="px-2 cursor-pointer"
+                  onClick={() => dispatchQuantity({ type: "INCREASE" })}
+                >
+                  +
+                </button>
               </div>
             </div>
             <h3 className="text-[1.2rem] font-semibold">
@@ -95,7 +135,15 @@ function ViewProduct({
               <button className="bg-[#ef8333] text-[#fff] text-[0.9rem] rounded font-light px-6 py-3 cursor-pointer hover:bg-[#f26e09]">
                 Buy Now
               </button>
-              <button className="bg-[#1456ac] text-[#fff] text-[0.9rem] rounded font-light px-6 py-3 cursor-pointer hover:bg-[#08428e]">
+              <button
+                className="bg-[#1456ac] text-[#fff] text-[0.9rem] rounded font-light px-6 py-3 cursor-pointer hover:bg-[#08428e]"
+                onClick={() =>
+                  dispatchCart({
+                    type: "ADD_TO_CART",
+                    payload: { ...currentProduct, quantityState },
+                  })
+                }
+              >
                 Add to Cart
               </button>
             </span>

@@ -8,6 +8,8 @@ import ViewProduct from "../components/ViewProduct";
 //import ViewProduct from "../components/ViewProduct";
 
 function ProductListingPage({
+  cart,
+  dispatchCart,
   features,
   categories,
   brands,
@@ -28,12 +30,14 @@ function ProductListingPage({
     >
       {isViewProductOpen && (
         <ViewProduct
+          dispatchCart={dispatchCart}
           setIsViewProductOpen={setIsViewProductOpen}
           currentProduct={currentProduct}
           setCurrentProduct={setCurrentProduct}
         />
       )}
       <Navbar
+        cart={cart}
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         categories={categories}
