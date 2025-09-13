@@ -50,9 +50,24 @@ const initialCart = [];
 
 function cartReducer(cart, action) {
   switch (action.type) {
-    case "ADD_TO_CART":
-      return [...cart, action.payload];
-
+    case "ADD_TO_CART": {
+      const existingItem = cart.find(
+        (cartItem) => cartItem.id === action.payload.id
+      );
+      if (existingItem) {
+        return cart.map((item) =>
+          item.id === action.payload.id
+            ? {
+                ...item,
+                quantityState:
+                  item.quantityState + action.payload.quantityState,
+              }
+            : item
+        );
+      } else {
+        return [...cart, action.payload];
+      }
+    }
     case "CLEAR_CART":
       return [];
 

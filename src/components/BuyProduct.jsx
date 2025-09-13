@@ -116,7 +116,7 @@ function BuyProduct({
                 onChange={(e) => {
                   dispatchQuantity({
                     type: "UPDATE_FIELD",
-                    payload: e.action.value,
+                    payload: e.target.value,
                   });
                 }}
                 value={quantityState}

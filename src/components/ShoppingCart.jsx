@@ -2,21 +2,30 @@ import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
 function ShoppingCart({ features, cart }) {
+  //console.log(cart);
   return (
     <div className="xl:px-20">
       <h2 className="text-[1.1rem] py-9 text-center font-semibold tracking-wider xl:text-left">
         Shopping Cart
       </h2>
+
       <div className="flex flex-col justify-between items-start xl:flex-row">
         <div className="w-full xl:w-[66%]">
           <div className="bg-[#f3f5f9] text-[0.85rem] hidden grid-cols-[40%_repeat(3,_1fr)] gap-4 px-6 py-4 mb-8 mt-2 rounded xl:grid">
             <h4>Product</h4> <h4>Unit Price</h4> <h4>Qty</h4> <h4>Total</h4>
           </div>
+
           <div className="bg-[#fff] shadow-sm px-6 py-4 xl:border-[#6cc6e73f] xl:border-1 xl:rounded-xl">
-            <hr className="hidden" />
-            <p className="text-center text-[0.8rem] tracking-wide font-normal my-4 xl:text-right xl:text-[0.9rem] xl:font-semibold xl:mb-4 xl:mt-1">
-              Total shipping cost: $20.00
-            </p>
+            {cart.length >= 1 && (
+              <>
+                <hr className="hidden" />
+
+                <p className="text-center text-[0.8rem] tracking-wide font-normal my-4 xl:text-right xl:text-[0.9rem] xl:font-semibold xl:mb-4 xl:mt-1">
+                  Total shipping cost: $20.00
+                </p>
+              </>
+            )}
+
             <hr className="hidden border-[#6cc6e74b] mb-8 xl:block" />
             <CartItem cart={cart} />
           </div>
