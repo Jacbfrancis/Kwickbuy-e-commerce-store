@@ -68,8 +68,18 @@ function cartReducer(cart, action) {
         return [...cart, action.payload];
       }
     }
+
     case "CLEAR_CART":
       return [];
+
+    case "UPDATE_CART":
+      return cart
+        .map((cartItem) =>
+          cartItem.id === action.payload.id
+            ? { ...cartItem, quantityState: action.payload.quantityState }
+            : cartItem
+        )
+        .filter((cartItem) => cartItem.quantityState > 0);
 
     default:
       return cart;
@@ -374,6 +384,7 @@ function App() {
           element={
             <ShoppingCartPage
               cart={cart}
+              dispatchCart={dispatchCart}
               categories={categories}
               brands={brands}
               showMenu={showMenu}

@@ -4,6 +4,7 @@ import ShoppingCart from "../components/ShoppingCart";
 
 function ShoppingCartPage({
   cart,
+  dispatchCart,
   categories,
   brands,
   showMenu,
@@ -19,7 +20,11 @@ function ShoppingCartPage({
         showMenu={showMenu}
         setShowMenu={setShowMenu}
       />
-      <ShoppingCart features={features} cart={cart} />
+      <ShoppingCart
+        features={features}
+        cart={cart}
+        dispatchCart={dispatchCart}
+      />
 
       <Footer />
     </div>

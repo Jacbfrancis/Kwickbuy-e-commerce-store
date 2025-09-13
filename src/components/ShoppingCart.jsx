@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
-function ShoppingCart({ features, cart }) {
+function ShoppingCart({ features, cart, dispatchCart }) {
   //console.log(cart);
   return (
-    <div className="xl:px-20">
-      <h2 className="text-[1.1rem] py-9 text-center font-semibold tracking-wider xl:text-left">
+    <div className="xl:px-20 xl:pb-8">
+      <h2 className="text-[1.1rem] py-7 text-center font-semibold tracking-wider xl:text-left">
         Shopping Cart
       </h2>
 
@@ -27,7 +27,7 @@ function ShoppingCart({ features, cart }) {
             )}
 
             <hr className="hidden border-[#6cc6e74b] mb-8 xl:block" />
-            <CartItem cart={cart} />
+            <CartItem cart={cart} dispatchCart={dispatchCart} />
           </div>
 
           <div className="bg-[#fbfbfc] px-6 py-5 xl:px-0">
@@ -70,7 +70,11 @@ function ShoppingCart({ features, cart }) {
               </div>
             ))}
           </div>
-          <button className="bg-[#1456ac] text-[#fff] w-full rounded-lg py-3 my-4">
+          <button
+            className={`${
+              cart.length >= 1 ? "bg-[#1456ac]" : "bg-[#6a8ec8]"
+            } text-[#fff] w-full rounded-lg py-3 my-4 cursor-pointer`}
+          >
             Proceed to Checkout
           </button>
 
