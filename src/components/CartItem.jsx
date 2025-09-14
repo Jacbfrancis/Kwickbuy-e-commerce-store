@@ -56,6 +56,12 @@ function CartItem({ cart, dispatchCart }) {
               className="bg-[#f3f5f9] w-full m-auto my-3 py-1.5 text-center border-1 border-[#6cc6e73f] rounded-lg focus:outline-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               type="number"
               value={cartItem.quantityState}
+              onChange={(e) =>
+                dispatchCart({
+                  type: "UPDATE_CART",
+                  payload: { id: cartItem.id, quantityState: e.target.value },
+                })
+              }
             />
             <button
               onClick={() =>
@@ -86,7 +92,7 @@ function CartItem({ cart, dispatchCart }) {
     ))
   ) : (
     <div className="text-center p-13 w-full">
-      <img className="m-auto" src="/public/empty-cart.svg" alt="empty_cart" />
+      <img className="m-auto" src="/empty-cart.svg" alt="empty_cart" />
       <p className="text-[#aeaeae] tracking-wide mt-5">
         It seems your shopping cart is empty at the moment. Feel free to browse
         our products and add anything you like.
