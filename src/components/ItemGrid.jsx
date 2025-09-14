@@ -9,8 +9,8 @@ function ItemGrid({ data, title }) {
   return (
     <div className="xl:px-20 mb-8">
       <div className="bg-[#fff] shadow-sm rounded-xl ">
-        <span className="text-[#1456ac] font-normal flex justify-between items-center px-4 pt-8">
-          <h2 className="text-[1.5rem] text-black">{title}</h2>
+        <span className="text-[#1456ac] font-normal flex justify-between items-center px-4 xl:px-8 pt-8">
+          <h2 className="text-[1.3rem] text-black">{title}</h2>
           <p>View All</p>
         </span>
 
@@ -18,12 +18,12 @@ function ItemGrid({ data, title }) {
           {data.map((data, index) => (
             <Link key={data.title} to={data.link}>
               <div
-                className="text-center w-[6rem] pb-8"
+                className="text-center w-[4.5rem] pb-8 xl:w-[6rem]"
                 onMouseOver={() => setHoveredIndex(index)}
                 onMouseOut={() => setHoveredIndex(null)}
               >
                 <motion.img
-                  className="rounded-[100%] h-[6rem] mb-2 m-auto snap-center border-[#fff]"
+                  className="rounded-full h-[4.5rem] mb-2 mx-auto snap-center border-[#fff] xl:h-[6rem]"
                   animate={
                     hoveredIndex === index
                       ? {

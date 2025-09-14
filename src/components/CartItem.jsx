@@ -1,15 +1,13 @@
 import { FontAwesomeIcon } from "./font-awesome";
 
 function CartItem({ cart, dispatchCart }) {
-  console.log(cart);
-
   return cart.length >= 1 ? (
     cart.map((cartItem) => (
       <div
         key={cartItem.id}
         className="flex justify-start items-center mb-10 xl:mb-6"
       >
-        <input type="checkbox" />
+        <div className="bg-green-500 p-1 rounded-full"></div>
         <div className="flex justify-between items-center xl:grid xl:grid-cols-[40%_repeat(3,_1fr)] xl:gap-4 xl:ml-4">
           <div className="flex justify-start items-center w-[80%]">
             <div className="w-[22%] border-1 border-[#6cc6e73f] rounded-lg m-auto">
@@ -21,16 +19,13 @@ function CartItem({ cart, dispatchCart }) {
             </div>
             <div className="text-[0.8rem] font-normal w-[61%] xl:font-semibold xl:text-[0.9rem]">
               <p>{cartItem.title}</p>
-              <p className="xl:hidden">
+              <p className="mt-1.5 xl:hidden">
                 <span className="font-light">Unit price: </span>$
                 {cartItem.price.toLocaleString()}
               </p>
               <p className="xl:hidden">
                 <span className="font-light">Total: </span>$
-                {cartItem.price.toLocaleString()}
-              </p>
-              <p className="xl:hidden">
-                <span className="font-light">Shipping Cost: </span>$20.00
+                {(cartItem.price * cartItem.quantityState).toLocaleString()}
               </p>
             </div>
           </div>
@@ -85,7 +80,9 @@ function CartItem({ cart, dispatchCart }) {
             </button>
           </div>
           <div className="hidden text-center xl:block">
-            <h3>${cartItem.price.toLocaleString()}</h3>
+            <h3>
+              $ {(cartItem.price * cartItem.quantityState).toLocaleString()}
+            </h3>
           </div>
         </div>
       </div>

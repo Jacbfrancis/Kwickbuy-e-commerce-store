@@ -47,8 +47,6 @@ const features = [
   { image: "/original.png", description: "100% Authentic Products" },
 ];
 
-//const initialCart = [];
-
 function cartReducer(cart, action) {
   switch (action.type) {
     case "ADD_TO_CART": {
@@ -103,8 +101,6 @@ function App() {
   useEffect(() => {
     setItem("cart", cart);
   }, [cart]);
-
-  console.log(cart);
 
   if (error) {
     return error.message;

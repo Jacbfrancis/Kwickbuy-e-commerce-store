@@ -3,6 +3,11 @@ import CartItem from "./CartItem";
 
 function ShoppingCart({ features, cart, dispatchCart }) {
   //console.log(cart);
+
+  const Subtotal = cart.reduce((acc, item) => {
+    return acc + item.quantityState * item.price;
+  }, 0);
+
   return (
     <div className="xl:px-20 xl:pb-8">
       <h2 className="text-[1.1rem] py-7 text-center font-semibold tracking-wider xl:text-left">
@@ -21,7 +26,7 @@ function ShoppingCart({ features, cart, dispatchCart }) {
                 <hr className="hidden" />
 
                 <p className="text-center text-[0.8rem] tracking-wide font-normal my-4 xl:text-right xl:text-[0.9rem] xl:font-semibold xl:mb-4 xl:mt-1">
-                  Total shipping cost: $20.00
+                  Total shipping cost: $29.36
                 </p>
               </>
             )}
@@ -40,7 +45,7 @@ function ShoppingCart({ features, cart, dispatchCart }) {
           <ul className="text-[0.9rem] flex flex-col justify-center items-center">
             <li className="font-light my-1 flex justify-between items-center w-full">
               <p>Sub total</p>
-              <span className="font-medium">$32.00</span>
+              <span className="font-medium">${Subtotal.toLocaleString()}</span>
             </li>
             <li className="font-light my-1 flex justify-between items-center w-full">
               <p>Tax</p>
@@ -48,7 +53,7 @@ function ShoppingCart({ features, cart, dispatchCart }) {
             </li>
             <li className="font-light my-1 flex justify-between items-center w-full">
               <p>Shipping</p>
-              <span className="font-medium">$10.00</span>
+              <span className="font-medium">$29.36</span>
             </li>
             <li className="font-light my-1 flex justify-between items-center w-full">
               <p>Discount on product</p>
@@ -57,7 +62,9 @@ function ShoppingCart({ features, cart, dispatchCart }) {
             <hr className="w-full my-2 border-1 border-[#6969692a]" />
             <li className="font-light my-1 flex justify-between items-center w-full">
               <p className="text-[#1456ac]">Total</p>
-              <span className="font-medium">$42.00</span>
+              <span className="font-medium">
+                ${(Subtotal + 29.36).toLocaleString()}
+              </span>
             </li>
           </ul>
           <div className="hidden w-full justify-around items-start xl:flex">
