@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import "./App.css";
 import useGetProducts from "./components/useGetProducts";
 import { Route, Routes } from "react-router-dom";
@@ -8,6 +8,7 @@ import ProductPage from "./pages/ProductPage";
 import LoadingSpinner from "./components/LoadingAnimation";
 import useScrollToTop from "./components/useScrollToTop";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
+import { getItem, setItem } from "./components/LocalStorage";
 
 // console.log([
 //   "beauty",
@@ -46,7 +47,7 @@ const features = [
   { image: "/original.png", description: "100% Authentic Products" },
 ];
 
-const initialCart = [];
+//const initialCart = [];
 
 function cartReducer(cart, action) {
   switch (action.type) {
@@ -94,7 +95,14 @@ function App() {
   const [isViewProductOpen, setIsViewProductOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
 
-  const [cart, dispatchCart] = useReducer(cartReducer, initialCart);
+  const [cart, dispatchCart] = useReducer(cartReducer, [], () => {
+    const item = getItem("cart");
+    return item ? item : [];
+  });
+
+  useEffect(() => {
+    setItem("cart", cart);
+  }, [cart]);
 
   console.log(cart);
 
