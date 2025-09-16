@@ -18,7 +18,7 @@ function ItemGrid({ data, title }) {
           {data.map((data, index) => (
             <Link key={data.title} to={data.link}>
               <div
-                className="text-center w-[4.8rem] pb-8 xl:w-[6rem]"
+                className="text-center w-[6rem] pb-8 xl:w-[6rem]"
                 onMouseOver={() => setHoveredIndex(index)}
                 onMouseOut={() => setHoveredIndex(null)}
               >

@@ -1,0 +1,30 @@
+import Features from "../components/Features";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import Signup from "./auth/Signup";
+
+function SignupPage({
+  cart,
+  brands,
+  categories,
+  showMenu,
+  setShowMenu,
+  features,
+}) {
+  return (
+    <div>
+      <Navbar
+        cart={cart}
+        brands={brands}
+        categories={categories}
+        setShowMenu={setShowMenu}
+        showMenu={showMenu}
+      />
+      <Signup />
+      <Features features={features} />
+      <Footer />
+    </div>
+  );
+}
+
+export default SignupPage;

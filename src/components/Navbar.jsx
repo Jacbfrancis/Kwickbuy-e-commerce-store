@@ -74,10 +74,12 @@ function Navbar({ setShowMenu, showMenu, categories, brands, cart }) {
             className="text-lg bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:!hidden cursor-pointer hover:text-gray-400"
             icon="fa-solid fa-magnifying-glass"
           />
-          <FontAwesomeIcon
-            className="text-lg mx-3 bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:text-xl cursor-pointer hover:text-gray-400"
-            icon="fa-solid fa-user"
-          />
+          <Link to="/login">
+            <FontAwesomeIcon
+              className="text-lg mx-3 bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:text-xl cursor-pointer hover:text-gray-400"
+              icon="fa-solid fa-user"
+            />
+          </Link>
           <Link to="/cart">
             <FontAwesomeIcon
               className="text-lg bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:text-xl cursor-pointer hover:text-gray-400"
@@ -164,12 +166,14 @@ function Navbar({ setShowMenu, showMenu, categories, brands, cart }) {
           >
             Login
           </li>
-          <li
-            className="px-5 cursor-pointer"
-            onMouseOver={() => setIsHoverBrand(false)}
-          >
-            Sign up
-          </li>
+          <Link to="/signup">
+            <li
+              className="px-5 cursor-pointer"
+              onMouseOver={() => setIsHoverBrand(false)}
+            >
+              Sign up
+            </li>
+          </Link>
           <li className="px-5 cursor-pointer">About us</li>
         </ul>
       </div>

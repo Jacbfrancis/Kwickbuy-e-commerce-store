@@ -9,6 +9,8 @@ import LoadingSpinner from "./components/LoadingAnimation";
 import useScrollToTop from "./components/useScrollToTop";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
 import { getItem, setItem } from "./components/LocalStorage";
+import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
 
 // console.log([
 //   "beauty",
@@ -300,6 +302,34 @@ function App() {
               isViewProductOpen={isViewProductOpen}
               setIsViewProductOpen={setIsViewProductOpen}
               setCurrentProduct={setCurrentProduct}
+            />
+          }
+        />
+
+        <Route
+          path="/signup"
+          element={
+            <SignupPage
+              cart={cart}
+              brands={brands}
+              categories={categories}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              features={features}
+            />
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <LoginPage
+              cart={cart}
+              brands={brands}
+              ccategories={categories}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              features={features}
             />
           }
         />
