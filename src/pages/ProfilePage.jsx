@@ -1,16 +1,15 @@
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import Login from "./auth/Login";
+import Profile from "../components/Profile";
 
-function LoginPage({
+function ProfilePage({
   user,
   cart,
   brands,
   categories,
   showMenu,
   setShowMenu,
-  features,
 }) {
   return (
     <div>
@@ -22,11 +21,11 @@ function LoginPage({
         setShowMenu={setShowMenu}
         showMenu={showMenu}
       />
-      <Login />
-      <Features features={features} />
+
+      <Profile user={user} />
       <Footer />
     </div>
   );
 }
 
-export default LoginPage;
+export default ProfilePage;

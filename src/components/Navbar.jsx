@@ -14,7 +14,7 @@ const offers = [
   { name: "Clearance Sales", link: "" },
 ];
 
-function Navbar({ setShowMenu, showMenu, categories, brands, cart }) {
+function Navbar({ setShowMenu, showMenu, categories, brands, cart, user }) {
   const [isHoverOffer, setIsHoverOffer] = useState(false);
   const [isHoverBrand, setIsHoverBrand] = useState(false);
 
@@ -74,11 +74,16 @@ function Navbar({ setShowMenu, showMenu, categories, brands, cart }) {
             className="text-lg bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:!hidden cursor-pointer hover:text-gray-400"
             icon="fa-solid fa-magnifying-glass"
           />
-          <Link to="/login">
-            <FontAwesomeIcon
-              className="text-lg mx-3 bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:text-xl cursor-pointer hover:text-gray-400"
-              icon="fa-solid fa-user"
-            />
+          <Link to={user ? "/profile" : "/login"}>
+            <span className="flex justify-center items-center">
+              <FontAwesomeIcon
+                className="text-lg mx-3 bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:text-xl cursor-pointer hover:text-gray-400"
+                icon="fa-solid fa-user"
+              />
+              <p className="text-[0.7rem] hidden xl:inline-block">
+                {user?.displayName}
+              </p>
+            </span>
           </Link>
           <Link to="/cart">
             <FontAwesomeIcon

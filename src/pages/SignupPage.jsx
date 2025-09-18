@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Signup from "./auth/Signup";
 
 function SignupPage({
+  user,
   cart,
   brands,
   categories,
@@ -14,6 +15,7 @@ function SignupPage({
   return (
     <div>
       <Navbar
+        user={user}
         cart={cart}
         brands={brands}
         categories={categories}

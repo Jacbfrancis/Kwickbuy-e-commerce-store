@@ -11,6 +11,9 @@ import ShoppingCartPage from "./pages/ShoppingCartPage";
 import { getItem, setItem } from "./components/LocalStorage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import useAuthStatus from "./hooks/useAuthStatus";
+import ProfilePage from "./pages/ProfilePage";
+import ProtectedRoute from "./pages/auth/ProtectedRoute";
 
 // console.log([
 //   "beauty",
@@ -89,7 +92,7 @@ function cartReducer(cart, action) {
 
 function App() {
   useScrollToTop();
-
+  const { user, loadingAuth } = useAuthStatus();
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
   const [isViewProductOpen, setIsViewProductOpen] = useState(false);
@@ -108,7 +111,7 @@ function App() {
     return error.message;
   }
 
-  if (loading) {
+  if (loading || loadingAuth) {
     return (
       <div className="h-[100vh] flex flex-col justify-center items-center">
         <LoadingSpinner />
@@ -288,6 +291,7 @@ function App() {
           path="/"
           element={
             <Homepage
+              user={user}
               cart={cart}
               dispatchCart={dispatchCart}
               features={features}
@@ -324,6 +328,7 @@ function App() {
           path="/login"
           element={
             <LoginPage
+              user={user}
               cart={cart}
               brands={brands}
               ccategories={categories}
@@ -333,10 +338,28 @@ function App() {
             />
           }
         />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute user={user}>
+              <ProfilePage
+                user={user}
+                cart={cart}
+                brands={brands}
+                categories={categories}
+                setShowMenu={setShowMenu}
+                showMenu={showMenu}
+              />
+            </ProtectedRoute>
+          }
+        />
+
         <Route
           path="/flashdeals"
           element={
             <ProductListingPage
+              user={user}
               cart={cart}
               dispatchCart={dispatchCart}
               features={features}
@@ -357,6 +380,7 @@ function App() {
           path="/featured-products"
           element={
             <ProductListingPage
+              user={user}
               cart={cart}
               dispatchCart={dispatchCart}
               features={features}
@@ -379,6 +403,7 @@ function App() {
             path={category.link}
             element={
               <ProductListingPage
+                user={user}
                 cart={cart}
                 dispatchCart={dispatchCart}
                 features={features}
@@ -401,6 +426,7 @@ function App() {
           path="/product/:id"
           element={
             <ProductPage
+              user={user}
               cart={cart}
               dispatchCart={dispatchCart}
               features={features}
@@ -417,6 +443,7 @@ function App() {
           path="/cart"
           element={
             <ShoppingCartPage
+              user={user}
               cart={cart}
               dispatchCart={dispatchCart}
               categories={categories}

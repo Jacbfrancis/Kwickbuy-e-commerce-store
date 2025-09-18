@@ -7,6 +7,7 @@ import SimilarProducts from "../components/SimilarProducts";
 import { useState } from "react";
 
 function ProductPage({
+  user,
   cart,
   features,
   showMenu,
@@ -27,6 +28,7 @@ function ProductPage({
   return (
     <div>
       <Navbar
+        user={user}
         cart={cart}
         categories={categories}
         brands={brands}

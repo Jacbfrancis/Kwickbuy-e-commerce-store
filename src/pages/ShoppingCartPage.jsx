@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import ShoppingCart from "../components/ShoppingCart";
 
 function ShoppingCartPage({
+  user,
   cart,
   dispatchCart,
   categories,
@@ -14,6 +15,7 @@ function ShoppingCartPage({
   return (
     <div>
       <Navbar
+        user={user}
         cart={cart}
         categories={categories}
         brands={brands}

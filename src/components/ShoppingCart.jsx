@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 
 function ShoppingCart({ features, cart, dispatchCart }) {
-  //console.log(cart);
-
   const Subtotal = cart.reduce((acc, item) => {
     return acc + item.quantityState * item.price;
   }, 0);

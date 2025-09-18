@@ -8,6 +8,7 @@ import ViewProduct from "../components/ViewProduct";
 //import ViewProduct from "../components/ViewProduct";
 
 function ProductListingPage({
+  user,
   cart,
   dispatchCart,
   features,
@@ -37,6 +38,7 @@ function ProductListingPage({
         />
       )}
       <Navbar
+        user={user}
         cart={cart}
         showMenu={showMenu}
         setShowMenu={setShowMenu}

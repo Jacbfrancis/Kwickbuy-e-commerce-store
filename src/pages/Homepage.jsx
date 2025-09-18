@@ -11,6 +11,7 @@ import BackToTop from "../components/BackToTop";
 import ViewProduct from "../components/ViewProduct";
 
 function Homepage({
+  user,
   cart,
   dispatchCart,
   features,
@@ -40,6 +41,7 @@ function Homepage({
       )}
 
       <Navbar
+        user={user}
         cart={cart}
         showMenu={showMenu}
         setShowMenu={setShowMenu}
