@@ -108,8 +108,12 @@ function NavMenu({ setShowMenu, categories, offers }) {
         )}
 
         <li className="pl-6">Brands</li>
-        <li className="pl-6">Sign in</li>
-        <li className="pl-6">Sign up</li>
+        <Link to="/login" onClick={() => setShowMenu(false)}>
+          <li className="pl-6">Sign in</li>
+        </Link>
+        <Link to="/signup" onClick={() => setShowMenu(false)}>
+          <li className="pl-6">Sign up</li>
+        </Link>
       </ul>
     </>
   );

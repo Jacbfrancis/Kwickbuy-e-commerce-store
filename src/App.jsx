@@ -14,6 +14,7 @@ import LoginPage from "./pages/LoginPage";
 import useAuthStatus from "./hooks/useAuthStatus";
 import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./pages/auth/ProtectedRoute";
+import ShippingAddressPage from "./pages/ShippingAddressPage";
 
 // console.log([
 //   "beauty",
@@ -73,8 +74,8 @@ function cartReducer(cart, action) {
       }
     }
 
-    case "CLEAR_CART":
-      return [];
+    case "BUY_NOW":
+      return [action.payload];
 
     case "UPDATE_CART":
       return cart
@@ -102,6 +103,8 @@ function App() {
     const item = getItem("cart");
     return item ? item : [];
   });
+
+  console.log(cart);
 
   useEffect(() => {
     setItem("cart", cart);
@@ -452,6 +455,23 @@ function App() {
               setShowMenu={setShowMenu}
               features={features}
             />
+          }
+        />
+
+        <Route
+          path="/checkout-details"
+          element={
+            <ProtectedRoute user={user}>
+              <ShippingAddressPage
+                user={user}
+                cart={cart}
+                categories={categories}
+                brands={brands}
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
+                features={features}
+              />
+            </ProtectedRoute>
           }
         />
       </Routes>

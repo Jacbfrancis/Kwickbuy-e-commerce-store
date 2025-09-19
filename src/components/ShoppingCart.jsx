@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
 
 function ShoppingCart({ features, cart, dispatchCart }) {
+  const navigate = useNavigate();
+
   const Subtotal = cart.reduce((acc, item) => {
     return acc + item.quantityState * item.price;
   }, 0);
@@ -51,7 +53,9 @@ function ShoppingCart({ features, cart, dispatchCart }) {
             </li>
             <li className="font-light my-1 flex justify-between items-center w-full">
               <p>Shipping</p>
-              <span className="font-medium">$29.36</span>
+              <span className="font-medium">
+                ${cart.length < 1 ? 0 : 29.36}
+              </span>
             </li>
             <li className="font-light my-1 flex justify-between items-center w-full">
               <p>Discount on product</p>
@@ -61,7 +65,7 @@ function ShoppingCart({ features, cart, dispatchCart }) {
             <li className="font-light my-1 flex justify-between items-center w-full">
               <p className="text-[#1456ac]">Total</p>
               <span className="font-medium">
-                ${(Subtotal + 29.36).toLocaleString()}
+                ${(Subtotal + (cart.length < 1 ? 0 : 29.36)).toLocaleString()}
               </span>
             </li>
           </ul>
@@ -75,10 +79,13 @@ function ShoppingCart({ features, cart, dispatchCart }) {
               </div>
             ))}
           </div>
+
           <button
             className={`${
               cart.length >= 1 ? "bg-[#1456ac]" : "bg-[#6a8ec8]"
             } text-[#fff] w-full rounded-lg py-3 my-4 cursor-pointer`}
+            disabled={cart.length < 1}
+            onClick={() => navigate("/checkout-details")}
           >
             Proceed to Checkout
           </button>

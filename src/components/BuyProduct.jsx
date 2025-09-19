@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import Details from "./Details";
@@ -7,6 +6,7 @@ import MoreFromStore from "./MoreFromStore";
 import CarouselButton from "./CarouselButton";
 import useHover from "./useHover";
 import { useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 
 const quantityInitialState = 1;
 
@@ -42,16 +42,15 @@ function BuyProduct({
   );
 
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
-
   const currrentBrand = brands.find(
     (brand) => brand.name === currentProduct.brand
   );
-
   const productBrands = productData.filter(
     (productBrand) => productBrand.brand === currrentBrand?.name
   );
-
   const currentProductImages = currentProduct.images;
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -136,7 +135,16 @@ function BuyProduct({
             </span>
           </h3>
           <span className="flex justify-start items-center gap-3 mt-6.5">
-            <button className="bg-[#ef8333] text-[#fff] text-[0.9rem] rounded font-light px-4.5 py-2.5 cursor-pointer hover:bg-[#f26e09] xl:px-6 xl:py-2.5">
+            <button
+              className="bg-[#ef8333] text-[#fff] text-[0.9rem] rounded font-light px-4.5 py-2.5 cursor-pointer hover:bg-[#f26e09] xl:px-6 xl:py-2.5"
+              onClick={() => {
+                dispatchCart({
+                  type: "BUY_NOW",
+                  payload: { ...currentProduct, quantityState },
+                });
+                navigate("/checkout-details");
+              }}
+            >
               Buy Now
             </button>
             <button
@@ -149,13 +157,6 @@ function BuyProduct({
               }}
             >
               Add to Cart
-            </button>
-            <button className="border-1 border-[#6cc6e761] rounded px-4 py-0 cursor-pointer">
-              <FontAwesomeIcon
-                className="text-[#1456ac]"
-                icon="fa-regular fa-heart"
-              />
-              {/* <FontAwesomeIcon icon="fa-solid fa-heart" /> */}
             </button>
           </span>
         </div>
