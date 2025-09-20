@@ -1,17 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function TotalAmount({ cart, features }) {
-  const [error, setError] = useState(null);
-
-  const Subtotal = cart.reduce((acc, item) => {
-    return acc + item.quantityState * item.price;
-  }, 0);
-
-  function handleCheckout(e) {
-    e.preventDefault();
-  }
-
+function TotalAmount({ cart, features, error, handleCheckout, Subtotal }) {
   return (
     <div className="bg-[#fff] w-full p-6 mt-8 border-[#6cc6e74b] border-1 rounded-xl">
       <ul className="text-[0.9rem] flex flex-col justify-center items-center">
@@ -49,11 +38,10 @@ function TotalAmount({ cart, features }) {
           </div>
         ))}
       </div>
+      {error && <p className="text-red-500 text-center my-4">{error}</p>}
       <button
-        className={`${
-          !error ? "bg-[#1456ac]" : "bg-[#6a8ec8]"
-        } text-[#fff] w-full rounded-lg py-3 my-4 cursor-pointer`}
-        disabled={error}
+        className="bg-[#1456ac] text-[#fff] w-full rounded-lg py-3 my-4 cursor-pointer"
+        onClick={handleCheckout}
       >
         Proceed to Checkout
       </button>

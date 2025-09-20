@@ -1,4 +1,4 @@
-function Address() {
+function Address({ form, setForm }) {
   return (
     <div>
       <div className="bg-[#fff] shadow-sm px-6 py-4 border-[#6cc6e73f] border-1 xl:rounded-xl">
@@ -12,6 +12,13 @@ function Address() {
               <input
                 className="text-gray-600 w-full mt-1 px-3 py-2 border-1 border-[#6cc6e786] block rounded-md focus:outline-0"
                 type="text"
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    contactName: e.target.value,
+                  })
+                }
+                value={form.contactName}
               />
             </span>
             <span className="inline-flex flex-col my-1 w-full xl:w-[49%]">
@@ -22,6 +29,13 @@ function Address() {
               <input
                 className="text-gray-600 w-full mt-1 px-3 py-2 border-1 border-[#6cc6e786] block rounded-md focus:outline-0"
                 type="number"
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    phone: e.target.value,
+                  })
+                }
+                value={form.phone}
               />
             </span>
           </div>
@@ -33,6 +47,13 @@ function Address() {
             <input
               className="text-gray-600 w-full mt-1 px-3 py-2 border-1 border-[#6cc6e786] block rounded-md focus:outline-0"
               type="email"
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  email: e.target.value,
+                })
+              }
+              value={form.email}
             />
           </span>
           <span className="flex flex-col my-4">
@@ -362,6 +383,13 @@ function Address() {
               <input
                 className="text-gray-600 w-full mt-1 px-3 py-2 border-1 border-[#6cc6e786] block rounded-md focus:outline-0"
                 type="text"
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    city: e.target.value,
+                  })
+                }
+                value={form.city}
               />
             </span>
             <span className="flex flex-col w-[46%] xl:w-[49%]">
@@ -372,6 +400,13 @@ function Address() {
               <input
                 className="text-gray-600 w-full mt-1 px-3 py-2 border-1 border-[#6cc6e786] block rounded-md focus:outline-0"
                 type="number"
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    zipCode: e.target.value,
+                  })
+                }
+                value={form.zipCode}
               />
             </span>
           </div>
@@ -384,6 +419,13 @@ function Address() {
             <input
               className="text-gray-600 w-full mt-1 px-3 py-2 border-1 border-[#6cc6e786] block rounded-md focus:outline-0"
               type="text"
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  address: e.target.value,
+                })
+              }
+              value={form.address}
             />
           </span>
         </form>

@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "./font-awesome";
 import { AnimatePresence, motion } from "framer-motion";
 import CarouselButton from "./CarouselButton";
 import useHover from "./useHover";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const initialQuantity = 1;
 
@@ -39,6 +41,8 @@ function ViewProduct({
   const currentProductImages = currentProduct.images;
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
 
+  const navigate = useNavigate();
+
   return (
     <div
       className="bg-[#121212bf] hidden xl:block h-[100vh] w-[100%] absolute z-70"
@@ -47,6 +51,8 @@ function ViewProduct({
         setCurrentProduct(null);
       }}
     >
+      <Toaster position="top-right" reverseOrder={true} />
+
       <div
         className="bg-[#fff] text-[1.45rem] w-[85%] py-4 rounded-xl mx-auto mt-20"
         onClick={(e) => e.stopPropagation()}
@@ -132,17 +138,28 @@ function ViewProduct({
               </span>
             </h3>
             <span className="flex justify-start items-center gap-3 mt-6.5">
-              <button className="bg-[#ef8333] text-[#fff] text-[0.9rem] rounded font-light px-6 py-3 cursor-pointer hover:bg-[#f26e09]">
+              <button
+                className="bg-[#ef8333] text-[#fff] text-[0.9rem] rounded font-light px-6 py-3 cursor-pointer hover:bg-[#f26e09]"
+                onClick={() => {
+                  dispatchCart({
+                    type: "BUY_NOW",
+                    payload: { ...currentProduct, quantityState },
+                  });
+                  toast.success("successfully updated cart");
+                  navigate("/checkout-details");
+                }}
+              >
                 Buy Now
               </button>
               <button
                 className="bg-[#1456ac] text-[#fff] text-[0.9rem] rounded font-light px-6 py-3 cursor-pointer hover:bg-[#08428e]"
-                onClick={() =>
+                onClick={() => {
                   dispatchCart({
                     type: "ADD_TO_CART",
                     payload: { ...currentProduct, quantityState },
-                  })
-                }
+                  });
+                  toast.success("successfully added to cart");
+                }}
               >
                 Add to Cart
               </button>

@@ -5,6 +5,6 @@ export async function logout() {
   try {
     await signOut(auth);
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }

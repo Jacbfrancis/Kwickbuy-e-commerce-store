@@ -104,7 +104,7 @@ function App() {
     return item ? item : [];
   });
 
-  console.log(cart);
+  //console.log(cart);
 
   useEffect(() => {
     setItem("cart", cart);

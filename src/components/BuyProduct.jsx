@@ -7,6 +7,7 @@ import CarouselButton from "./CarouselButton";
 import useHover from "./useHover";
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const quantityInitialState = 1;
 
@@ -55,6 +56,8 @@ function BuyProduct({
   return (
     <>
       <div className="flex flex-col justify-between items-start w-[90%] mx-auto mt-5 xl:flex-row xl:w-full xl:px-20">
+        <Toaster position="top-right" reverseOrder={true} />
+
         <div className="w-full mb-8 xl:w-[30%]">
           <div
             className="bg-[#fff] mx-auto border-1 rounded-lg border-[#6cc6e73f] relative"
@@ -142,6 +145,7 @@ function BuyProduct({
                   type: "BUY_NOW",
                   payload: { ...currentProduct, quantityState },
                 });
+                toast.success("successfully updated cart");
                 navigate("/checkout-details");
               }}
             >
@@ -154,6 +158,7 @@ function BuyProduct({
                   type: "ADD_TO_CART",
                   payload: { ...currentProduct, quantityState },
                 });
+                toast.success("successfully added to cart");
               }}
             >
               Add to Cart
