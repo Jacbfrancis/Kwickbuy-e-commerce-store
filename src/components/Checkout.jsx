@@ -2,8 +2,10 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import Address from "./Address";
 import TotalAmount from "./TotalAmount";
+import { useNavigate } from "react-router-dom";
 
 function Checkout({ cart, features }) {
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [showBillingForm, setShowBillingForm] = useState(true);
   const [shippingAddressForm, setShippingAddressForm] = useState({
@@ -22,7 +24,7 @@ function Checkout({ cart, features }) {
   function handleCheckout() {
     setError("");
 
-    // Handle empty input fields
+    // Handle empty input fields for shipping address form
     if (
       !shippingAddressForm.phone ||
       !shippingAddressForm.contactName ||
@@ -41,9 +43,9 @@ function Checkout({ cart, features }) {
       toast.error("you don't have any items in your cart");
       return;
     }
-  }
 
-  console.log(shippingAddressForm);
+    navigate("/checkout-payment");
+  }
 
   return (
     <div className="flex flex-col justify-between items-start xl:px-20 xl:flex-row">

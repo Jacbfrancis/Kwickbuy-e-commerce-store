@@ -15,6 +15,7 @@ import useAuthStatus from "./hooks/useAuthStatus";
 import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./pages/auth/ProtectedRoute";
 import ShippingAddressPage from "./pages/ShippingAddressPage";
+import PaymentPage from "./pages/PaymentPage";
 
 // console.log([
 //   "beauty",
@@ -463,6 +464,23 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <ShippingAddressPage
+                user={user}
+                cart={cart}
+                categories={categories}
+                brands={brands}
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
+                features={features}
+              />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/checkout-payment"
+          element={
+            <ProtectedRoute user={user}>
+              <PaymentPage
                 user={user}
                 cart={cart}
                 categories={categories}
