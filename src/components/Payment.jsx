@@ -1,9 +1,9 @@
 import { useReducer, useState } from "react";
-import Address from "./Address";
 import PaymentMethod from "./PaymentMethod";
 import TotalAmount from "./TotalAmount";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { setItem } from "./LocalStorage";
 
 function reduce(paymentMethod, action) {
   switch (action.type) {
@@ -59,10 +59,10 @@ function Payment({ features, cart }) {
       toast.error("No payment Method was selected");
       return;
     }
-    navigate("");
-  }
 
-  //console.log(paymentMethod.commerz);
+    setItem("checkoutPayment", "true");
+    navigate("/order-complete");
+  }
 
   return (
     <div className="flex flex-col justify-between items-start xl:px-20 xl:flex-row">

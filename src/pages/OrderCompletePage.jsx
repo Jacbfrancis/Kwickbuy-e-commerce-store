@@ -1,11 +1,12 @@
 import { useEffect } from "react";
+import Features from "../components/Features";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import Payment from "../components/Payment";
-import { getItem } from "../components/LocalStorage";
+import Order from "../components/Order";
 import { useNavigate } from "react-router-dom";
+import { getItem } from "../components/LocalStorage";
 
-function PaymentPage({
+function OrderCompletePage({
   user,
   cart,
   showMenu,
@@ -17,10 +18,10 @@ function PaymentPage({
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkoutAddress = getItem("checkoutAddress");
+    const checkoutPayment = getItem("checkoutPayment");
 
-    if (!checkoutAddress) {
-      navigate("/checkout-details");
+    if (!checkoutPayment) {
+      navigate("/checkout-payment");
     }
   }, [navigate]);
 
@@ -34,12 +35,11 @@ function PaymentPage({
         categories={categories}
         brands={brands}
       />
-
-      <Payment features={features} cart={cart} />
-
+      <Order />
+      <Features features={features} />
       <Footer />
     </div>
   );
 }
 
-export default PaymentPage;
+export default OrderCompletePage;

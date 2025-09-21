@@ -16,6 +16,7 @@ import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./pages/auth/ProtectedRoute";
 import ShippingAddressPage from "./pages/ShippingAddressPage";
 import PaymentPage from "./pages/PaymentPage";
+import OrderCompletePage from "./pages/OrderCompletePage";
 
 // console.log([
 //   "beauty",
@@ -481,6 +482,23 @@ function App() {
           element={
             <ProtectedRoute user={user}>
               <PaymentPage
+                user={user}
+                cart={cart}
+                categories={categories}
+                brands={brands}
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
+                features={features}
+              />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/order-complete"
+          element={
+            <ProtectedRoute user={user}>
+              <OrderCompletePage
                 user={user}
                 cart={cart}
                 categories={categories}

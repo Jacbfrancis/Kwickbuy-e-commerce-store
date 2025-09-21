@@ -3,6 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Address from "./Address";
 import TotalAmount from "./TotalAmount";
 import { useNavigate } from "react-router-dom";
+import { setItem } from "./LocalStorage";
 
 function Checkout({ cart, features }) {
   const navigate = useNavigate();
@@ -24,6 +25,12 @@ function Checkout({ cart, features }) {
   function handleCheckout() {
     setError("");
 
+    if (Subtotal < 1) {
+      setError("you don't have any items in your cart");
+      toast.error("you don't have any items in your cart");
+      return;
+    }
+
     // Handle empty input fields for shipping address form
     if (
       !shippingAddressForm.phone ||
@@ -38,11 +45,7 @@ function Checkout({ cart, features }) {
       return;
     }
 
-    if (Subtotal < 1) {
-      setError("you don't have any items in your cart");
-      toast.error("you don't have any items in your cart");
-      return;
-    }
+    setItem("checkoutAddress", "true");
 
     navigate("/checkout-payment");
   }
