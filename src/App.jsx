@@ -18,6 +18,7 @@ import ShippingAddressPage from "./pages/ShippingAddressPage";
 import PaymentPage from "./pages/PaymentPage";
 import OrderCompletePage from "./pages/OrderCompletePage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ErrorPage from "./pages/ErrorPage";
 
 // console.log([
 //   "beauty",
@@ -112,7 +113,7 @@ function App() {
   }, [cart]);
 
   if (error) {
-    return error.message;
+    return <ErrorPage />;
   }
 
   if (loading || loadingAuth) {
