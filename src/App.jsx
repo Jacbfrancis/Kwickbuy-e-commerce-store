@@ -17,6 +17,7 @@ import ProtectedRoute from "./pages/auth/ProtectedRoute";
 import ShippingAddressPage from "./pages/ShippingAddressPage";
 import PaymentPage from "./pages/PaymentPage";
 import OrderCompletePage from "./pages/OrderCompletePage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 // console.log([
 //   "beauty",
@@ -105,8 +106,6 @@ function App() {
     const item = getItem("cart");
     return item ? item : [];
   });
-
-  //console.log(cart);
 
   useEffect(() => {
     setItem("cart", cart);
@@ -333,6 +332,21 @@ function App() {
           path="/login"
           element={
             <LoginPage
+              user={user}
+              cart={cart}
+              brands={brands}
+              ccategories={categories}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              features={features}
+            />
+          }
+        />
+
+        <Route
+          path="/forgot-password"
+          element={
+            <ForgotPasswordPage
               user={user}
               cart={cart}
               brands={brands}

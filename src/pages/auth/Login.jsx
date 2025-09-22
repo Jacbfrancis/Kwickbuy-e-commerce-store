@@ -70,9 +70,11 @@ function Login() {
               <input type="checkbox" />
               <p className="inline-block mx-2 text-[#1456ac]">Remeber me</p>
             </span>
-            <span className="text-[#1456ac] underline block">
-              Forgot password
-            </span>
+            <Link to="/forgot-password">
+              <span className="text-[#1456ac] underline block">
+                Forgot password
+              </span>
+            </Link>
           </div>
           {error && <p className="text-red-600 mt-5">{error}</p>}
           <button

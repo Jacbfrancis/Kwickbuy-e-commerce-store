@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -16,14 +16,21 @@ function OrderCompletePage({
   features,
 }) {
   const navigate = useNavigate();
+  const [authorized, setAuthorized] = useState(() => {
+    return getItem("checkoutPayment");
+  });
 
   useEffect(() => {
-    const checkoutPayment = getItem("checkoutPayment");
-
-    if (!checkoutPayment) {
+    if (!authorized) {
       navigate("/checkout-payment");
+    } else {
+      setAuthorized(true);
+      localStorage.removeItem("checkoutPayment");
+      localStorage.removeItem("checkoutAddress");
     }
-  }, [navigate]);
+  }, [navigate, authorized]);
+
+  if (!authorized) return null;
 
   return (
     <div>

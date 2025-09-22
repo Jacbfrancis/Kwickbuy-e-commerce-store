@@ -25,6 +25,6 @@ export function handleAuthError(error) {
       return "Invalid credentials";
 
     default:
-      return "Something went wrong. Please try again";
+      return "";
   }
 }

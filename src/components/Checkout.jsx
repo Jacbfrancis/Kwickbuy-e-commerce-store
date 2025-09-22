@@ -54,7 +54,7 @@ function Checkout({ cart, features }) {
     <div className="flex flex-col justify-between items-start xl:px-20 xl:flex-row">
       <Toaster position="top-right" reverseOrder={true} />
 
-      <div className="xl:w-[66%]">
+      <div className="w-full xl:w-[66%]">
         <h2 className="text-[1.2rem] font-medium p-6">Shipping Address</h2>
 
         <Address form={shippingAddressForm} setForm={setShippingAddressForm} />
