@@ -14,6 +14,8 @@ function OrderCompletePage({
   categories,
   brands,
   features,
+  setSearch,
+  search,
 }) {
   const navigate = useNavigate();
   const [authorized, setAuthorized] = useState(() => {
@@ -41,6 +43,8 @@ function OrderCompletePage({
         setShowMenu={setShowMenu}
         categories={categories}
         brands={brands}
+        setSearch={setSearch}
+        search={search}
       />
       <Order />
       <Features features={features} />

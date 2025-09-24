@@ -11,6 +11,8 @@ function LoginPage({
   showMenu,
   setShowMenu,
   features,
+  setSearch,
+  search,
 }) {
   return (
     <div>
@@ -21,6 +23,8 @@ function LoginPage({
         categories={categories}
         setShowMenu={setShowMenu}
         showMenu={showMenu}
+        setSearch={setSearch}
+        search={search}
       />
       <Login />
       <Features features={features} />

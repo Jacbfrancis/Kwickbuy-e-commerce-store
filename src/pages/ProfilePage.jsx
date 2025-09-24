@@ -10,6 +10,8 @@ function ProfilePage({
   categories,
   showMenu,
   setShowMenu,
+  setSearch,
+  search,
 }) {
   return (
     <div>
@@ -20,6 +22,8 @@ function ProfilePage({
         categories={categories}
         setShowMenu={setShowMenu}
         showMenu={showMenu}
+        setSearch={setSearch}
+        search={search}
       />
 
       <Profile user={user} />

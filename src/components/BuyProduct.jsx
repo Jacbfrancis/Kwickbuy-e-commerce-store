@@ -50,8 +50,6 @@ function BuyProduct({
     (productBrand) => productBrand.brand === currrentBrand?.title
   );
 
-  console.log(brands);
-
   const currentProductImages = currentProduct.images;
 
   const navigate = useNavigate();

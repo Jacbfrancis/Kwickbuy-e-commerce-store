@@ -104,6 +104,7 @@ function App() {
   const [showMenu, setShowMenu] = useState(false);
   const [isViewProductOpen, setIsViewProductOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
+  const [search, setSearch] = useState("");
 
   const [cart, dispatchCart] = useReducer(cartReducer, [], () => {
     const item = getItem("cart");
@@ -144,12 +145,19 @@ function App() {
 
   const brands = getBrands.map((brand) => {
     if (brand.title === "undefined") {
-      return { ...brand, title: "Kwickbuy" };
+      return { ...brand, title: "Kwickbuy Store" };
     }
     return brand;
   });
 
-  //console.log(brands);
+  //filter for search
+  const searcResults = productData.filter((item) => {
+    const searchWord = search.toLowerCase().split("");
+    const productTitle = item.title.toLowerCase().split("");
+    return searchWord.every((searchWord) =>
+      productTitle.some((name) => name.includes(searchWord))
+    );
+  });
 
   // filter for flashSales
   const flashSales = productData.filter((item) => item.discountPercentage > 19);
@@ -303,6 +311,8 @@ function App() {
               user={user}
               cart={cart}
               dispatchCart={dispatchCart}
+              setSearch={setSearch}
+              search={search}
               features={features}
               productData={productData}
               categories={categories}
@@ -329,6 +339,8 @@ function App() {
               setShowMenu={setShowMenu}
               showMenu={showMenu}
               features={features}
+              setSearch={setSearch}
+              search={search}
             />
           }
         />
@@ -344,6 +356,8 @@ function App() {
               setShowMenu={setShowMenu}
               showMenu={showMenu}
               features={features}
+              setSearch={setSearch}
+              search={search}
             />
           }
         />
@@ -359,6 +373,8 @@ function App() {
               setShowMenu={setShowMenu}
               showMenu={showMenu}
               features={features}
+              setSearch={setSearch}
+              search={search}
             />
           }
         />
@@ -374,6 +390,8 @@ function App() {
                 categories={categories}
                 setShowMenu={setShowMenu}
                 showMenu={showMenu}
+                setSearch={setSearch}
+                search={search}
               />
             </ProtectedRoute>
           }
@@ -392,6 +410,8 @@ function App() {
               features={features}
               data={categories}
               title={"Categories"}
+              setSearch={setSearch}
+              search={search}
             />
           }
         />
@@ -409,6 +429,8 @@ function App() {
               features={features}
               data={BrandData}
               title={"Brands"}
+              setSearch={setSearch}
+              search={search}
             />
           }
         />
@@ -431,6 +453,8 @@ function App() {
               setCurrentProduct={setCurrentProduct}
               isViewProductOpen={isViewProductOpen}
               setIsViewProductOpen={setIsViewProductOpen}
+              setSearch={setSearch}
+              search={search}
             />
           }
         />
@@ -452,6 +476,32 @@ function App() {
               setCurrentProduct={setCurrentProduct}
               isViewProductOpen={isViewProductOpen}
               setIsViewProductOpen={setIsViewProductOpen}
+              setSearch={setSearch}
+              search={search}
+            />
+          }
+        />
+
+        <Route
+          path="/search"
+          element={
+            <ProductListingPage
+              user={user}
+              cart={cart}
+              dispatchCart={dispatchCart}
+              showMenu={showMenu}
+              setShowMenu={setShowMenu}
+              features={features}
+              categories={categories}
+              brands={brands}
+              setSearch={setSearch}
+              search={search}
+              products={searcResults}
+              title={"Products"}
+              currentProduct={currentProduct}
+              isViewProductOpen={isViewProductOpen}
+              setIsViewProductOpen={setIsViewProductOpen}
+              setCurrentProduct={setCurrentProduct}
             />
           }
         />
@@ -475,6 +525,8 @@ function App() {
                 isViewProductOpen={isViewProductOpen}
                 setIsViewProductOpen={setIsViewProductOpen}
                 setCurrentProduct={setCurrentProduct}
+                setSearch={setSearch}
+                search={search}
               />
             }
           />
@@ -493,6 +545,8 @@ function App() {
               categories={categories}
               productData={productData}
               brands={brands}
+              setSearch={setSearch}
+              search={search}
             />
           }
         />
@@ -509,6 +563,8 @@ function App() {
               showMenu={showMenu}
               setShowMenu={setShowMenu}
               features={features}
+              setSearch={setSearch}
+              search={search}
             />
           }
         />
@@ -525,6 +581,8 @@ function App() {
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
                 features={features}
+                setSearch={setSearch}
+                search={search}
               />
             </ProtectedRoute>
           }
@@ -542,6 +600,8 @@ function App() {
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
                 features={features}
+                setSearch={setSearch}
+                search={search}
               />
             </ProtectedRoute>
           }
@@ -559,6 +619,8 @@ function App() {
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
                 features={features}
+                setSearch={setSearch}
+                search={search}
               />
             </ProtectedRoute>
           }

@@ -16,6 +16,8 @@ function ProductListing({
   setIsViewProductOpen,
   title,
   setCurrentProduct,
+  setSearch,
+  search,
 }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -68,6 +70,8 @@ function ProductListing({
         <Filter
           setIsFilterMenuOpen={setIsFilterMenuOpen}
           setSortSetting={setSortSetting}
+          setSearch={setSearch}
+          search={search}
         />
       </div>
 

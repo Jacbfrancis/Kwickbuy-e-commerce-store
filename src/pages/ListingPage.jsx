@@ -13,6 +13,8 @@ function ListingPage({
   features,
   data,
   title,
+  setSearch,
+  search,
 }) {
   return (
     <div>
@@ -23,6 +25,8 @@ function ListingPage({
         setShowMenu={setShowMenu}
         categories={categories}
         brands={brands}
+        setSearch={setSearch}
+        search={search}
       />
       <ListContainer data={data} title={title} />
       <Features features={features} />

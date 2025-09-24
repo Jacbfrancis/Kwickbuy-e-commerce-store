@@ -11,6 +11,8 @@ function SignupPage({
   showMenu,
   setShowMenu,
   features,
+  setSearch,
+  search,
 }) {
   return (
     <div>
@@ -21,6 +23,8 @@ function SignupPage({
         categories={categories}
         setShowMenu={setShowMenu}
         showMenu={showMenu}
+        setSearch={setSearch}
+        search={search}
       />
       <Signup />
       <Features features={features} />

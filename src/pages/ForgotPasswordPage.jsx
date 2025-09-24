@@ -12,6 +12,8 @@ function ForgotPasswordPage({
   showMenu,
   setShowMenu,
   features,
+  setSearch,
+  search,
 }) {
   return (
     <div>
@@ -22,6 +24,8 @@ function ForgotPasswordPage({
         categories={categories}
         setShowMenu={setShowMenu}
         showMenu={showMenu}
+        setSearch={setSearch}
+        search={search}
       />
       <ForgotPassword />
       <Features features={features} />

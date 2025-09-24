@@ -23,7 +23,7 @@ function Details({ features, currrentBrand, currentProduct }) {
               alt="brand_logo"
             />
           </span>
-          <h2 className="ml-3">{currentProduct.brand || "Kwickbuy"}</h2>
+          <h2 className="ml-3">{currentProduct.brand || "Kwickbuy Store"}</h2>
         </div>
         <div className="text-[#1456ac] text-[0.8rem] w-[80%] m-auto flex justify-between items-center py-6">
           <span className="text-center w-[50%] border-r-1 border-[#4949491f] block">

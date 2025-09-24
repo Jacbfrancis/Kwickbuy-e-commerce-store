@@ -22,6 +22,8 @@ function ProductListingPage({
   setIsViewProductOpen,
   currentProduct,
   setCurrentProduct,
+  setSearch,
+  search,
 }) {
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
@@ -44,6 +46,8 @@ function ProductListingPage({
         setShowMenu={setShowMenu}
         categories={categories}
         brands={brands}
+        setSearch={setSearch}
+        search={search}
       />
 
       <ProductListing
@@ -55,6 +59,8 @@ function ProductListingPage({
         title={title}
         setIsViewProductOpen={setIsViewProductOpen}
         setCurrentProduct={setCurrentProduct}
+        setSearch={setSearch}
+        search={search}
       />
 
       <Features features={features} />

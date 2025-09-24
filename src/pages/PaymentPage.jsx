@@ -13,6 +13,8 @@ function PaymentPage({
   categories,
   brands,
   features,
+  setSearch,
+  search,
 }) {
   const navigate = useNavigate();
 
@@ -33,6 +35,8 @@ function PaymentPage({
         setShowMenu={setShowMenu}
         categories={categories}
         brands={brands}
+        setSearch={setSearch}
+        search={search}
       />
 
       <Payment features={features} cart={cart} />

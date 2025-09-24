@@ -11,6 +11,8 @@ function ShippingAddressPage({
   categories,
   brands,
   features,
+  setSearch,
+  search,
 }) {
   return (
     <div>
@@ -21,6 +23,8 @@ function ShippingAddressPage({
         setShowMenu={setShowMenu}
         categories={categories}
         brands={brands}
+        setSearch={setSearch}
+        search={search}
       />
 
       <Checkout features={features} cart={cart} />

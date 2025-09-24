@@ -11,6 +11,8 @@ function ShoppingCartPage({
   showMenu,
   setShowMenu,
   features,
+  setSearch,
+  search,
 }) {
   return (
     <div>
@@ -21,6 +23,8 @@ function ShoppingCartPage({
         brands={brands}
         showMenu={showMenu}
         setShowMenu={setShowMenu}
+        setSearch={setSearch}
+        search={search}
       />
       <ShoppingCart
         features={features}

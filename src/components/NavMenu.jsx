@@ -106,8 +106,9 @@ function NavMenu({ setShowMenu, categories, offers }) {
             </ul>
           </motion.div>
         )}
-
-        <li className="pl-6">Brands</li>
+        <Link to="/brands" onClick={() => setShowMenu(false)}>
+          <li className="pl-6">Brands</li>
+        </Link>
         <Link to="/login" onClick={() => setShowMenu(false)}>
           <li className="pl-6">Sign in</li>
         </Link>

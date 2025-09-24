@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 function BrandHoverMenu({ brands }) {
   return (
@@ -24,11 +25,13 @@ function BrandHoverMenu({ brands }) {
               </span>
             </li>
           ))}
-          <li>
-            <span className="font-medium px-3 py-2 cursor-pointer block text-[#1456ac]">
-              View More
-            </span>
-          </li>
+          <Link to="/brands">
+            <li>
+              <span className="font-medium px-3 py-2 cursor-pointer block text-[#1456ac]">
+                View More
+              </span>
+            </li>
+          </Link>
         </ul>
       </motion.div>
     </>

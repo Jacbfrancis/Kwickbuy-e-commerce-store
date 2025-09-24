@@ -5,18 +5,29 @@ import { FontAwesomeIcon } from "./font-awesome";
 import NavMenu from "../components/NavMenu";
 import OfferHoverMenu from "./OfferHoverMenu";
 import BrandHoverMenu from "./BrandHoverMenu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const offers = [
   { name: "Featured Deals", link: "/featured-products" },
   { name: "Flash Sales", link: "/flashdeals" },
-  { name: "Discontinued Products", link: "" },
-  { name: "Clearance Sales", link: "" },
+  // { name: "Discontinued Products", link: "" },
+  // { name: "Clearance Sales", link: "" },
 ];
 
-function Navbar({ setShowMenu, showMenu, categories, brands, cart, user }) {
+function Navbar({
+  setShowMenu,
+  showMenu,
+  categories,
+  brands,
+  cart,
+  user,
+  setSearch,
+  search,
+}) {
   const [isHoverOffer, setIsHoverOffer] = useState(false);
   const [isHoverBrand, setIsHoverBrand] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -49,11 +60,20 @@ function Navbar({ setShowMenu, showMenu, categories, brands, cart, user }) {
             />
           </Link>
         </div>
-        <div className=" hidden h-[3rem] w-full mx-15 justify-center items-center xl:flex">
+
+        <form
+          className="hidden h-[3rem] w-full mx-15 justify-center items-center xl:flex"
+          onSubmit={(e) => {
+            e.preventDefault();
+            navigate("/search");
+          }}
+        >
           <input
-            className=" size-full border-1 rounded-l-lg border-solid border-gray-400 py-2 px-3 text-s leading-4 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#1456ac] focus:outline-none focus:ring-[#1456ac]"
+            className="size-full border-1 rounded-l-lg border-solid border-gray-400 py-2 px-3 text-s leading-4 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-[#1456ac] focus:outline-none focus:ring-[#1456ac]"
             type="text"
             placeholder="Search for items"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <button className="bg-[#1456ac] w-20 h-full rounded-r-lg text-center flex justify-center items-center cursor-pointer">
             <FontAwesomeIcon
@@ -61,7 +81,8 @@ function Navbar({ setShowMenu, showMenu, categories, brands, cart, user }) {
               icon="fa-solid fa-magnifying-glass"
             />
           </button>
-        </div>
+        </form>
+
         <div className="flex justify-center items-center relative z-50">
           <FontAwesomeIcon
             className="text-lg bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 !hidden xl:text-xl xl:!inline-block cursor-pointer hover:text-gray-400"

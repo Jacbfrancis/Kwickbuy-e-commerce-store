@@ -15,6 +15,8 @@ function Homepage({
   user,
   cart,
   dispatchCart,
+  setSearch,
+  search,
   features,
   productData,
   categories,
@@ -44,6 +46,8 @@ function Homepage({
       <Navbar
         user={user}
         cart={cart}
+        setSearch={setSearch}
+        search={search}
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         categories={categories}

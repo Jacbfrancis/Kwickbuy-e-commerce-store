@@ -16,6 +16,8 @@ function ProductPage({
   productData,
   brands,
   dispatchCart,
+  setSearch,
+  search,
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -34,6 +36,8 @@ function ProductPage({
         brands={brands}
         showMenu={showMenu}
         setShowMenu={setShowMenu}
+        setSearch={setSearch}
+        search={search}
       />
       <BuyProduct
         currentImageIndex={currentImageIndex}
