@@ -3,7 +3,7 @@ import { easeInOut, motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function ItemGrid({ data, title }) {
+function ItemGrid({ data, title, link }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
@@ -11,11 +11,13 @@ function ItemGrid({ data, title }) {
       <div className="bg-[#fff] shadow-sm rounded-xl ">
         <span className="text-[#1456ac] font-normal flex justify-between items-center px-4 xl:px-8 pt-8">
           <h2 className="text-[1.3rem] text-black">{title}</h2>
-          <p>View All</p>
+          <Link to={link}>
+            <p>View All</p>
+          </Link>
         </span>
 
         <div className="overflow-scroll [scrollbar-width:none] flex justify-start items-start px-11 py-5 whitespace-nowrap gap-10">
-          {data.map((data, index) => (
+          {data.slice(0, 9).map((data, index) => (
             <Link key={data.title} to={data.link}>
               <div
                 className="text-center w-[6rem] pb-8 xl:w-[6rem]"

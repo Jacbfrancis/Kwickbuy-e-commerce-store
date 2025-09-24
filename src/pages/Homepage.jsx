@@ -9,6 +9,7 @@ import Features from "../components/Features";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop";
 import ViewProduct from "../components/ViewProduct";
+import { BrandData } from "../components/BrandData";
 
 function Homepage({
   user,
@@ -61,7 +62,7 @@ function Homepage({
         setIsViewProductOpen={setIsViewProductOpen}
         setCurrentProduct={setCurrentProduct}
       />
-      <ItemGrid data={categories} title={"Categories"} />
+      <ItemGrid data={categories} title={"Categories"} link={"/categories"} />
       <Banner banner={"/gadgets_banner.webp"} />
       <CategoryContainer
         title={"Phones & Gadgets"}
@@ -111,7 +112,7 @@ function Homepage({
         setIsViewProductOpen={setIsViewProductOpen}
       />
 
-      <ItemGrid data={categories} title={"Categories"} />
+      <ItemGrid data={BrandData} title={"Brands"} link={"/brands"} />
       <Features features={features} />
       <Footer />
       <BackToTop />

@@ -19,6 +19,8 @@ import PaymentPage from "./pages/PaymentPage";
 import OrderCompletePage from "./pages/OrderCompletePage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ErrorPage from "./pages/ErrorPage";
+import ListingPage from "./pages/ListingPage";
+import { BrandData } from "./components/BrandData";
 
 // console.log([
 //   "beauty",
@@ -135,17 +137,19 @@ function App() {
 
   const getBrands = brandNames.map((name) => {
     return {
-      name: name,
+      title: name,
       count: brandCount[name],
     };
   });
 
   const brands = getBrands.map((brand) => {
-    if (brand.name === "undefined") {
-      return { ...brand, name: "Kwickbuy" };
+    if (brand.title === "undefined") {
+      return { ...brand, title: "Kwickbuy" };
     }
     return brand;
   });
+
+  //console.log(brands);
 
   // filter for flashSales
   const flashSales = productData.filter((item) => item.discountPercentage > 19);
@@ -372,6 +376,40 @@ function App() {
                 showMenu={showMenu}
               />
             </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/categories"
+          element={
+            <ListingPage
+              user={user}
+              cart={cart}
+              brands={brands}
+              categories={categories}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              features={features}
+              data={categories}
+              title={"Categories"}
+            />
+          }
+        />
+
+        <Route
+          path="/brands"
+          element={
+            <ListingPage
+              user={user}
+              cart={cart}
+              brands={brands}
+              categories={categories}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              features={features}
+              data={BrandData}
+              title={"Brands"}
+            />
           }
         />
 

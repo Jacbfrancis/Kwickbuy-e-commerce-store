@@ -1,4 +1,4 @@
-function Details({ features, currrentBrand }) {
+function Details({ features, currrentBrand, currentProduct }) {
   return (
     <div className="w-full mt-4 xl:w-[25%] xl:mt-auto">
       <div className="bg-[#fff] text-[#373636ab] text-[0.8rem] font-extralight rounded-lg mb-4">
@@ -13,6 +13,7 @@ function Details({ features, currrentBrand }) {
           ))}
         </ul>
       </div>
+
       <div className="bg-[#fff] py-8 px-6 rounded-lg mb-4">
         <div className="flex justify-center items-center">
           <span className="border-1 rounded-[100%] p-2 mr-3">
@@ -22,7 +23,7 @@ function Details({ features, currrentBrand }) {
               alt="brand_logo"
             />
           </span>
-          <h2 className="ml-3">{currrentBrand?.name || "Kwickbuy"}</h2>
+          <h2 className="ml-3">{currentProduct.brand || "Kwickbuy"}</h2>
         </div>
         <div className="text-[#1456ac] text-[0.8rem] w-[80%] m-auto flex justify-between items-center py-6">
           <span className="text-center w-[50%] border-r-1 border-[#4949491f] block">

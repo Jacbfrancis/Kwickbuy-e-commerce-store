@@ -1,8 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function MoreFromStore({ productBrands }) {
+function MoreFromStore({ productBrands, setCurrentImageIndex }) {
+  const navigate = useNavigate();
+
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
@@ -15,6 +18,10 @@ function MoreFromStore({ productBrands }) {
             className="bg-[#fff] rounded-lg border-1 border-[#6cc6e73f] px-2 flex justify-start items-center gap-6 py-4 my-2"
             onMouseOver={() => setHoveredIndex(index)}
             onMouseOut={() => setHoveredIndex(null)}
+            onClick={() => {
+              navigate(`/product/${product.id}`);
+              setCurrentImageIndex(0);
+            }}
           >
             <span className="w-[33%] p-2 block">
               <motion.img

@@ -188,9 +188,9 @@ function ProductListing({
               <h3>Brands</h3>
               <ul className="font-light">
                 {brands.slice(11, 15).map((brand) => (
-                  <li key={brand.name} className="my-2">
+                  <li key={brand.titlr} className="my-2">
                     <div className="flex justify-between items-center">
-                      <p>{brand.name}</p>
+                      <p>{brand.title}</p>
                       <p className="text-[#1456ac]">{`( ${brand.count} )`}</p>
                     </div>
                   </li>
@@ -283,16 +283,18 @@ function ProductListing({
             <h3>Brands</h3>
             <ul className="font-light mt-2">
               {brands.slice(5, 12).map((brand) => (
-                <li key={brand.name} className="my-1">
+                <li key={brand.title} className="my-1">
                   <div className="flex justify-between items-center">
-                    <p>{brand.name}</p>
+                    <p>{brand.title}</p>
                     <p className="text-[#1456ac] my-1">{`(${brand.count})`}</p>
                   </div>
                 </li>
               ))}
-              <li className="text-[#1456ac] font-normal text-right mt-5">
-                View More
-              </li>
+              <Link to="/brands">
+                <li className="text-[#1456ac] font-normal text-right mt-5">
+                  View More
+                </li>
+              </Link>
             </ul>
           </div>
         </div>

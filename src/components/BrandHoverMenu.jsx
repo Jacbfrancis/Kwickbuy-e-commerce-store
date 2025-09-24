@@ -17,7 +17,7 @@ function BrandHoverMenu({ brands }) {
               className="border-b-1 border-[#43434344] flex justify-between items-center"
             >
               <span className="px-3 py-2 cursor-pointer block hover:text-[#1456ac]">
-                {brand.name}
+                {brand.title}
               </span>
               <span className="px-3 py-2 cursor-pointer block text-[#1456ac]">
                 {`(${brand.count})`}

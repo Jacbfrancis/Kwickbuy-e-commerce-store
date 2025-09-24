@@ -41,14 +41,17 @@ function BuyProduct({
     quantityReducer,
     quantityInitialState
   );
-
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
+
   const currrentBrand = brands.find(
-    (brand) => brand.name === currentProduct.brand
+    (brand) => brand.title === currentProduct.brand
   );
   const productBrands = productData.filter(
-    (productBrand) => productBrand.brand === currrentBrand?.name
+    (productBrand) => productBrand.brand === currrentBrand?.title
   );
+
+  console.log(brands);
+
   const currentProductImages = currentProduct.images;
 
   const navigate = useNavigate();
@@ -172,7 +175,11 @@ function BuyProduct({
             productBrands={productBrands}
           />
         </div>
-        <Details features={features} currrentBrand={currrentBrand} />
+        <Details
+          features={features}
+          currrentBrand={currrentBrand}
+          currentProduct={currentProduct}
+        />
       </div>
       <div className="hidden xl:block">
         <Overview
@@ -183,7 +190,10 @@ function BuyProduct({
       <div
         className={`xl:hidden ${productBrands.length > 1 ? "block" : "hidden"}`}
       >
-        <MoreFromStore productBrands={productBrands} />
+        <MoreFromStore
+          productBrands={productBrands}
+          setCurrentImageIndex={setCurrentImageIndex}
+        />
       </div>
     </>
   );
