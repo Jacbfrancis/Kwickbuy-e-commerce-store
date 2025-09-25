@@ -53,7 +53,7 @@ function Homepage({
         categories={categories}
         brands={brands}
       />
-      <Header showMenu={showMenu} categories={categories} />
+      <Header categories={categories} />
       <FlashDeal
         flashSales={flashSales}
         productData={productData}

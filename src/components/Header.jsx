@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "./font-awesome";
 // eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const headerImages = [bannerImage1, bannerImage2, bannerImage3];
 
-function Header({ showMenu, categories }) {
+function Header({ categories }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const length = headerImages.length;
   const [isMouseOver, handleMouseOut, handleMouseOver] = useHover();
@@ -21,14 +21,14 @@ function Header({ showMenu, categories }) {
   const [handler] = useImageSwiper(setCurrentIndex, length);
 
   // Auto slide header banner and stop when showMenu is true
-  useEffect(() => {
-    const interval = setInterval(() => {
-      !showMenu &&
-        !isMouseOver &&
-        setCurrentIndex((prevImage) => (prevImage + 1) % length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [currentIndex, showMenu, length, isMouseOver]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     !showMenu &&
+  //       !isMouseOver &&
+  //       setCurrentIndex((prevImage) => (prevImage + 1) % length);
+  //   }, 5000);
+  //   return () => clearInterval(interval);
+  // }, [currentIndex, showMenu, length, isMouseOver]);
 
   return (
     <div>
