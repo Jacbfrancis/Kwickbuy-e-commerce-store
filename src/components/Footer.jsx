@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <>
       <div className="bg-[#184161] text-[#ffffffd2] px-6 pt-8 pb-20 mt-10 xl:px-20 xl:flex justify-between items-center">
         <div className="w-1/2 mb-4 m-auto xl:w-[15%] xl:m-0">
-          <img src="/footer_logo.png" alt="Kwickbuy_logo" />
+          <Link to="/">
+            <img src="/footer_logo.png" alt="Kwickbuy_logo" />
+          </Link>
         </div>
 
         <div className="text-center mb-10 xl:w-[35%] xl:m-0">
@@ -27,20 +31,39 @@ function Footer() {
           <span className="w-[50%] mr-4">
             <h4 className="mb-2">Quick Links</h4>
             <ul>
-              <li>Profile info</li>
-              <li>Limited Deals</li>
-              <li>Featured Products</li>
-              <li>Categories</li>
+              <Link to="/brands">
+                <li>Categories</li>
+              </Link>
+              <Link to="/categories">
+                <li>Brands</li>
+              </Link>
+              <Link to="/profile">
+                <li>Profile info</li>
+              </Link>
+              <Link to="/flashdeals">
+                <li>Flash Sales</li>
+              </Link>
+              <Link to="/featured-products">
+                <li>Featured Products</li>
+              </Link>
             </ul>
           </span>
 
           <span className="w-[50%] ml-4">
             <h4 className="mb-2">Need Help?</h4>
             <ul>
-              <li>About Us</li>
-              <li>Terms and Conditions</li>
-              <li>Refund Policy</li>
-              <li>Privacy Policy</li>
+              <Link to="/about-us">
+                <li>About Us</li>
+              </Link>
+              <Link to="/about-us">
+                <li>Terms and Conditions</li>
+              </Link>
+              <Link to="/about-us">
+                <li>Refund Policy</li>
+              </Link>
+              <Link to="/about-us">
+                <li>Privacy Policy</li>
+              </Link>
             </ul>
           </span>
         </div>

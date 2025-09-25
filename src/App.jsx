@@ -21,6 +21,8 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ErrorPage from "./pages/ErrorPage";
 import ListingPage from "./pages/ListingPage";
 import { BrandData } from "./components/BrandData";
+import AboutPage from "./pages/AboutPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 // console.log([
 //   "beauty",
@@ -91,6 +93,9 @@ function cartReducer(cart, action) {
             : cartItem
         )
         .filter((cartItem) => cartItem.quantityState > 0);
+
+    case "CLEAR_CART":
+      return [];
 
     default:
       return cart;
@@ -352,7 +357,7 @@ function App() {
               user={user}
               cart={cart}
               brands={brands}
-              ccategories={categories}
+              categories={categories}
               setShowMenu={setShowMenu}
               showMenu={showMenu}
               features={features}
@@ -616,6 +621,7 @@ function App() {
                 cart={cart}
                 categories={categories}
                 brands={brands}
+                dispatchCart={dispatchCart}
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
                 features={features}
@@ -625,6 +631,24 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/about-us"
+          element={
+            <AboutPage
+              user={user}
+              cart={cart}
+              brands={brands}
+              categories={categories}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              features={features}
+              setSearch={setSearch}
+              search={search}
+            />
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );

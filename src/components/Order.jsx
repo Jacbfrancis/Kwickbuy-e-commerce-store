@@ -13,7 +13,7 @@ function Order() {
           </h2>
           <p className="text-[0.85rem] font-extralight">
             Your payment has been successfully processed and your order -{" "}
-            {100193} {""}
+            {190103} {""}
             Has been placed.
           </p>
           <Link to="/">

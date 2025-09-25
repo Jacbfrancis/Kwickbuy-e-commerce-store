@@ -14,6 +14,7 @@ function OrderCompletePage({
   categories,
   brands,
   features,
+  dispatchCart,
   setSearch,
   search,
 }) {
@@ -29,8 +30,9 @@ function OrderCompletePage({
       setAuthorized(true);
       localStorage.removeItem("checkoutPayment");
       localStorage.removeItem("checkoutAddress");
+      dispatchCart({ type: "CLEAR_CART" });
     }
-  }, [navigate, authorized]);
+  }, [navigate, authorized, dispatchCart]);
 
   if (!authorized) return null;
 

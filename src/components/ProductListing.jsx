@@ -304,74 +304,91 @@ function ProductListing({
         </div>
 
         <div className="xl:ml-3 xl:w-[75%]">
-          <ul className="text-center px-3 grid justify-center place-items-center grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:px-0">
-            {currentProducts.map((product, index) => (
-              <li
-                key={product.id}
-                className=" bg-[#fff] rounded-2xl my-1 p-3 shadow-lg border-2 border-[#5dcaf133]"
-                onMouseOver={() => setHoveredIndex(index)}
-                onMouseOut={() => setHoveredIndex(null)}
-                onClick={() => setCurrentProduct(product)}
-              >
-                <div className="rounded-xl relative">
-                  <motion.span
-                    className="block border-b-1 rounded-xl border-[#6cc6e786] xl:border-b-1 relative"
-                    initial={{ backgroundColor: "#fff" }}
-                    animate={
-                      hoveredIndex === index
-                        ? { backgroundColor: "#4a81ca5d" }
-                        : { backgroundColor: "#fff" }
-                    }
-                    transition={{ type: "tween" }}
-                  >
-                    <motion.div
-                      className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 cursor-pointer absolute top-20 left-15  xl:left-17 z-20 invisible xl:visible hidden"
-                      initial={{ display: "none" }}
+          {currentProducts.length >= 1 ? (
+            <ul className="text-center px-3 grid justify-center place-items-center grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:px-0">
+              {currentProducts.map((product, index) => (
+                <li
+                  key={product.id}
+                  className=" bg-[#fff] rounded-2xl my-1 p-3 shadow-lg border-2 border-[#5dcaf133]"
+                  onMouseOver={() => setHoveredIndex(index)}
+                  onMouseOut={() => setHoveredIndex(null)}
+                  onClick={() => setCurrentProduct(product)}
+                >
+                  <div className="rounded-xl relative">
+                    <motion.span
+                      className="block border-b-1 rounded-xl border-[#6cc6e786] xl:border-b-1 relative"
+                      initial={{ backgroundColor: "#fff" }}
                       animate={
                         hoveredIndex === index
-                          ? { display: "block" }
-                          : { display: "none" }
+                          ? { backgroundColor: "#4a81ca5d" }
+                          : { backgroundColor: "#fff" }
                       }
-                      transition={{
-                        duration: 0.25,
-                        type: "tween",
-                        ease: "easeInOut",
-                      }}
-                      onClick={() => setIsViewProductOpen(true)}
+                      transition={{ type: "tween" }}
                     >
-                      <FontAwesomeIcon icon="fa-regular fa-eye" />
-                    </motion.div>
+                      <motion.div
+                        className="bg-white text-[#3976c5] rounded-full text-[1rem] w-fit p-2 cursor-pointer absolute top-20 left-15  xl:left-17 z-20 invisible xl:visible hidden"
+                        initial={{ display: "none" }}
+                        animate={
+                          hoveredIndex === index
+                            ? { display: "block" }
+                            : { display: "none" }
+                        }
+                        transition={{
+                          duration: 0.25,
+                          type: "tween",
+                          ease: "easeInOut",
+                        }}
+                        onClick={() => setIsViewProductOpen(true)}
+                      >
+                        <FontAwesomeIcon icon="fa-regular fa-eye" />
+                      </motion.div>
 
-                    <motion.img
-                      className="rounded-xl"
-                      initial={{ scale: 1 }}
-                      animate={
-                        hoveredIndex === index ? { scale: 1.15 } : { scale: 1 }
-                      }
-                      onClick={() => navigate(`/product/${product.id}`)}
-                      src={product.thumbnail}
-                      alt={`${product.title}_image`}
-                    />
-                  </motion.span>
-                </div>
+                      <motion.img
+                        className="rounded-xl"
+                        initial={{ scale: 1 }}
+                        animate={
+                          hoveredIndex === index
+                            ? { scale: 1.15 }
+                            : { scale: 1 }
+                        }
+                        onClick={() => navigate(`/product/${product.id}`)}
+                        src={product.thumbnail}
+                        alt={`${product.title}_image`}
+                      />
+                    </motion.span>
+                  </div>
 
-                <span
-                  className="font-semibold text-[0.9rem] py-6 block w-[9rem] h-[7rem] m-auto"
-                  onClick={() => navigate(`/product/${product.id}`)}
-                >
-                  <motion.h2
-                    className="cursor-pointer"
-                    whileHover={{ color: "#1456ac" }}
+                  <span
+                    className="font-semibold text-[0.9rem] py-6 block w-[9rem] h-[7rem] m-auto"
+                    onClick={() => navigate(`/product/${product.id}`)}
                   >
-                    {product.title}
-                  </motion.h2>
-                  <p className="cursor-pointer">
-                    ${product.price.toLocaleString()}
-                  </p>
-                </span>
-              </li>
-            ))}
-          </ul>
+                    <motion.h2
+                      className="cursor-pointer"
+                      whileHover={{ color: "#1456ac" }}
+                    >
+                      {product.title}
+                    </motion.h2>
+                    <p className="cursor-pointer">
+                      ${product.price.toLocaleString()}
+                    </p>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="text-center p-13 w-full">
+              <img
+                className="m-auto h-[20rem]"
+                src="/empty-cart.svg"
+                alt="empty_cart"
+              />
+              <p className="text-[#aeaeae] tracking-wide mt-5">
+                Oh no! We couldn't find the product you're looking for. It might
+                have been moved or removed from our store. Please try browsing
+                our other great items or searching again.
+              </p>
+            </div>
+          )}
         </div>
       </div>
 

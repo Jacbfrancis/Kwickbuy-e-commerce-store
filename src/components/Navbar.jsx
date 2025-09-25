@@ -202,7 +202,9 @@ function Navbar({
               Sign up
             </li>
           </Link>
-          <li className="px-5 cursor-pointer">About us</li>
+          <Link to="/about-us">
+            <li className="px-5 cursor-pointer">About us</li>
+          </Link>
         </ul>
       </div>
     </>

@@ -17,6 +17,14 @@ function Checkout({ cart, features }) {
     city: "",
     zipCode: "",
   });
+  const [billingAddressForm, setBillingAddressForm] = useState({
+    contactName: "",
+    phone: "",
+    email: "",
+    address: "",
+    city: "",
+    zipCode: "",
+  });
 
   const Subtotal = cart.reduce((acc, item) => {
     return acc + item.quantityState * item.price;
@@ -70,7 +78,9 @@ function Checkout({ cart, features }) {
             <p className="text-[0.8rem] px-1.5">Same as shipping Address</p>
           </span>
         </div>
-        {!showBillingForm && <Address />}
+        {!showBillingForm && (
+          <Address form={billingAddressForm} setForm={setBillingAddressForm} />
+        )}
       </div>
 
       <div className="w-full xl:w-[32%] xl:mt-20">

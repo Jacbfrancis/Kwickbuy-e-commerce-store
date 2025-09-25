@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 
 function TotalAmount({ cart, features, error, handleCheckout, Subtotal }) {
+  const total = Subtotal + (cart.length < 1 ? 0 : 29.36);
+
   return (
     <div className="bg-[#fff] w-full p-6 mt-8 border-[#6cc6e74b] border-1 rounded-xl">
       <ul className="text-[0.9rem] flex flex-col justify-center items-center">
         <li className="font-light my-1 flex justify-between items-center w-full">
           <p>Sub total</p>
-          <span className="font-medium">${Subtotal}</span>
+          <span className="font-medium">${Subtotal.toLocaleString()}</span>
         </li>
         <li className="font-light my-1 flex justify-between items-center w-full">
           <p>Tax</p>
@@ -23,9 +25,7 @@ function TotalAmount({ cart, features, error, handleCheckout, Subtotal }) {
         <hr className="w-full my-2 border-1 border-[#6969692a]" />
         <li className="font-light my-1 flex justify-between items-center w-full">
           <p className="text-[#1456ac]">Total</p>
-          <span className="font-medium">
-            ${(Subtotal + (cart.length < 1 ? 0 : 29.36)).toLocaleString()}
-          </span>
+          <span className="font-medium">${total.toLocaleString()}</span>
         </li>
       </ul>
       <div className="hidden w-full justify-around items-start xl:flex">
