@@ -339,7 +339,6 @@ function App() {
           element={
             <SignupPage
               cart={cart}
-              brands={brands}
               categories={categories}
               setShowMenu={setShowMenu}
               showMenu={showMenu}
@@ -356,7 +355,6 @@ function App() {
             <LoginPage
               user={user}
               cart={cart}
-              brands={brands}
               categories={categories}
               setShowMenu={setShowMenu}
               showMenu={showMenu}
@@ -373,8 +371,7 @@ function App() {
             <ForgotPasswordPage
               user={user}
               cart={cart}
-              brands={brands}
-              ccategories={categories}
+              categories={categories}
               setShowMenu={setShowMenu}
               showMenu={showMenu}
               features={features}
@@ -391,7 +388,6 @@ function App() {
               <ProfilePage
                 user={user}
                 cart={cart}
-                brands={brands}
                 categories={categories}
                 setShowMenu={setShowMenu}
                 showMenu={showMenu}
@@ -408,7 +404,6 @@ function App() {
             <ListingPage
               user={user}
               cart={cart}
-              brands={brands}
               categories={categories}
               setShowMenu={setShowMenu}
               showMenu={showMenu}
@@ -427,7 +422,6 @@ function App() {
             <ListingPage
               user={user}
               cart={cart}
-              brands={brands}
               categories={categories}
               setShowMenu={setShowMenu}
               showMenu={showMenu}
@@ -564,7 +558,6 @@ function App() {
               cart={cart}
               dispatchCart={dispatchCart}
               categories={categories}
-              brands={brands}
               showMenu={showMenu}
               setShowMenu={setShowMenu}
               features={features}
@@ -582,7 +575,6 @@ function App() {
                 user={user}
                 cart={cart}
                 categories={categories}
-                brands={brands}
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
                 features={features}
@@ -601,7 +593,6 @@ function App() {
                 user={user}
                 cart={cart}
                 categories={categories}
-                brands={brands}
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
                 features={features}
@@ -620,7 +611,6 @@ function App() {
                 user={user}
                 cart={cart}
                 categories={categories}
-                brands={brands}
                 dispatchCart={dispatchCart}
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
@@ -638,7 +628,6 @@ function App() {
             <AboutPage
               user={user}
               cart={cart}
-              brands={brands}
               categories={categories}
               setShowMenu={setShowMenu}
               showMenu={showMenu}

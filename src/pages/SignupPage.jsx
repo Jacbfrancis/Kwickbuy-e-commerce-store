@@ -6,7 +6,6 @@ import Signup from "./auth/Signup";
 function SignupPage({
   user,
   cart,
-  brands,
   categories,
   showMenu,
   setShowMenu,
@@ -19,7 +18,6 @@ function SignupPage({
       <Navbar
         user={user}
         cart={cart}
-        brands={brands}
         categories={categories}
         setShowMenu={setShowMenu}
         showMenu={showMenu}

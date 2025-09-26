@@ -4,38 +4,43 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "./font-awesome";
 import NavMenu from "../components/NavMenu";
 import OfferHoverMenu from "./OfferHoverMenu";
-import BrandHoverMenu from "./BrandHoverMenu";
 import { Link, useNavigate } from "react-router-dom";
+import MobileSearchBar from "./MobileSearchBar";
 
 const offers = [
   { name: "Featured Deals", link: "/featured-products" },
   { name: "Flash Sales", link: "/flashdeals" },
-  // { name: "Discontinued Products", link: "" },
-  // { name: "Clearance Sales", link: "" },
+  { name: "Discontinued Products", link: "" },
+  { name: "Clearance Sales", link: "" },
 ];
 
 function Navbar({
   setShowMenu,
   showMenu,
   categories,
-  brands,
   cart,
   user,
   setSearch,
   search,
 }) {
   const [isHoverOffer, setIsHoverOffer] = useState(false);
-  const [isHoverBrand, setIsHoverBrand] = useState(false);
+  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
 
   const navigate = useNavigate();
 
   return (
     <>
+      {isSearchBarOpen && (
+        <MobileSearchBar
+          setIsSearchBarOpen={setIsSearchBarOpen}
+          search={search}
+          setSearch={setSearch}
+        />
+      )}
+
       <nav
         className="flex justify-between items-center shadow-sm top-0 p-4 bg-[#fff] w-full z-50 xl:px-20 xl:py-1 xl:sticky"
-        onMouseOver={() => {
-          setIsHoverOffer(false), setIsHoverBrand(false);
-        }}
+        onMouseOver={() => setIsHoverOffer(false)}
       >
         <div className="flex justify-center items-center">
           <Link to="/">
@@ -93,6 +98,7 @@ function Navbar({
           </span> */}
           <FontAwesomeIcon
             className="text-lg bg-[#f3f5f9] text-[#1456ac] rounded-full w-full p-2 xl:!hidden cursor-pointer hover:text-gray-400"
+            onClick={() => setIsSearchBarOpen(true)}
             icon="fa-solid fa-magnifying-glass"
           />
           <Link to={user ? "/profile" : "/login"}>
@@ -154,9 +160,7 @@ function Navbar({
           </Link>
           <li
             className="px-5 cursor-pointer"
-            onMouseOver={() => {
-              setIsHoverOffer(true), setIsHoverBrand(false);
-            }}
+            onMouseOver={() => setIsHoverOffer(true)}
           >
             Offers
             <span className="text-[0.5rem] font-semibold ml-2">&#9660;</span>
@@ -169,38 +173,19 @@ function Navbar({
               </div>
             )}
           </li>
-          <li
-            className="px-5 cursor-pointer"
-            onMouseOver={() => {
-              setIsHoverBrand(true), setIsHoverOffer(false);
-            }}
-          >
-            Brands
-            <span className="text-[0.5rem] font-semibold ml-1">&#9660;</span>
-            {isHoverBrand && (
-              <div
-                className="absolute top-32 left-130 z-50"
-                onMouseOut={() => setIsHoverBrand(false)}
-              >
-                <BrandHoverMenu brands={brands} />
-              </div>
-            )}
-          </li>
-          <Link to="/login">
+          <Link to="/brands">
             <li
               className="px-5 cursor-pointer"
-              onMouseOver={() => setIsHoverBrand(false)}
+              onMouseOver={() => setIsHoverOffer(false)}
             >
-              Login
+              Brands
             </li>
           </Link>
+          <Link to="/login">
+            <li className="px-5 cursor-pointer">Login</li>
+          </Link>
           <Link to="/signup">
-            <li
-              className="px-5 cursor-pointer"
-              onMouseOver={() => setIsHoverBrand(false)}
-            >
-              Sign up
-            </li>
+            <li className="px-5 cursor-pointer">Sign up</li>
           </Link>
           <Link to="/about-us">
             <li className="px-5 cursor-pointer">About us</li>

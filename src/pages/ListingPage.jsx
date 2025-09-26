@@ -9,7 +9,6 @@ function ListingPage({
   showMenu,
   setShowMenu,
   categories,
-  brands,
   features,
   data,
   title,
@@ -24,7 +23,6 @@ function ListingPage({
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         categories={categories}
-        brands={brands}
         setSearch={setSearch}
         search={search}
       />

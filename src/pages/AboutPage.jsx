@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 function AboutPage({
   user,
   cart,
-  brands,
   categories,
   showMenu,
   setShowMenu,
@@ -19,7 +18,6 @@ function AboutPage({
       <Navbar
         user={user}
         cart={cart}
-        brands={brands}
         categories={categories}
         setShowMenu={setShowMenu}
         showMenu={showMenu}

@@ -6,7 +6,6 @@ import Login from "./auth/Login";
 function LoginPage({
   user,
   cart,
-  brands,
   categories,
   showMenu,
   setShowMenu,
@@ -19,7 +18,6 @@ function LoginPage({
       <Navbar
         user={user}
         cart={cart}
-        brands={brands}
         categories={categories}
         setShowMenu={setShowMenu}
         showMenu={showMenu}

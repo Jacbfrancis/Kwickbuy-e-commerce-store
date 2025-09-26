@@ -6,7 +6,6 @@ import Profile from "../components/Profile";
 function ProfilePage({
   user,
   cart,
-  brands,
   categories,
   showMenu,
   setShowMenu,
@@ -18,7 +17,6 @@ function ProfilePage({
       <Navbar
         user={user}
         cart={cart}
-        brands={brands}
         categories={categories}
         setShowMenu={setShowMenu}
         showMenu={showMenu}

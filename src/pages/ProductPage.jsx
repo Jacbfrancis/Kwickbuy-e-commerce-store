@@ -33,7 +33,6 @@ function ProductPage({
         user={user}
         cart={cart}
         categories={categories}
-        brands={brands}
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         setSearch={setSearch}

@@ -7,7 +7,6 @@ import Login from "./auth/Login";
 function ForgotPasswordPage({
   user,
   cart,
-  brands,
   categories,
   showMenu,
   setShowMenu,
@@ -20,7 +19,6 @@ function ForgotPasswordPage({
       <Navbar
         user={user}
         cart={cart}
-        brands={brands}
         categories={categories}
         setShowMenu={setShowMenu}
         showMenu={showMenu}

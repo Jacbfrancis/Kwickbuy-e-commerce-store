@@ -7,7 +7,6 @@ function ShoppingCartPage({
   cart,
   dispatchCart,
   categories,
-  brands,
   showMenu,
   setShowMenu,
   features,
@@ -20,7 +19,6 @@ function ShoppingCartPage({
         user={user}
         cart={cart}
         categories={categories}
-        brands={brands}
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         setSearch={setSearch}

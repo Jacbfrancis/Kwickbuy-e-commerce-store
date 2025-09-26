@@ -43,7 +43,6 @@ function ProductListingPage({
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         categories={categories}
-        brands={brands}
         setSearch={setSearch}
         search={search}
       />

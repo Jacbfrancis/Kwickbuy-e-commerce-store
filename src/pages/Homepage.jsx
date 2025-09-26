@@ -20,7 +20,6 @@ function Homepage({
   features,
   productData,
   categories,
-  brands,
   showMenu,
   setShowMenu,
   flashSales,
@@ -51,7 +50,6 @@ function Homepage({
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         categories={categories}
-        brands={brands}
       />
       <Header categories={categories} />
       <FlashDeal

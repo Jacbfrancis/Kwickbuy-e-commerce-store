@@ -12,7 +12,6 @@ function OrderCompletePage({
   showMenu,
   setShowMenu,
   categories,
-  brands,
   features,
   dispatchCart,
   setSearch,
@@ -44,7 +43,6 @@ function OrderCompletePage({
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         categories={categories}
-        brands={brands}
         setSearch={setSearch}
         search={search}
       />

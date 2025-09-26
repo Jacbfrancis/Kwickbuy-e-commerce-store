@@ -11,7 +11,6 @@ function PaymentPage({
   showMenu,
   setShowMenu,
   categories,
-  brands,
   features,
   setSearch,
   search,
@@ -34,7 +33,6 @@ function PaymentPage({
         showMenu={showMenu}
         setShowMenu={setShowMenu}
         categories={categories}
-        brands={brands}
         setSearch={setSearch}
         search={search}
       />
