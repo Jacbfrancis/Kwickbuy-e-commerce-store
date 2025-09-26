@@ -93,7 +93,11 @@ function BuyProduct({
                 className="bg-[#fff] block rounded mx-1 w-[25%]"
                 onClick={() => setCurrentImageIndex(index)}
               >
-                <img className="w-[90%] m-auto" src={productImage} alt="" />
+                <img
+                  className="w-[90%] m-auto"
+                  src={productImage}
+                  alt={productImage}
+                />
               </span>
             ))}
           </div>
