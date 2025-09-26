@@ -105,6 +105,8 @@ function cartReducer(cart, action) {
 function App() {
   useScrollToTop();
   const { user, loadingAuth } = useAuthStatus();
+  const guest = getItem("guest");
+
   const [productData, error, loading] = useGetProducts();
   const [showMenu, setShowMenu] = useState(false);
   const [isViewProductOpen, setIsViewProductOpen] = useState(false);
@@ -384,7 +386,7 @@ function App() {
         <Route
           path="/profile"
           element={
-            <ProtectedRoute user={user}>
+            <ProtectedRoute user={user} guest={guest}>
               <ProfilePage
                 user={user}
                 cart={cart}
@@ -570,7 +572,7 @@ function App() {
         <Route
           path="/checkout-details"
           element={
-            <ProtectedRoute user={user}>
+            <ProtectedRoute user={user} guest={guest}>
               <ShippingAddressPage
                 user={user}
                 cart={cart}
@@ -588,7 +590,7 @@ function App() {
         <Route
           path="/checkout-payment"
           element={
-            <ProtectedRoute user={user}>
+            <ProtectedRoute user={user} guest={guest}>
               <PaymentPage
                 user={user}
                 cart={cart}
@@ -606,7 +608,7 @@ function App() {
         <Route
           path="/order-complete"
           element={
-            <ProtectedRoute user={user}>
+            <ProtectedRoute user={user} guest={guest}>
               <OrderCompletePage
                 user={user}
                 cart={cart}

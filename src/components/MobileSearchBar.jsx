@@ -17,7 +17,7 @@ function MobileSearchBar({ setIsSearchBarOpen, search, setSearch }) {
         value={search}
       />
       <button
-        className="font-light text-slate-600"
+        className="bg-[#1456ac] text-[#fff] font-light px-3 py-2.5 rounded-lg"
         onClick={() => search && navigate("/search")}
       >
         Search

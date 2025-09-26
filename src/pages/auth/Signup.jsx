@@ -3,6 +3,7 @@ import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { handleAuthError } from "./handleAuthError";
+import { setItem } from "../../components/LocalStorage";
 
 function Signup() {
   const navigate = useNavigate();
@@ -159,6 +160,15 @@ function Signup() {
           >
             {loading ? "Loading..." : "Sign up"}
           </button>
+          <p
+            className="text-[#1456ac] mb-6 cursor-pointer"
+            onClick={() => {
+              setItem("guest", true);
+              navigate("/");
+            }}
+          >
+            Continue as Guest
+          </p>
         </form>
       </div>
       <p className="text-gray-600">

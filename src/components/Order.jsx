@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Order() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="bg-[#fff] text-center w-[90%] mx-auto my-8 rounded-xl shadow-sm px-5 py-5 xl:w-[80%] xl:rounded-xl">
@@ -16,11 +18,16 @@ function Order() {
             {190103} {""}
             Has been placed.
           </p>
-          <Link to="/">
-            <button className="bg-[#1456ac] text-[#fff] rounded-lg py-3 px-8 mt-5 mb-3 cursor-pointer">
-              Continue Shopping
-            </button>
-          </Link>
+
+          <button
+            className="bg-[#1456ac] text-[#fff] rounded-lg py-3 px-8 mt-5 mb-3 cursor-pointer"
+            onClick={() => {
+              navigate("/");
+              localStorage.removeItem("guest");
+            }}
+          >
+            Continue Shopping
+          </button>
         </div>
       </div>
     </div>
