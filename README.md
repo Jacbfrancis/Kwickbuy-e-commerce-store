@@ -22,7 +22,8 @@ This project is intended for portfolio/demo purposes and focuses on showing clea
 
 ### 📸 Screenshot
 
-![](./preview/Screenshot_01.png)
+![Screenshot](public/screenshots/screenshot_1.png)
+![Screenshot](public/screenshots/screenshot_2.png)
 
 ### Links
 
