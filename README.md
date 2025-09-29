@@ -23,6 +23,9 @@ This project is intended for portfolio/demo purposes and focuses on showing clea
 ### 📸 Screenshot
 
 ![Screenshot](public/screenshots/screenshot_1.png)
+<br/>
+<br/>
+
 ![Screenshot](public/screenshots/screenshot_2.png)
 
 ### Links
@@ -47,6 +50,8 @@ This project is intended for portfolio/demo purposes and focuses on showing clea
 - Routing: React Router
 
 - Styling: Tailwind CSS
+
+- Animation: Framer Motion
 
 - State management: useReducer for cart logic (local state); localStorage for persistence of checkout flags
 
