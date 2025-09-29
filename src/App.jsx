@@ -24,33 +24,6 @@ import { BrandData } from "./components/BrandData";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
-// console.log([
-//   "beauty",
-//   "fragrances",
-//   "furniture",
-//   "groceries",
-//   "home-decoration",
-//   "kitchen-accessories",
-//   "laptops",
-//   "mens-shirts",
-//   "mens-shoes",
-//   "mens-watches",
-//   "mobile-accessories",
-//   "motorcycle",
-//   "skin-care",
-//   "smartphones",
-//   "sports-accessories",
-//   "sunglasses",
-//   "tablets",
-//   "tops",
-//   "vehicle",
-//   "womens-bags",
-//   "womens-dresses",
-//   "womens-jewellery",
-//   "womens-shoes",
-//   "womens-watches",
-// ]);
-
 const features = [
   {
     image: "/express-delivery.png",
